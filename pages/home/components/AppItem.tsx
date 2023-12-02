@@ -1,9 +1,5 @@
 import {TouchableOpacity, View} from 'react-native';
 import {Icon, Text, IconButton, Chip} from 'react-native-paper';
-import Files from '../../../modules/files';
-import {useRecoilState} from 'recoil';
-import {downloadModalProgress, downloadModalVisible} from './downloadModal';
-import Permissions from '../../../modules/permission';
 
 interface AppItemProps {
   title: string;
@@ -11,30 +7,20 @@ interface AppItemProps {
   iconColor: string;
 }
 
+const chipColors = {
+  INSTALLED: 'rgba(0, 255, 0, 0.3)',
+  NOT_INSTALLED: 'rgba(255, 0, 0, 0.3)',
+  OUTDATED: 'rgba(250, 167, 0, 0.3)',
+};
+const chipText = {
+  INSTALLED: 'Installed',
+  NOT_INSTALLED: 'Not Installed',
+  OUTDATED: 'Outdated',
+};
+
 export default function AppItem({title, iconSource, iconColor}: AppItemProps) {
-  const [modalOpen, setModalOpen] = useRecoilState(downloadModalVisible);
-  const [modalProgress, setModalProgress] = useRecoilState(
-    downloadModalProgress,
-  );
   return (
-    <TouchableOpacity
-      onPress={() => {
-        Files.downloadAndInstall({
-          url: 'https://github.com/j-hc/revanced-magisk-module/releases/download/20220912/youtube-revanced-v18.45.41-all.apk',
-          fileName: 'youtube-revanced-v18.45.41-all.apk',
-          onStart: () => {
-            setModalOpen(true);
-          },
-          onProgress: progress => {
-            setModalProgress(progress);
-          },
-          onCompleted: _ => {
-            setModalOpen(false);
-            setModalProgress(0);
-            console.log('done');
-          },
-        });
-      }}>
+    <TouchableOpacity onPress={() => {}}>
       <View
         style={{
           width: '100%',
@@ -52,7 +38,7 @@ export default function AppItem({title, iconSource, iconColor}: AppItemProps) {
             alignItems: 'center',
             gap: 15,
           }}>
-          <Icon size={60} color={iconColor} source={iconSource} />
+          <Icon size={70} color={iconColor} source={iconSource} />
           <Text
             style={{
               fontSize: 25,
@@ -66,16 +52,28 @@ export default function AppItem({title, iconSource, iconColor}: AppItemProps) {
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'flex-end',
-            gap: 15,
+            gap: 5,
           }}>
-          <Chip
+          <View
             style={{
-              backgroundColor: '#9bf169a7',
-            }}
-            mode="outlined">
-            Installed
-          </Chip>
-          <Chip mode="outlined">111</Chip>
+              backgroundColor: chipColors.OUTDATED,
+              borderRadius: 5,
+              padding: 5,
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'center',
+              borderWidth: 1,
+              borderColor: 'rgba(255, 255, 255, 0.4)',
+            }}>
+            <Text
+              style={{
+                fontSize: 12,
+                color: 'rgba(255, 255, 255, 0.5)',
+              }}>
+              {chipText.NOT_INSTALLED}
+            </Text>
+          </View>
           <IconButton icon="chevron-right" size={30} />
         </View>
       </View>

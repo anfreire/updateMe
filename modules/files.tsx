@@ -23,52 +23,31 @@ namespace Files {
     onCompleted?: (path: string) => void;
   }
 
-  export function downloadAndInstall({
-    url,
-    fileName,
-    onStart = () => {},
-    onProgress = () => {},
-    onCompleted = () => {},
-    onError = () => {},
-  }: DownloadAndInstallOptions): void {
-    getDir().then(dir => {
-      onStart();
-      RNFetchBlob.config({
-        path: `${dir}/${fileName}`,
-        fileCache: false,
+  export async function download(
+    url: string,
+    filename: string,
+    onProgress: (progress: number) => void,
+  ) {
+    const dir = await getDir();
+    return await RNFetchBlob.config({
+      path: `${dir}/${filename}`,
+      fileCache: false,
+    })
+      .fetch('GET', url, {
+        'Cache-Control': 'no-store',
       })
-        .fetch('GET', url, {
-          'Cache-Control': 'no-store',
-        })
-        .progress({interval: 250}, (received, total) => {
-          onProgress(received / total);
-        })
-        .then(res => {
-          RNFetchBlob.fs
-            .exists(res.path())
-            .then(exist => {
-              exist
-                ? (() => {
-                    Permissions.getPermissions('INSTALL').then(granted => {
-                      if (!granted) Permissions.requestPermissions('INSTALL');
-                      RNFetchBlob.android.actionViewIntent(
-                        res.path(),
-                        'application/vnd.android.package-archive',
-                      );
-                      onCompleted(res.path());
-                    });
-                  })()
-                : onError('File not found');
-            })
-            .catch(err => {
-              onError(err);
-              return;
-            });
-        })
-        .catch(err => {
-          onError(err);
-        });
-    });
+      .progress((received, total) => {
+        onProgress(received / total);
+      });
+  }
+
+  export async function install(path: string) {
+    const granted = await Permissions.getPermissions('INSTALL');
+    if (!granted) await Permissions.requestPermissions('INSTALL');
+    RNFetchBlob.android.actionViewIntent(
+      path,
+      'application/vnd.android.package-archive',
+    );
   }
 }
 
