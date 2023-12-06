@@ -1,9 +1,9 @@
-import {PermissionsAndroid} from 'react-native';
-import {NativeModules} from 'react-native';
+import {NativeModules, PermissionsAndroid} from 'react-native';
 const {MyAppsModule} = NativeModules;
-export type PermissionType = 'READ' | 'WRITE' | 'INSTALL';
 
 namespace Permissions {
+  export type PermissionType = 'READ' | 'WRITE' | 'INSTALL';
+
   export async function getPermissions(type: PermissionType) {
     switch (type) {
       case 'READ':

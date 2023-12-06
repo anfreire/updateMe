@@ -5,14 +5,17 @@
 import {AppRegistry} from 'react-native';
 import App from './App';
 import {name as appName} from './app.json';
-import {RecoilRoot} from 'recoil';
+import {SourceProvider} from './hooks/source';
+import {CurrAppProvider} from './hooks/currApp';
 
-const Main = () => {
+const Providers = () => {
   return (
-    <RecoilRoot>
-      <App />
-    </RecoilRoot>
+    <SourceProvider>
+      <CurrAppProvider>
+        <App />
+      </CurrAppProvider>
+    </SourceProvider>
   );
 };
 
-AppRegistry.registerComponent(appName, () => Main);
+AppRegistry.registerComponent(appName, () => Providers);

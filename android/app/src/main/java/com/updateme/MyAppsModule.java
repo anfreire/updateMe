@@ -50,4 +50,13 @@ public class MyAppsModule extends ReactContextBaseJavaModule {
       getReactApplicationContext().startActivity(intent);
     }
   }
+
+  @ReactMethod()
+  public void uninstallApp(String packageName) {
+    android.content.Intent intent = new android.content.Intent(
+        android.content.Intent.ACTION_DELETE);
+    intent.setData(android.net.Uri.parse("package:" + packageName));
+    intent.setFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK);
+    getReactApplicationContext().startActivity(intent);
+  }
 }
