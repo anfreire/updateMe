@@ -1,5 +1,5 @@
 import {View} from 'react-native';
-import IListItem from '../../../../../base/listItem';
+import IListItem from '../../../../../common/listItem';
 import {Divider, Icon} from '@rneui/themed';
 import {ModalControllerProps} from './infoModal';
 import Files from '../../../../../modules/files';

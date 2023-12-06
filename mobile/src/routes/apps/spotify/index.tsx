@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react';
 import {ScrollView, View} from 'react-native';
 import {useSource} from '../../../../hooks/source';
-import IWarning, {WarningType} from '../../../../base/warning';
+import IWarning, {WarningType} from '../../../../common/warning';
 import {getWarning} from '../../../../utils/apps';
-import InstallButton from '../../../../base/installButton';
+import InstallButton from '../../../../common/installButton';
 
 export default function AppsSpotify() {
   const source = useSource()[0];

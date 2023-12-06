@@ -5,7 +5,7 @@ import {SourceProps, useSource} from '../../../../../hooks/source';
 import {useCurrApp} from '../../../../../hooks/currApp';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {HomeScreenTypes} from '../..';
-import IListItem from '../../../../../base/listItem';
+import IListItem from '../../../../../common/listItem';
 import {AppKeys} from '..';
 
 type AppKeys = 'HDO' | 'YOUTUBE_YOUTUBE' | 'YOUTUBE_MUSIC' | 'SPOTIFY';

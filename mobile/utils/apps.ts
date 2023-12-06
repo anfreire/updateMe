@@ -1,14 +1,13 @@
-import RNFetchBlob from 'rn-fetch-blob';
 import Permissions from '../modules/permissions';
 import Files from '../modules/files';
 import Apps from '../modules/apps';
 import {SourceType} from '../hooks/source';
-import {WarningType} from '../base/warning';
+import {WarningType} from '../common/warning';
 
 export async function getIndex(): Promise<null | SourceType> {
   try {
     const response = await fetch(
-      'https://github.com/anfreire/Archive/raw/gh-pages/updateMe/index.json',
+      'https://github.com/anfreire/updateMe/raw/gh-pages/scripts/index.json',
     );
     return await response.json();
   } catch (_) {
