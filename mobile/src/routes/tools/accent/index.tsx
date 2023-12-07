@@ -3,7 +3,7 @@ import {View} from 'react-native';
 import {saveAccentColor} from '../../../../utils/theme';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {TouchableOpacity} from 'react-native';
-import useScreenOrientation from '../../../../hooks/screenOrientation';
+import useScreenOrientation from '../../../../hooks/useScreenOrientation';
 
 interface AccentColor {
   light: string;

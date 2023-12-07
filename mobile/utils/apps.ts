@@ -1,7 +1,7 @@
 import Permissions from '../modules/permissions';
 import Files from '../modules/files';
 import Apps from '../modules/apps';
-import {SourceType} from '../hooks/source';
+import {SourceType} from '../hooks/useSource';
 import {WarningType} from '../common/warning';
 
 export async function getIndex(): Promise<null | SourceType> {
@@ -13,6 +13,11 @@ export async function getIndex(): Promise<null | SourceType> {
   } catch (_) {
     return null;
   }
+}
+
+export async function deleteAllFiles() {
+  const files = await Files.listFiles();
+  Promise.all(files.map(async file => await Files.deleteFile(file)));
 }
 
 export async function downloadAndInstall(

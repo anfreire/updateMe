@@ -1,7 +1,7 @@
 import {TouchableOpacity, View} from 'react-native';
 import {Image, Text, Icon} from '@rneui/themed';
 import Badge from './badge';
-import {SourceProps, useSource} from '../../../../../hooks/source';
+import {SourceProps, useSource} from '../../../../../hooks/useSource';
 import {useCurrApp} from '../../../../../hooks/currApp';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {HomeScreenTypes} from '../..';

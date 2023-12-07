@@ -18,7 +18,8 @@ export default function useScreenOrientation() {
 
   useEffect(() => {
     determineAndSetOrientation();
-    Dimensions.addEventListener('change', determineAndSetOrientation);
+    const event = Dimensions.addEventListener('change', determineAndSetOrientation);
+    return () => event.remove();
   }, []);
 
   return orientation;

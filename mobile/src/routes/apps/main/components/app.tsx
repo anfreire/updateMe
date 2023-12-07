@@ -4,7 +4,7 @@ import {useCurrApp} from '../../../../../hooks/currApp';
 import {downloadAndInstall} from '../../../../../utils/apps';
 import {useState} from 'react';
 import {Divider, LinearProgress} from '@rneui/base';
-import {useSource} from '../../../../../hooks/source';
+import {useSource} from '../../../../../hooks/useSource';
 
 export default function HomeApp() {
   const currApp = useCurrApp()[0];

@@ -1,4 +1,4 @@
-import {SourceProps, useSource} from '../hooks/source';
+import {SourceProps, useSource} from '../hooks/useSource';
 import {
   AppState,
   downloadAndInstall,
@@ -10,49 +10,42 @@ import {useEffect, useState} from 'react';
 import {Button, Icon} from '@rneui/themed';
 import Apps from '../modules/apps';
 
-const text = {
-  'UPDATE AVAILABLE': 'Update',
-  'NOT INSTALLED': 'Install',
-  'UP TO DATE': 'Uninstall',
-};
+const ButtonUpdate = ({source}: {source: SourceProps}) => (
+  <Button onPress={() => downloadAndInstall(source.link)} color={'primary'}>
+    Update
+    <Icon name="update" type="material" />
+  </Button>
+);
 
-const icons = {
-  'UPDATE AVAILABLE': 'update',
-  'NOT INSTALLED': 'download',
-  'UP TO DATE': 'delete',
-};
+const ButtonInstall = ({source}: {source: SourceProps}) => (
+  <Button onPress={() => downloadAndInstall(source.link)} color={'primary'}>
+    Install
+    <Icon name="download" type="material" />
+  </Button>
+);
 
-const onPress = (source: SourceProps, appState: AppState) => {
-  switch (appState) {
-    case 'UPDATE AVAILABLE':
-      downloadAndInstall(source.link);
-    case 'NOT INSTALLED':
-      downloadAndInstall(source.link);
-    case 'UP TO DATE':
-      Apps.uninstallApp(source.package as string);
-  }
-};
+const ButtonUninstall = ({packageName}: {packageName: string}) => (
+  <Button onPress={() => Apps.uninstallApp(packageName)} color="error">
+    Uninstall
+    <Icon name="delete" type="material" />
+  </Button>
+);
 
 export default function InstallButton({packageName}: {packageName: string}) {
   const [appState, setAppState] = useState<AppState>('UP TO DATE');
   const source = useSource()[0];
+  const mySource = (source as any)[(packageToKeys as any)[packageName]];
 
   useEffect(() => {
-    getSingleAppSate(
-      packageName,
-      (source as any)[(packageToKeys as any)[packageName]]['version'],
-    ).then(res => {
+    getSingleAppSate(packageName, mySource.version).then(res => {
       setAppState(res);
     });
   }, []);
-  return (
-    <Button
-      onPress={() =>
-        onPress((source as any)[(packageToKeys as any)[packageName]], appState)
-      }
-      color={appState === 'UP TO DATE' ? 'error' : 'primary'}>
-      {text[appState]}
-      <Icon name={icons[appState]} type="material" />
-    </Button>
+  return appState === 'UP TO DATE' ? (
+    <ButtonUninstall packageName={packageName} />
+  ) : appState === 'UPDATE AVAILABLE' ? (
+    <ButtonUpdate source={mySource} />
+  ) : (
+    <ButtonInstall source={mySource} />
   );
 }

@@ -2,7 +2,7 @@ import {Divider, FAB, Icon, useTheme} from '@rneui/themed';
 import {useEffect} from 'react';
 import {RefreshControl, ScrollView, View} from 'react-native';
 import ListItem from './components/listItem';
-import {SourceKeysType, useSource} from '../../../../hooks/source';
+import {SourceKeysType, useSource} from '../../../../hooks/useSource';
 import {HomeScreenTypes} from '..';
 
 export const AppKeys: SourceKeysType[] = [

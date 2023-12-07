@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react';
 import {View} from 'react-native';
 import {AppState, getAppState} from '../../../../../utils/apps';
 import {Icon, Text, Skeleton, Button} from '@rneui/themed';
-import {useSource} from '../../../../../hooks/source';
+import {useSource} from '../../../../../hooks/useSource';
 import {colors} from '../../../../../utils/theme';
 
 const borderColors: Record<AppState, string> = {

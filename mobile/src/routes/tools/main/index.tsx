@@ -16,6 +16,20 @@ export default function ToolsMain({
         flexDirection: 'column',
       }}>
       <IListItem
+        title="Change accent color"
+        icon={
+          <Icon
+            size={40}
+            color={theme.colors.primary}
+            name="palette"
+            type="material"
+          />
+        }
+        onPress={() => {
+          navigation.navigate('Tools-Accent' as never);
+        }}
+      />
+      <IListItem
         title="Downloads"
         icon={
           <Icon
@@ -30,17 +44,17 @@ export default function ToolsMain({
         }}
       />
       <IListItem
-        title="Change accent color"
+        title="Help"
         icon={
           <Icon
             size={40}
-            color={theme.colors.primary}
-            name="palette"
+            name="help"
             type="material"
+            color={theme.colors.primary}
           />
         }
         onPress={() => {
-          navigation.navigate('Tools-Accent' as never);
+          navigation.navigate('Tools-Help' as never);
         }}
       />
       <IListItem

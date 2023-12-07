@@ -1,5 +1,5 @@
 import {ScrollView, View} from 'react-native';
-import {useSource} from '../../../../hooks/source';
+import {useSource} from '../../../../hooks/useSource';
 import IWarning, {WarningType} from '../../../../common/warning';
 import React, {useEffect} from 'react';
 import {getWarning} from '../../../../utils/apps';

@@ -1,4 +1,10 @@
-import {RefreshControl, ScrollView, Modal, View} from 'react-native';
+import {
+  RefreshControl,
+  ScrollView,
+  Modal,
+  View,
+  TouchableOpacity,
+} from 'react-native';
 import Files from '../../../../modules/files';
 import {useEffect, useState} from 'react';
 
@@ -21,8 +27,11 @@ import {} from 'rn-fetch-blob';
 import DownloadsListItem from './components/listItem';
 import {Icon, Text} from '@rneui/themed';
 import DownloadInfoModal, {ModalControllerProps} from './components/infoModal';
+import ISwipable from '../../../../common/swipable';
+import {DownloadsHeader, ToolsScreenTypes} from '..';
+import {deleteAllFiles} from '../../../../utils/apps';
 
-export default function ToolsDownloads() {
+export default function ToolsDownloads({navigation}: any) {
   const [files, setFiles] = useState<string[]>([]);
   const [modal, setModal] = useState<ModalControllerProps>({
     file: null,
@@ -35,6 +44,39 @@ export default function ToolsDownloads() {
     Files.listFiles().then(files => {
       setFiles(files);
       setRefreshing(false);
+      if (files.length == 0) navigation.setOptions({headerRight: undefined});
+      else
+        navigation.setOptions({
+          headerRight: (
+            <TouchableOpacity
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 5,
+              }}
+              onPress={() => {
+                deleteAllFiles();
+                update();
+              }}>
+              <Text
+                style={{
+                  color: 'rgba(255,0,0,0.5)',
+                  fontSize: 20,
+                  fontWeight: '100',
+                }}>
+                Delete all
+              </Text>
+              <Icon
+                color="rgba(255,0,0,0.5)"
+                size={25}
+                name="delete"
+                type="material-community"
+              />
+            </TouchableOpacity>
+          ),
+        });
     });
   };
 

@@ -1,8 +1,10 @@
 import {View} from 'react-native';
 import IListItem from '../../../../../common/listItem';
-import {Divider, Icon} from '@rneui/themed';
+import {Divider, Icon, ListItem} from '@rneui/themed';
 import {ModalControllerProps} from './infoModal';
 import Files from '../../../../../modules/files';
+import {Button} from '@rneui/base';
+import {colors} from '../../../../../utils/theme';
 
 const getTitle = (file: string) => {
   const lowerFile = file.toLowerCase();
@@ -35,45 +37,57 @@ export default function DownloadsListItem({
 }) {
   return (
     <View>
-      <IListItem
-        title={getTitle(file)}
-        icon={
-          file.endsWith('.apk') ? (
-            <Icon
-              color="#9FC037"
-              name="android"
-              type="font-awesome"
-              size={35}
-            />
-          ) : (
-            <Icon name="question" type="font-awesome" />
-          )
-        }
-        rightComponent={
-          <View
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              gap: 15,
+      <ListItem.Swipeable
+        rightWidth={75}
+        minSlideWidth={75}
+        leftWidth={75}
+        leftContent={action => (
+          <Button
+            containerStyle={{
+              flex: 1,
+              justifyContent: 'center',
+              backgroundColor: 'rgba(0, 0, 255, 0.2)',
+            }}
+            type="clear"
+            onPress={() => {
+              action();
+              setModal({
+                visible: true,
+                file,
+              });
             }}>
-            <Icon
-              onPress={() => setModal({file, visible: true})}
-              size={40}
-              name="info"
-              color="#1e92f4"
-            />
-            <Icon
-              onPress={() => Files.deleteFile(file).then(update)}
-              size={40}
-              name="delete"
-              type="material-community"
-              color="#d11a2a"
-            />
-          </View>
-        }
-        onPress={() => {}}
-      />
+            <Icon name="info" type="material" />
+          </Button>
+        )}
+        rightContent={action => (
+          <Button
+            containerStyle={{
+              flex: 1,
+              justifyContent: 'center',
+              backgroundColor: colors.RED.transparent,
+            }}
+            type="clear"
+            icon={<Icon name="delete-outline" type="material" />}
+            onPress={() => {
+              action();
+              Files.deleteFile(file).then(update);
+            }}
+          />
+        )}>
+        <ListItem.Chevron style={{transform: [{rotate: '180deg'}]}} />
+        {file.endsWith('.apk') ? (
+          <Icon color="#9FC037" name="android" type="font-awesome" size={35} />
+        ) : (
+          <Icon name="question" type="font-awesome" />
+        )}
+        <ListItem.Content>
+          <ListItem.Title style={{fontSize: 25, fontWeight: '100'}}>
+            {getTitle(file)}
+          </ListItem.Title>
+          <ListItem.Subtitle style={{fontSize: 12}}>{file}</ListItem.Subtitle>
+        </ListItem.Content>
+        <ListItem.Chevron />
+      </ListItem.Swipeable>
       {i !== files.length - 1 && <Divider style={{opacity: 0.2}} />}
     </View>
   );

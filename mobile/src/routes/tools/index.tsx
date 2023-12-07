@@ -4,6 +4,11 @@ import {
 } from '@react-navigation/native-stack';
 import React, {Suspense} from 'react';
 import ToolsMain from './main';
+import {Button, Icon, Text} from '@rneui/themed';
+import Files from '../../../modules/files';
+import {deleteAllFiles} from '../../../utils/apps';
+import {colors} from '../../../utils/theme';
+import {TouchableOpacity} from 'react-native';
 
 const Stack = createNativeStackNavigator();
 
@@ -12,6 +17,7 @@ const Screens = [
   'Tools-Downloads',
   'Tools-Accent',
   'Tools-Report',
+  'Tools-Help',
 ] as const;
 
 export namespace ToolsScreenTypes {
@@ -26,9 +32,11 @@ export namespace ToolsScreenTypes {
 }
 
 export default function ToolsScreen() {
+  const [hasFiles, setHasFiles] = React.useState(false);
   const DynamicDownloads = React.lazy(() => import('./downloads'));
   const DynamicAccent = React.lazy(() => import('./accent'));
   const DynamicReport = React.lazy(() => import('./report'));
+  const DynamicHelp = React.lazy(() => import('./help'));
   return (
     <Suspense>
       <Stack.Navigator
@@ -49,6 +57,7 @@ export default function ToolsScreen() {
           options={{
             headerTitle: 'Downloads',
             headerShown: true,
+            headerRight: undefined,
           }}
           name="Tools-Downloads"
           component={DynamicDownloads}
@@ -60,6 +69,14 @@ export default function ToolsScreen() {
           }}
           name="Tools-Report"
           component={DynamicReport}
+        />
+        <Stack.Screen
+          options={{
+            headerTitle: 'Help',
+            headerShown: true,
+          }}
+          name="Tools-Help"
+          component={DynamicHelp}
         />
       </Stack.Navigator>
     </Suspense>

@@ -30,7 +30,6 @@ namespace Apps {
   }
 
   export function uninstallApp(packageName: string) {
-    console.log('uninstalling', packageName);
     MyAppsModule.uninstallApp(packageName);
   }
 }
