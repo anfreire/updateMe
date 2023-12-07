@@ -3,11 +3,10 @@ import {
   createNativeStackNavigator,
 } from '@react-navigation/native-stack';
 import React, {Suspense, useEffect} from 'react';
-import HomeMain from './main/index';
+import HomeMain from './screens/index';
 import {useTheme} from '@rneui/themed';
-import {getAccentColor} from '../../../utils/theme';
-import {useCurrApp} from '../../../hooks/currApp';
-import AppsMain from './main/index';
+import AppsMain from './screens/index';
+import useAccentColor from '../../hooks/useAccentColor';
 
 const Stack = createNativeStackNavigator();
 
@@ -32,13 +31,16 @@ export namespace HomeScreenTypes {
 
 export default function HomeScreen() {
   const theme = useTheme();
-  const DynamicSpotifyScreen = React.lazy(() => import('./spotify'));
-  const DynamicYoutubeScreen = React.lazy(() => import('./youtube'));
-  const DynamicYoutubeMusicScreen = React.lazy(() => import('./youtubeMusic'));
-  const DynamicHDOScreen = React.lazy(() => import('./hdo'));
+  const accentColor = useAccentColor(theme)[0];
+  const DynamicSpotifyScreen = React.lazy(() => import('./screens/spotify'));
+  const DynamicYoutubeScreen = React.lazy(() => import('./screens/youtube'));
+  const DynamicYoutubeMusicScreen = React.lazy(
+    () => import('./screens/youtubeMusic'),
+  );
+  const DynamicHDOScreen = React.lazy(() => import('./screens/hdo'));
 
   useEffect(() => {
-    getAccentColor().then(accent => {
+    accentColor().then(accent => {
       if (accent) {
         theme.updateTheme({
           lightColors: {

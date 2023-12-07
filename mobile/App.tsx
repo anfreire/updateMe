@@ -1,14 +1,20 @@
-import { ThemeProvider} from '@rneui/themed';
-import React from 'react';
-import {useColorScheme} from 'react-native';
-import Main from './src';
-import {NativeElementsTheme} from './utils/theme';
+import {NavigationContainer} from '@react-navigation/native';
+import {useTheme} from '@rneui/themed';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+import Routes from './src/routes';
+import {NavigationTheme} from './src/utils/theme';
 
 function App(): JSX.Element {
+  const {theme} = useTheme();
   return (
-    <ThemeProvider theme={NativeElementsTheme(useColorScheme())}>
-      <Main />
-    </ThemeProvider>
+    <SafeAreaProvider
+      style={{
+        backgroundColor: theme.colors.background,
+      }}>
+      <NavigationContainer theme={NavigationTheme(theme)}>
+        <Routes />
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 }
 

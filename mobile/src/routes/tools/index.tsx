@@ -3,12 +3,7 @@ import {
   createNativeStackNavigator,
 } from '@react-navigation/native-stack';
 import React, {Suspense} from 'react';
-import ToolsMain from './main';
-import {Button, Icon, Text} from '@rneui/themed';
-import Files from '../../../modules/files';
-import {deleteAllFiles} from '../../../utils/apps';
-import {colors} from '../../../utils/theme';
-import {TouchableOpacity} from 'react-native';
+import ToolsMain from './screens';
 
 const Stack = createNativeStackNavigator();
 
@@ -32,11 +27,10 @@ export namespace ToolsScreenTypes {
 }
 
 export default function ToolsScreen() {
-  const [hasFiles, setHasFiles] = React.useState(false);
-  const DynamicDownloads = React.lazy(() => import('./downloads'));
-  const DynamicAccent = React.lazy(() => import('./accent'));
-  const DynamicReport = React.lazy(() => import('./report'));
-  const DynamicHelp = React.lazy(() => import('./help'));
+  const DynamicDownloads = React.lazy(() => import('./screens/downloads'));
+  const DynamicAccent = React.lazy(() => import('./screens/accent'));
+  const DynamicReport = React.lazy(() => import('./screens/report'));
+  const DynamicHelp = React.lazy(() => import('./screens/help'));
   return (
     <Suspense>
       <Stack.Navigator

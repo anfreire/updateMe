@@ -4,7 +4,7 @@ import {Theme, useTheme} from '@rneui/themed';
 import {View} from 'react-native';
 import React, {Suspense} from 'react';
 import HomeScreen from './apps';
-import {greys} from '../../utils/theme';
+import {greys} from '../utils/theme';
 
 const Tab = createBottomTabNavigator();
 
