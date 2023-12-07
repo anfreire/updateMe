@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react';
 import {View} from 'react-native';
 import {AppState, getAppState} from '../../../utils/apps';
 import {Icon, Button} from '@rneui/themed';
-import {useSource} from '../../../hooks/useSource';
+import {SourceType, useSource} from '../../../hooks/useSource';
 import {colors} from '../../../utils/theme';
 
 const borderColors: Record<AppState, string> = {
@@ -30,22 +30,20 @@ type AppStateType =
   | 'LOADING';
 
 export default function Badge({
-  packageName,
-  version,
+  appSource,
+  microgSource,
 }: {
-  packageName?: string;
-  version?: string;
+  appSource: SourceType;
+  microgSource?: SourceType;
 }) {
   const [appState, setAppState] = useState<AppStateType>('LOADING');
-  const [source, _] = useSource();
+  const source = useSource()[0];
 
   useEffect(() => {
-    if (packageName && version && source.YOUTUBE_MICROG?.version) {
-      getAppState(packageName, version, source.YOUTUBE_MICROG?.version).then(
-        (state: AppState) => setAppState(state),
-      );
-    } else setAppState('LOADING');
-  }, [packageName, version, source.YOUTUBE_MICROG?.version]);
+    getAppState(appSource, microgSource).then(state => {
+      state ? setAppState(state) : setAppState('LOADING');
+    });
+  }, [source, microgSource]);
 
   return (
     <View

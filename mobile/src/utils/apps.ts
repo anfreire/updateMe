@@ -70,9 +70,7 @@ const ErrorState: WarningType = {
   message: 'Error loading updated version.',
 };
 
-const State_UP_TO_DATE = (
-  source: SourceType,
-): WarningType => {
+const State_UP_TO_DATE = (source: SourceType): WarningType => {
   if (
     source.packageName === 'app.revanced.android.youtube' ||
     source.packageName === 'app.revanced.android.apps.youtube.music'

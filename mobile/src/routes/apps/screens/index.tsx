@@ -2,15 +2,14 @@ import {Divider, FAB, Icon, useTheme} from '@rneui/themed';
 import {useEffect} from 'react';
 import {RefreshControl, ScrollView, View} from 'react-native';
 import ListItem from '../components/listItem';
-import {SourceKeysType, useSource} from '../../../hooks/useSource';
+import {
+  RoutesKeys,
+  SourceKeys,
+  SourceKeysType,
+  SourceType,
+  useSource,
+} from '../../../hooks/useSource';
 import {HomeScreenTypes} from '..';
-
-export const AppKeys: SourceKeysType[] = [
-  'HDO',
-  'YOUTUBE_YOUTUBE',
-  'YOUTUBE_MUSIC',
-  'SPOTIFY',
-];
 
 export default function AppsMain({
   navigation,
@@ -18,7 +17,9 @@ export default function AppsMain({
   const [source, updateSource] = useSource();
   const {theme} = useTheme();
 
-  useEffect(updateSource, []);
+  useEffect(() => {
+    updateSource();
+  }, []);
 
   return (
     <View
@@ -31,10 +32,14 @@ export default function AppsMain({
         refreshControl={
           <RefreshControl refreshing={false} onRefresh={updateSource} />
         }>
-        {AppKeys.map((key, i) => (
+        {RoutesKeys.map((key, i) => (
           <View key={i}>
-            <ListItem name={key as any} navigation={navigation} />
-            {i !== AppKeys.length - 1 && <Divider style={{opacity: 0.2}} />}
+            <ListItem
+              appSource={source[key]}
+              microgSource={source.YOUTUBE_MICROG}
+              navigation={navigation}
+            />
+            {i !== RoutesKeys.length - 1 && <Divider style={{opacity: 0.2}} />}
           </View>
         ))}
       </ScrollView>

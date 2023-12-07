@@ -1,22 +1,13 @@
 import {Image} from '@rneui/themed';
 import Badge from './badge';
-import {useSource} from '../../../hooks/useSource';
+import {SourceType} from '../../../hooks/useSource';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {HomeScreenTypes} from '..';
 import IListItem from '../../../common/listItem';
-import {AppKeys} from '../screens';
-
-type AppKeys = 'HDO' | 'YOUTUBE_YOUTUBE' | 'YOUTUBE_MUSIC' | 'SPOTIFY';
-
-const routes: Record<AppKeys, string> = {
-  HDO: 'Apps-HDO',
-  YOUTUBE_YOUTUBE: 'Apps-Youtube',
-  YOUTUBE_MUSIC: 'Apps-YoutubeMusic',
-  SPOTIFY: 'Apps-Spotify',
-};
 
 export interface ListItemProps {
-  name: AppKeys;
+  appSource: SourceType;
+  microgSource?: SourceType;
   navigation: NativeStackNavigationProp<
     HomeScreenTypes.RootStackParamList,
     'Apps-Main',
@@ -25,14 +16,12 @@ export interface ListItemProps {
 }
 
 export default function ListItem(props: ListItemProps) {
-  const source = useSource()[0];
-
   return (
     <IListItem
-      title={source[props.name].title}
+      title={props.appSource.title}
       icon={
         <Image
-          source={source[props.name].icon}
+          source={props.appSource.icon}
           resizeMode="contain"
           style={{
             width: 40,
@@ -41,13 +30,10 @@ export default function ListItem(props: ListItemProps) {
         />
       }
       rightIcon={
-        <Badge
-          packageName={source[props.name].packageName}
-          version={source[props.name].version}
-        />
+        <Badge appSource={props.appSource} microgSource={props.microgSource} />
       }
       onPress={() => {
-        props.navigation.navigate(routes[props.name] as any);
+        props.navigation.navigate(props.appSource.route as any);
       }}
     />
   );

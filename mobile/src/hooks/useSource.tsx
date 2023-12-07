@@ -8,18 +8,19 @@ export type SourceKeysType =
   | 'YOUTUBE_MUSIC'
   | 'SPOTIFY';
 
-export const SourceKeys: SourceKeysType[] = [
-  'HDO',
+export const RoutesKeys: SourceKeysType[] = [
   'YOUTUBE_YOUTUBE',
-  'YOUTUBE_MICROG',
+  'HDO',
   'YOUTUBE_MUSIC',
   'SPOTIFY',
 ];
+export const SourceKeys: SourceKeysType[] = [...RoutesKeys, 'YOUTUBE_MICROG'];
 
 export interface SourceType {
   title: string;
   icon: ImageSourcePropType;
   packageName: string;
+  route: string;
   version?: string;
   link?: string;
 }
@@ -29,28 +30,33 @@ export type SourceProps = Record<SourceKeysType, SourceType>;
 export const initialSource: SourceProps = {
   HDO: {
     title: 'HDO',
-    icon: require('../assets/hdo.png'),
+    icon: require('../../assets/hdo.png'),
     packageName: 'com.hdobox',
+    route: 'Apps-HDO',
   },
   YOUTUBE_MICROG: {
     title: 'MicroG',
-    icon: require('../assets/microg.png'),
-    packageName: 'com.google.android.gms',
+    icon: require('../../assets/microg.png'),
+    packageName: 'com.mgoogle.android.gms',
+    route: '',
   },
   YOUTUBE_YOUTUBE: {
     title: 'YouTube',
-    icon: require('../assets/youtube.png'),
+    icon: require('../../assets/youtube.png'),
     packageName: 'app.revanced.android.youtube',
+    route: 'Apps-Youtube',
   },
   YOUTUBE_MUSIC: {
     title: 'YouTube Music',
-    icon: require('../assets/youtube_music.png'),
+    icon: require('../../assets/youtube_music.png'),
     packageName: 'app.revanced.android.apps.youtube.music',
+    route: 'Apps-YoutubeMusic',
   },
   SPOTIFY: {
     title: 'Spotify',
-    icon: require('../assets/spotify.png'),
+    icon: require('../../assets/spotify.png'),
     packageName: 'com.spotify.music',
+    route: 'Apps-Spotify',
   },
 };
 

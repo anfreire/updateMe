@@ -78,7 +78,9 @@ export default function ToolsDownloads({navigation}: any) {
     });
   };
 
-  useEffect(update, []);
+  useEffect(() => {
+    update();
+  }, []);
 
   return (
     <>
