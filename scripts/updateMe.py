@@ -53,6 +53,8 @@ class DIRS:
     YOUTUBE = GLOBAL.ARCHIVE_DIR + "/youtube"
     SPOTIFY = GLOBAL.ARCHIVE_DIR + "/spotify"
     HDO = GLOBAL.ARCHIVE_DIR + "/hdo"
+    INSTAGRAM = GLOBAL.ARCHIVE_DIR + "/instagram"
+    WHATSAPP = GLOBAL.ARCHIVE_DIR + "/whatsapp"
 
 
 class MACROS:
@@ -61,6 +63,8 @@ class MACROS:
     YOUTUBE = "YOUTUBE_YOUTUBE"
     YOUTUBE_MUSIC = "YOUTUBE_MUSIC"
     YOUTUBE_MICROG = "YOUTUBE_MICROG"
+    INSTAGRAM = "INSTAGRAM"
+    WHATSAPP = "WHATSAPP"
 
 
 class COLORS:
@@ -78,6 +82,8 @@ PATHS = {
     MACROS.YOUTUBE: DIRS.YOUTUBE + "/youtube.apk",
     MACROS.YOUTUBE_MUSIC: DIRS.YOUTUBE + "/youtube_music.apk",
     MACROS.YOUTUBE_MICROG: DIRS.YOUTUBE + "/micro_g.apk",
+    MACROS.INSTAGRAM: DIRS.INSTAGRAM + "/instagram.apk",
+    MACROS.WHATSAPP: DIRS.WHATSAPP + "/whatsapp.apk",
 }
 
 PACKAGES = {
@@ -86,6 +92,8 @@ PACKAGES = {
     MACROS.YOUTUBE_MUSIC: "app.revanced.android.apps.youtube.music",
     MACROS.YOUTUBE_MICROG: "com.mgoogle.android.gms",
     MACROS.SPOTIFY: "com.spotify.music",
+    MACROS.INSTAGRAM: "com.instagram.android",
+    MACROS.WHATSAPP: "com.whatsapp",
 }
 
 
@@ -362,6 +370,8 @@ from firebase_admin import credentials
 from firebase_admin import firestore
 
 
+def publish_changes():
+
 class Firebase:
     def __init__(self):
         cred = credentials.Certificate("env.json")
@@ -382,12 +392,38 @@ class Firebase:
         doc_ref.set(appInfo.toDict)
 
 
+def updateInstagram():
+    link = "https://thedise.me/instander/repo/"
+    scrapper = WebScrapper(selenium=True)
+    scrapper.driver.get(link)
+    as_ = scrapper.get_selenium_tags(scrapper.driver, "a")
+    for a in as_:
+        if a.get_attribute("href") and a.get_attribute("href").endswith(".apk"):
+            link = a.get_attribute("href")
+            scrapper.quit_selenium()
+            break
+    try:
+        AppBase(MACROS.INSTAGRAM, link)
+    except Exception as e:
+        print(e)
+        return
+
+def updateWhatsapp():
+    link = "https://dl.gbapkpro.com/fouadwa/"
+    try:
+        AppBase(MACROS.WHATSAPP, link)
+    except Exception as e:
+        print(e)
+        return
+
 def main():
     updateHDO()
     updateMicroG()
     updateYoutube()
     updateYoutubeMusic()
     updateSpotifySelenium()
+    updateInstagram()
+    updateWhatsapp()
     Firebase()
     push_changes()
 
