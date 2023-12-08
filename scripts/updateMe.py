@@ -357,12 +357,38 @@ def push_changes():
     os.system("git push origin gh-pages")
 
 
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import firestore
+
+
+class Firebase:
+    def __init__(self):
+        cred = credentials.Certificate("env.json")
+        firebase_admin.initialize_app(cred)
+        self.db = firestore.client()
+        with open(GLOBAL.INDEX_PATH, "r") as index_file:
+            index = json.load(index_file)
+            for macro in index.keys():
+                self.update(
+                    macro,
+                    AppInfo(
+                        macro, APKInfo(index[macro]["version"], index[macro]["link"])
+                    ),
+                )
+
+    def update(self, macro: str, appInfo: AppInfo):
+        doc_ref = self.db.collection("apps").document(macro)
+        doc_ref.set(appInfo.toDict)
+
+
 def main():
     updateHDO()
     updateMicroG()
     updateYoutube()
     updateYoutubeMusic()
     updateSpotifySelenium()
+    Firebase()
     push_changes()
 
 
