@@ -1,18 +1,10 @@
+import {get} from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
 import RNFetchBlob from 'rn-fetch-blob';
 
 namespace Files {
-  export async function getDir() {
-    const exists = await RNFetchBlob.fs.isDir(
-      `${RNFetchBlob.fs.dirs.DownloadDir}/updateMe`,
-    );
-    if (!exists) {
-      await RNFetchBlob.fs.mkdir(`${RNFetchBlob.fs.dirs.DownloadDir}/updateMe`);
-    }
-    return `${RNFetchBlob.fs.dirs.DownloadDir}/updateMe`;
-  }
+  export const dir = RNFetchBlob.fs.dirs.DownloadDir;
 
   export async function listFiles(): Promise<string[]> {
-    const dir = await getDir();
     const files = await RNFetchBlob.fs.ls(dir);
     return files;
   }
@@ -24,12 +16,10 @@ namespace Files {
   }
 
   export async function deleteFile(filename: string): Promise<void> {
-    const dir = await getDir();
     await RNFetchBlob.fs.unlink(`${dir}/${filename}`);
   }
 
   export async function getFileInfos(filename: string): Promise<FileInfo> {
-    const dir = await getDir();
     const infos = await RNFetchBlob.fs.stat(`${dir}/${filename}`);
     return {
       filename: infos.filename,
@@ -43,7 +33,6 @@ namespace Files {
     filename: string,
     onProgress: (progress: number) => void,
   ): Promise<string> {
-    const dir = await getDir();
     const path = await RNFetchBlob.config({
       path: `${dir}/${filename}`,
       fileCache: false,

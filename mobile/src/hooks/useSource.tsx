@@ -9,8 +9,8 @@ export type SourceKeysType =
   | 'SPOTIFY';
 
 export const RoutesKeys: SourceKeysType[] = [
-  'YOUTUBE_YOUTUBE',
   'HDO',
+  'YOUTUBE_YOUTUBE',
   'YOUTUBE_MUSIC',
   'SPOTIFY',
 ];
@@ -29,7 +29,7 @@ export type SourceProps = Record<SourceKeysType, SourceType>;
 
 export const initialSource: SourceProps = {
   HDO: {
-    title: 'HDO',
+    title: 'HDO Box',
     icon: require('../../assets/hdo.png'),
     packageName: 'com.hdobox',
     route: 'Apps-HDO',

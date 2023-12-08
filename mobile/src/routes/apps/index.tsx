@@ -89,7 +89,7 @@ export default function HomeScreen() {
         <Stack.Screen
           options={{
             headerShown: true,
-            headerTitle: 'HDO',
+            headerTitle: 'HDO Box',
           }}
           name="Apps-HDO"
           component={DynamicHDOScreen}

@@ -4,6 +4,7 @@ import {
   Modal,
   View,
   TouchableOpacity,
+  PermissionsAndroid,
 } from 'react-native';
 import Files from '../../../../modules/files';
 import {useEffect, useState} from 'react';
@@ -23,13 +24,58 @@ const getTitle = (file: string) => {
       return file;
   }
 };
-import {} from 'rn-fetch-blob';
 import DownloadsListItem from './components/listItem';
 import {Icon, Text} from '@rneui/themed';
 import DownloadInfoModal, {ModalControllerProps} from './components/infoModal';
 import {deleteAllFiles} from '../../../../utils/apps';
+import React from 'react';
+import {ToolsScreenTypes} from '../..';
+import Permissions from '../../../../modules/permissions';
 
-export default function ToolsDownloads({navigation}: any) {
+const getHeaderRightFiles = (onPress: () => void) => (
+  <TouchableOpacity
+    style={{
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+      gap: 5,
+    }}
+    onPress={onPress}>
+    <Text
+      style={{
+        color: 'rgba(255,0,0,0.5)',
+        fontSize: 20,
+        fontWeight: '100',
+      }}>
+      Delete all
+    </Text>
+    <Icon
+      color="rgba(255,0,0,0.5)"
+      size={25}
+      name="delete"
+      type="material-community"
+    />
+  </TouchableOpacity>
+);
+
+const getHeaderRightEmpty = (onPress: () => void) => (
+  <TouchableOpacity
+    style={{
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+      gap: 5,
+    }}
+    onPress={onPress}>
+    <Icon size={25} name="refresh" type="material-community" />
+  </TouchableOpacity>
+);
+
+export default function ToolsDownloads({
+  navigation,
+}: ToolsScreenTypes.StackScreenProps<'Tools-Downloads'>) {
   const [files, setFiles] = useState<string[]>([]);
   const [modal, setModal] = useState<ModalControllerProps>({
     file: null,
@@ -40,57 +86,40 @@ export default function ToolsDownloads({navigation}: any) {
   const update = () => {
     setRefreshing(true);
     Files.listFiles().then(files => {
-      setFiles(files);
+      console.log(files);
+      setFiles(files.filter(file => file.endsWith('updateme.apk')));
       setRefreshing(false);
-      if (files.length == 0) navigation.setOptions({headerRight: undefined});
-      else
-        navigation.setOptions({
-          headerRight: (
-            <TouchableOpacity
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: 5,
-              }}
-              onPress={() => {
-                deleteAllFiles();
-                update();
-              }}>
-              <Text
-                style={{
-                  color: 'rgba(255,0,0,0.5)',
-                  fontSize: 20,
-                  fontWeight: '100',
-                }}>
-                Delete all
-              </Text>
-              <Icon
-                color="rgba(255,0,0,0.5)"
-                size={25}
-                name="delete"
-                type="material-community"
-              />
-            </TouchableOpacity>
-          ),
-        });
     });
   };
 
   useEffect(() => {
+    if (files.length == 0)
+      navigation.setOptions({headerRight: _ => getHeaderRightEmpty(update)});
+    else
+      navigation.setOptions({
+        headerRight: _ =>
+          getHeaderRightFiles(() => deleteAllFiles(files).then(update)),
+      });
+  }, [files]);
+
+  useEffect(() => {
+    Permissions.getPermissions('READ').then(res =>
+      !res ? Permissions.requestPermissions('READ') : null,
+    );
+    Permissions.getPermissions('WRITE').then(res =>
+      !res ? Permissions.requestPermissions('WRITE') : null,
+    );
     update();
   }, []);
 
   return (
     <>
-      <DownloadInfoModal modal={modal} setModal={setModal} />
-      <ScrollView
-        refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={update} />
-        }>
-        {files.length > 0 &&
-          files.map((file, i) => (
+      {files.length > 0 ? (
+        <ScrollView
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={update} />
+          }>
+          {files.map((file, i) => (
             <DownloadsListItem
               key={i}
               file={file}
@@ -100,8 +129,8 @@ export default function ToolsDownloads({navigation}: any) {
               update={update}
             />
           ))}
-      </ScrollView>
-      {files.length == 0 && (
+        </ScrollView>
+      ) : (
         <View
           style={{
             display: 'flex',
@@ -115,6 +144,7 @@ export default function ToolsDownloads({navigation}: any) {
           <Icon size={30} name="emoticon-sad" type="material-community" />
         </View>
       )}
+      <DownloadInfoModal modal={modal} setModal={setModal} />
     </>
   );
 }

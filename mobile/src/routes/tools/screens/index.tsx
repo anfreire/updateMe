@@ -2,6 +2,7 @@ import {ScrollView, Touchable, TouchableOpacity, View} from 'react-native';
 import {ToolsScreenTypes} from '..';
 import {Icon, Text, useTheme} from '@rneui/themed';
 import IListItem from '../../../common/listItem';
+import React from 'react';
 
 export default function ToolsMain({
   navigation,

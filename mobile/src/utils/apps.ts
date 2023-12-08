@@ -4,10 +4,26 @@ import Apps from '../modules/apps';
 import {SourceType} from '../hooks/useSource';
 import {StateColors} from '../common/types';
 
-export async function deleteAllFiles() {
-  const files = await Files.listFiles();
+export async function deleteAllFiles(files: string[]): Promise<void> {
   Promise.all(files.map(async file => await Files.deleteFile(file)));
 }
+
+const getFileName = (source: SourceType): string => {
+  switch (source.title) {
+    case 'Spotify':
+      return 'spotify_updateme.apk';
+    case 'Youtube':
+      return 'youtube_updateme.apk';
+    case 'Youtube Music':
+      return 'youtube_music_updateme.apk';
+    case 'MicroG':
+      return 'microg_updateme.apk';
+    case 'HDO Box':
+      return 'hdo_updateme.apk';
+    default:
+      return 'unkown_updateme.apk';
+  }
+};
 
 export async function downloadAndInstall(
   source: SourceType,
@@ -19,7 +35,7 @@ export async function downloadAndInstall(
   if (!granted_write) await Permissions.requestPermissions('WRITE');
   const granted_read = await Permissions.getPermissions('READ');
   if (!granted_read) await Permissions.requestPermissions('READ');
-  const filename = source.link.split('/')[source.link.split('/').length - 1];
+  const filename = getFileName(source);
   const path = await Files.download(source.link, filename, onProgress);
   const granted = await Permissions.getPermissions('INSTALL');
   if (!granted) await Permissions.requestPermissions('INSTALL');

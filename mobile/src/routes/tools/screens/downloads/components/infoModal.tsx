@@ -2,6 +2,7 @@ import {Button, Dialog, Overlay, Text} from '@rneui/themed';
 import {useEffect, useState} from 'react';
 import {View} from 'react-native';
 import Files from '../../../../../modules/files';
+import React from 'react';
 
 const getSize = (size: number) => {
   const kb = 1024;
@@ -36,11 +37,6 @@ export default function DownloadInfoModal({
   setModal: React.Dispatch<React.SetStateAction<ModalControllerProps>>;
 }) {
   const [info, setInfo] = useState<Files.FileInfo | null>(null);
-  const [location, setLocation] = useState<string>('');
-
-  useEffect(() => {
-    Files.getDir().then(setLocation);
-  }, []);
 
   useEffect(() => {
     if (!modal.file) return;
@@ -88,7 +84,7 @@ export default function DownloadInfoModal({
             Location:
           </Text>
           <Text style={{width: '70%'}} numberOfLines={1} ellipsizeMode="head">
-            {location}
+            {Files.dir}
           </Text>
         </View>
         <View

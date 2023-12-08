@@ -3,14 +3,16 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start-no-cache": "react-native start --reset-cache",
+    "clean-start": "rm -rf android/build android/app/build android/app/src/release && cd android && ./gradlew clean && cd .. && react-native start --reset-cache",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest",
-    "clean": "cd android && ./gradlew clean && cd ..",
-    "rm-rn": "rm node_modules/rn-fetch-blob/react-native.config.js"
+    "purge": "adb uninstall com.updateme; gnome-terminal -- bash -c 'cd /home/anfreire/Documents/Projects/Android/updateMe/mobile && npm run clean-start'; sleep 20 && gnome-terminal -- bash -c 'cd /home/anfreire/Documents/Projects/Android/updateMe/mobile && npm run android'",
+    "rm-rn": "rm node_modules/rn-fetch-blob/react-native.config.js",
+    "reinstall-modules": "rm -rf node_modules && npm install",
+    "reset-watch": "watchman watch-del '/home/anfreire/Documents/Projects/Android/updateMe/mobile' ; watchman watch-project '/home/anfreire/Documents/Projects/Android/updateMe/mobile'"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.21.0",

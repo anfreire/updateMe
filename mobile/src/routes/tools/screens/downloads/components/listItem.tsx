@@ -4,6 +4,7 @@ import {ModalControllerProps} from './infoModal';
 import Files from '../../../../../modules/files';
 import {Button} from '@rneui/base';
 import {colors} from '../../../../../utils/theme';
+import React from 'react';
 
 const getTitle = (file: string) => {
   const lowerFile = file.toLowerCase();
@@ -16,6 +17,8 @@ const getTitle = (file: string) => {
       return 'YouTube';
     case lowerFile.includes('spotify'):
       return 'Spotify';
+    case lowerFile.includes('hdo'):
+      return 'HDO Box';
     default:
       return file;
   }
@@ -74,11 +77,7 @@ export default function DownloadsListItem({
           />
         )}>
         <ListItem.Chevron style={{transform: [{rotate: '180deg'}]}} />
-        {file.endsWith('.apk') ? (
-          <Icon color="#9FC037" name="android" type="font-awesome" size={35} />
-        ) : (
-          <Icon name="question" type="font-awesome" />
-        )}
+        <Icon color="#9FC037" name="android" type="font-awesome" size={35} />
         <ListItem.Content>
           <ListItem.Title style={{fontSize: 25, fontWeight: '100'}}>
             {getTitle(file)}

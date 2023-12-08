@@ -4,6 +4,7 @@ import {Icon, Text} from '@rneui/themed';
 import {IconType} from '@rneui/base';
 import {StateColors} from '../../../common/types';
 import {WarningType} from '../../../utils/apps';
+import React from 'react';
 
 const icons: Record<StateColors, {name: string; type: IconType}> = {
   GREEN: {name: 'check', type: 'material-community'},
@@ -19,7 +20,6 @@ export default function Warning({type, message}: WarningType) {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        width: 'auto',
         maxWidth: '70%',
         gap: 12,
         padding: 10,
@@ -28,7 +28,16 @@ export default function Warning({type, message}: WarningType) {
         borderWidth: 1,
         backgroundColor: colors[type].transparent,
       }}>
-      <Icon name={icons[type].name} size={25} type={icons[type].type} />
+      <Icon
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+        }}
+        name={icons[type].name}
+        size={25}
+        type={icons[type].type}
+      />
       <Text
         style={{
           flexShrink: 1,
