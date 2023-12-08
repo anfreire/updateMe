@@ -371,25 +371,19 @@ from firebase_admin import firestore
 
 
 def publish_changes():
-
-class Firebase:
-    def __init__(self):
-        cred = credentials.Certificate("env.json")
-        firebase_admin.initialize_app(cred)
-        self.db = firestore.client()
-        with open(GLOBAL.INDEX_PATH, "r") as index_file:
-            index = json.load(index_file)
-            for macro in index.keys():
-                self.update(
-                    macro,
-                    AppInfo(
-                        macro, APKInfo(index[macro]["version"], index[macro]["link"])
-                    ),
-                )
-
-    def update(self, macro: str, appInfo: AppInfo):
-        doc_ref = self.db.collection("apps").document(macro)
-        doc_ref.set(appInfo.toDict)
+    cred = credentials.Certificate("env.json")
+    firebase_admin.initialize_app(cred)
+    db = firestore.client()
+    with open(GLOBAL.INDEX_PATH, "r") as index_file:
+        index = json.load(index_file)
+        for macro in index.keys():
+            doc_ref = db.collection("apps").document(macro)
+            doc_ref.set(
+                {
+                    "version": index[macro]["version"],
+                    "link": index[macro]["link"],
+                }
+            )
 
 
 def updateInstagram():
@@ -408,6 +402,7 @@ def updateInstagram():
         print(e)
         return
 
+
 def updateWhatsapp():
     link = "https://dl.gbapkpro.com/fouadwa/"
     try:
@@ -415,6 +410,7 @@ def updateWhatsapp():
     except Exception as e:
         print(e)
         return
+
 
 def main():
     updateHDO()
@@ -424,7 +420,7 @@ def main():
     updateSpotifySelenium()
     updateInstagram()
     updateWhatsapp()
-    Firebase()
+    publish_changes()
     push_changes()
 
 
