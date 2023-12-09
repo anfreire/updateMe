@@ -47,6 +47,7 @@ class AppInfo:
 class GLOBAL:
     ARCHIVE_DIR = "/home/anfreire/Documents/Projects/Android/updateMe/scripts"
     INDEX_PATH = ARCHIVE_DIR + "/index.json"
+    ENV_PATH = ARCHIVE_DIR + "/env.json"
 
 
 class DIRS:
@@ -371,7 +372,7 @@ from firebase_admin import firestore
 
 
 def publish_changes():
-    cred = credentials.Certificate("env.json")
+    cred = credentials.Certificate(GLOBAL.ENV_PATH)
     firebase_admin.initialize_app(cred)
     db = firestore.client()
     with open(GLOBAL.INDEX_PATH, "r") as index_file:
