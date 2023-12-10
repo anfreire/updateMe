@@ -1,8 +1,7 @@
 import React from 'react';
 import {SourceType, useSource} from '../../../../hooks/useSource';
 import ScreenBase from '../../components/screenBase';
-import {Linking, ScrollView} from 'react-native';
-import {Icon, useTheme} from '@rneui/themed';
+import {ScrollView} from 'react-native';
 import {Content, Steps} from './components/content';
 import Step from './components/step';
 import SpeedDial from '../../components/speedDial';
