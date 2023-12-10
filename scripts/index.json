@@ -16,8 +16,8 @@
         "link": "https://github.com//j-hc/revanced-magisk-module/releases/download/20220913/music-revanced-v6.28.52-arm64-v8a.apk"
     },
     "SPOTIFY": {
-        "version": "8.8.92.700",
-        "link": "https://spotigeek.com/wp-content/uploads/APK/Spotify%20v8.8.92.700%20(SpotiGeek.com)%20Fixed.apk"
+        "version": "8.8.94.577",
+        "link": "https://spotigeek.com/wp-content/uploads/APK/Spotify%20v8.8.94.577%20(SpotiGeek.com).apk"
     },
     "INSTAGRAM": {
         "version": "263.2.0.19.104",
@@ -26,5 +26,13 @@
     "WHATSAPP": {
         "version": "2.23.13.76",
         "link": "https://dl.gbapkpro.com/fouadwa/"
+    },
+    "CAPCUT": {
+        "version": "9.9.0",
+        "link": "https://capcutapk.io/dl"
+    },
+    "PHOTO_EDITOR_PRO": {
+        "version": "1.491.159",
+        "link": "https://files.modyolo.com/Polish%20Photo%20Editor%20Pro/Photo_Editor_Pro_-_Polish_v1.491.159_modded_by_Mixroot.apk"
     }
 }
