@@ -2,11 +2,8 @@ import {
   NativeStackScreenProps,
   createNativeStackNavigator,
 } from '@react-navigation/native-stack';
-import React, {Suspense, useEffect} from 'react';
-import HomeMain from './screens/index';
-import {useTheme} from '@rneui/themed';
+import React, {Suspense} from 'react';
 import AppsMain from './screens/index';
-import useAccentColor from '../../hooks/useAccentColor';
 
 const Stack = createNativeStackNavigator();
 
@@ -34,8 +31,6 @@ export namespace HomeScreenTypes {
 }
 
 export default function HomeScreen() {
-  const theme = useTheme();
-  const accentColor = useAccentColor(theme)[0];
   const DynamicSpotifyScreen = React.lazy(() => import('./screens/spotify'));
   const DynamicYoutubeScreen = React.lazy(() => import('./screens/youtube'));
   const DynamicYoutubeMusicScreen = React.lazy(
@@ -50,20 +45,6 @@ export default function HomeScreen() {
   const DynamicPhotoEditorProScreen = React.lazy(
     () => import('./screens/photoEditorPro'),
   );
-  useEffect(() => {
-    accentColor().then(accent => {
-      if (accent) {
-        theme.updateTheme({
-          lightColors: {
-            primary: accent.light,
-          },
-          darkColors: {
-            primary: accent.dark,
-          },
-        });
-      }
-    });
-  }, []);
 
   return (
     <Suspense>

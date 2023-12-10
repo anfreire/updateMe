@@ -2,9 +2,10 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Colors, Icon} from '@rneui/base';
 import {Theme, useTheme} from '@rneui/themed';
 import {View} from 'react-native';
-import React, {Suspense} from 'react';
+import React, {Suspense, useEffect} from 'react';
 import HomeScreen from './apps';
 import {greys} from '../utils/theme';
+import useAccentColor from '../hooks/useAccentColor';
 
 const Tab = createBottomTabNavigator();
 
@@ -35,7 +36,7 @@ function TabIcon({
 }
 
 export default function Routes() {
-  const {theme} = useTheme();
+  const theme = useTheme();
   const DynamicSpecialScreen = React.lazy(() => import('./special'));
   const DynamicToolsScreen = React.lazy(() => import('./tools'));
 
@@ -46,11 +47,12 @@ export default function Routes() {
           headerShown: false,
           tabBarLabel: () => null,
         }}
+        backBehavior="initialRoute"
         initialRouteName="Apps">
         <Tab.Screen
           options={{
             tabBarIcon: ({focused}) => (
-              <TabIcon focused={focused} name="star" theme={theme} />
+              <TabIcon focused={focused} name="star" theme={theme.theme} />
             ),
           }}
           name="Special"
@@ -59,7 +61,7 @@ export default function Routes() {
         <Tab.Screen
           options={{
             tabBarIcon: ({focused}) => (
-              <TabIcon focused={focused} name="apps" theme={theme} />
+              <TabIcon focused={focused} name="apps" theme={theme.theme} />
             ),
           }}
           name="Apps"
@@ -68,7 +70,7 @@ export default function Routes() {
         <Tab.Screen
           options={{
             tabBarIcon: ({focused}) => (
-              <TabIcon focused={focused} name="tools" theme={theme} />
+              <TabIcon focused={focused} name="tools" theme={theme.theme} />
             ),
           }}
           name="Tools"

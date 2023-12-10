@@ -15,14 +15,14 @@ export type SourceKeysType =
   | 'PHOTO_EDITOR_PRO';
 
 export const RoutesKeys: SourceKeysType[] = [
-  'YOUTUBE_YOUTUBE',
-  'SPOTIFY',
-  'HDO',
-  'YOUTUBE_MUSIC',
-  'INSTAGRAM',
-  'WHATSAPP',
   'CAPCUT',
+  'HDO',
+  'INSTAGRAM',
   'PHOTO_EDITOR_PRO',
+  'SPOTIFY',
+  'WHATSAPP',
+  'YOUTUBE_YOUTUBE',
+  'YOUTUBE_MUSIC',
 ];
 export const SourceKeys: SourceKeysType[] = [...RoutesKeys, 'YOUTUBE_MICROG'];
 
@@ -33,6 +33,7 @@ export interface SourceType {
   icon: ImageSourcePropType;
   packageName: string;
   route: string;
+  url: string;
   fileName: string;
   version?: string;
   link?: string;
@@ -47,68 +48,76 @@ export const initialSource: SourceProps = {
     icon: require('../../assets/hdo.png'),
     packageName: 'com.hdobox',
     route: 'Apps-HDO',
-    fileName: 'HDOBox_updateme.apk',
+    fileName: 'HDOBox.apk',
+    url: 'https://hdo.app',
   },
   YOUTUBE_MICROG: {
     title: 'MicroG',
     icon: require('../../assets/microg.png'),
     packageName: 'com.mgoogle.android.gms',
     route: '',
-    fileName: 'MicroG_updateme.apk',
+    fileName: 'microg.apk',
+    url: 'https://github.com/TeamVanced/VancedMicroG',
   },
   YOUTUBE_YOUTUBE: {
     title: 'YouTube',
     icon: require('../../assets/youtube.png'),
     packageName: 'app.revanced.android.youtube',
     route: 'Apps-Youtube',
-    fileName: 'YouTube_updateme.apk',
+    fileName: 'YouTube.apk',
+    url: 'https://github.com/j-hc/revanced-magisk-module',
   },
   YOUTUBE_MUSIC: {
     title: 'YouTube Music',
     icon: require('../../assets/youtube_music.png'),
     packageName: 'app.revanced.android.apps.youtube.music',
     route: 'Apps-YoutubeMusic',
-    fileName: 'YouTubeMusic_updateme.apk',
+    fileName: 'YouTubeMusic.apk',
+    url: 'https://github.com/j-hc/revanced-magisk-module',
   },
   SPOTIFY: {
     title: 'Spotify',
     icon: require('../../assets/spotify.png'),
     packageName: 'com.spotify.music',
     route: 'Apps-Spotify',
-    fileName: 'Spotify_updateme.apk',
+    fileName: 'Spotify.apk',
+    url: 'https://spotigeek.com/',
   },
   INSTAGRAM: {
     title: 'Instagram',
     icon: require('../../assets/instagram.png'),
     packageName: 'com.instagram.android',
     route: 'Apps-Instagram',
-    fileName: 'Instagram_updateme.apk',
+    fileName: 'Instagram.apk',
+    url: 'https://instander.app/',
   },
   WHATSAPP: {
     title: 'WhatsApp',
     icon: require('../../assets/whatsapp.png'),
     packageName: 'com.whatsapp',
     route: 'Apps-WhatsApp',
-    fileName: 'WhatsApp_updateme.apk',
+    fileName: 'WhatsApp.apk',
+    url: 'https://gbapkpro.com/fouad-whatsapp/',
   },
   CAPCUT: {
     title: 'CapCut',
     icon: require('../../assets/capcut.png'),
     packageName: 'com.lemon.lvoverseas',
     route: 'Apps-CapCut',
-    fileName: 'CapCut_updateme.apk',
+    fileName: 'CapCut.apk',
+    url: 'https://capcutapk.io/',
   },
   PHOTO_EDITOR_PRO: {
     title: 'Photo Editor Pro',
     icon: require('../../assets/photo_editor_pro.png'),
-    packageName: 'com.photopos.android',
+    packageName: 'photo.editor.photoeditor.photoeditorpro',
     route: 'Apps-PhotoEditorPro',
-    fileName: 'PhotoEditorPro_updateme.apk',
+    fileName: 'PhotoEditorPro.apk',
+    url: 'https://modyolo.com/polish-photo-editor-pro.html',
   },
 };
 
 async function getAppState(source: SourceType): Promise<AppState | undefined> {
-  if (!source.version) return undefined;
   const version = await Apps.getAppVersion(source.packageName);
   if (!version) return 'NOT_INSTALLED';
   return version === source.version ? 'UPDATED' : 'NOT_UPDATED';
@@ -117,7 +126,7 @@ async function getAppState(source: SourceType): Promise<AppState | undefined> {
 export interface SourceContextProps {
   source: SourceProps;
   updateSource: () => Promise<void>;
-  updateState: (app: SourceKeysType | 'ALL') => Promise<void>;
+  updateState: (app: SourceType | 'ALL') => Promise<void>;
 }
 
 const SourceContext = React.createContext<SourceContextProps>({
@@ -129,7 +138,7 @@ const SourceContext = React.createContext<SourceContextProps>({
 export function SourceProvider({children}: {children: React.ReactNode}) {
   const [source, setSource] = React.useState<SourceProps>(initialSource);
 
-  const updateState = async (app: SourceKeysType | 'ALL') => {
+  const updateState = async (app: SourceType | 'ALL') => {
     const newSource = {...source};
     switch (app) {
       case 'ALL':
@@ -142,10 +151,17 @@ export function SourceProvider({children}: {children: React.ReactNode}) {
           }),
         );
       default:
-        newSource[app as SourceKeysType] = {
-          ...newSource[app as SourceKeysType],
-          state: await getAppState(newSource[app as SourceKeysType]),
-        };
+        Object.keys(source).map(key => {
+          if (
+            source[key as SourceKeysType].packageName ===
+            (app as SourceType).packageName
+          ) {
+            newSource[key as SourceKeysType] = {
+              ...newSource[key as SourceKeysType],
+              state: (app as SourceType).state,
+            };
+          }
+        });
     }
     setSource(_ => newSource);
   };
@@ -154,13 +170,18 @@ export function SourceProvider({children}: {children: React.ReactNode}) {
     let newSource: SourceProps = {...source};
     const col = firestore().collection('apps');
     const snapshot = await col.get();
+    snapshot.docs.map(doc => {
+      newSource[doc.id as SourceKeysType] = {
+        ...newSource[doc.id as SourceKeysType],
+        version: doc.data()['version'],
+        link: doc.data()['link'],
+      };
+    });
     await Promise.all(
-      snapshot.docs.map(async doc => {
-        newSource[doc.id as SourceKeysType] = {
-          ...newSource[doc.id as SourceKeysType],
-          version: doc.data()['version'],
-          link: doc.data()['link'],
-          state: await getAppState(newSource[doc.id as SourceKeysType]),
+      SourceKeys.map(async app => {
+        newSource[app] = {
+          ...newSource[app],
+          state: await getAppState(newSource[app]),
         };
       }),
     );
@@ -182,7 +203,7 @@ export function SourceProvider({children}: {children: React.ReactNode}) {
 export function useSource(): [
   SourceProps,
   () => Promise<void>,
-  (app: SourceKeysType | 'ALL') => Promise<void>,
+  (app: SourceType | 'ALL') => Promise<void>,
 ] {
   const context = React.useContext(SourceContext);
   if (context === undefined) {

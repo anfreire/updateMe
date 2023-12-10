@@ -31,11 +31,25 @@ export default function Badge({
   appSource: SourceType;
   microgSource?: SourceType;
 }) {
-  const [appState, setAppState] = useState<AppState | "LOADING">(
+  const updateState = useSource()[2];
+  const getState = () =>
     microgSource?.state
       ? getMultipleState(appSource, microgSource)
-      : appSource.state ?? "LOADING",
-  );
+      : appSource.state ?? 'LOADING';
+
+  const [appState, setAppState] = useState<AppState | 'LOADING'>('LOADING');
+
+  useEffect(() => {
+    updateState(appSource).then(() => {
+      microgSource && updateState(microgSource);
+    });
+  }, []);
+
+  useEffect(() => {
+    setAppState('LOADING');
+    setAppState(getState());
+  }, [appSource, microgSource]);
+
   return (
     <View
       style={{

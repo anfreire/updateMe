@@ -1,10 +1,8 @@
 import RNFetchBlob from 'rn-fetch-blob';
 
 namespace Files {
-  export const dir = RNFetchBlob.fs.dirs.DownloadDir;
-
   export async function listFiles(): Promise<string[]> {
-    const files = await RNFetchBlob.fs.ls(dir);
+    const files = await RNFetchBlob.fs.ls(RNFetchBlob.fs.dirs.DownloadDir);
     return files;
   }
 
@@ -15,7 +13,9 @@ namespace Files {
   }
 
   export async function deleteFile(filename: string): Promise<void> {
-    await RNFetchBlob.fs.unlink(`${dir}/${filename}`);
+    await RNFetchBlob.fs.unlink(
+      `${RNFetchBlob.fs.dirs.DownloadDir}/${filename}`,
+    );
   }
 
   export async function deleteMultiple(files: string[]): Promise<void> {
@@ -23,7 +23,9 @@ namespace Files {
   }
 
   export async function getFileInfos(filename: string): Promise<FileInfo> {
-    const infos = await RNFetchBlob.fs.stat(`${dir}/${filename}`);
+    const infos = await RNFetchBlob.fs.stat(
+      `${RNFetchBlob.fs.dirs.DownloadDir}/${filename}`,
+    );
     return {
       filename: infos.filename,
       lastModified: infos.lastModified,
@@ -37,7 +39,7 @@ namespace Files {
     onProgress: (progress: number) => void,
   ): Promise<string> {
     const path = await RNFetchBlob.config({
-      path: `${dir}/${filename}`,
+      path: `${RNFetchBlob.fs.dirs.DownloadDir}/${filename}`,
       fileCache: false,
     })
       .fetch('GET', url, {

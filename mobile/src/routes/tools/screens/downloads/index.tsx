@@ -4,26 +4,11 @@ import {
   Modal,
   View,
   TouchableOpacity,
-  PermissionsAndroid,
 } from 'react-native';
 import Files from '../../../../modules/files';
 import {useEffect, useState} from 'react';
 
-const getTitle = (file: string) => {
-  const lowerFile = file.toLowerCase();
-  switch (true) {
-    case lowerFile.includes('music'):
-      return 'YouTube Music';
-    case lowerFile.includes('microg'):
-      return 'MicroG';
-    case lowerFile.includes('youtube'):
-      return 'YouTube';
-    case lowerFile.includes('spotify'):
-      return 'Spotify';
-    default:
-      return file;
-  }
-};
+
 import DownloadsListItem from './components/listItem';
 import {Icon, Text} from '@rneui/themed';
 import DownloadInfoModal, {ModalControllerProps} from './components/infoModal';
@@ -86,7 +71,7 @@ export default function ToolsDownloads({
   const update = () => {
     setRefreshing(true);
     Files.listFiles().then(files => {
-      setFiles(files.filter(file => file.endsWith('updateme.apk')));
+      setFiles(files.filter(file => file.endsWith('.apk')));
       setRefreshing(false);
     });
   };

@@ -5,12 +5,15 @@ import ListItem from '../components/listItem';
 import {RoutesKeys, useSource} from '../../../hooks/useSource';
 import {HomeScreenTypes} from '..';
 import React from 'react';
+import useAccentColor from '../../../hooks/useAccentColor';
+
 export default function AppsMain({
   navigation,
 }: HomeScreenTypes.StackScreenProps<'Apps-Main'>) {
   const [source, updateSource, _] = useSource();
   const [refreshing, setRefreshing] = React.useState(false);
-  const {theme} = useTheme();
+  const theme = useTheme();
+  const accentColor = useAccentColor(theme)[0];
 
   const update = () => {
     setRefreshing(true);
@@ -20,6 +23,18 @@ export default function AppsMain({
   };
 
   useEffect(() => {
+    accentColor().then(accent => {
+      if (accent) {
+        theme.updateTheme({
+          lightColors: {
+            primary: accent.light,
+          },
+          darkColors: {
+            primary: accent.dark,
+          },
+        });
+      }
+    });
     update();
   }, []);
 
@@ -55,11 +70,11 @@ export default function AppsMain({
       <FAB
         style={{
           position: 'absolute',
-          bottom: 25,
-          right: 25,
+          bottom: 15,
+          right: 15,
         }}
         buttonStyle={{
-          backgroundColor: theme.colors.primary,
+          backgroundColor: theme.theme.colors.primary,
         }}
         size="large"
         onPress={update}>
