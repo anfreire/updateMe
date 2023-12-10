@@ -1,10 +1,11 @@
 import {Button, Icon, ListItem} from '@rneui/themed';
+import React from 'react';
 
 export default function ISwipable() {
   return (
     <ListItem.Swipeable
       rightWidth={75}
-      minSlideWidth={75}
+      minSlideWidth={75 as any}
       leftWidth={0}
       rightContent={action => (
         <Button

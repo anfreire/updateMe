@@ -9,12 +9,12 @@ import InstallButton from '../../components/installButton';
 type ExpandedVariants = null | 'What Is HDO BOX?' | 'Why HDO BOX?';
 
 export default function AppsHDO() {
-  const hdoSource = useSource()[0].HDO;
+  const source = useSource()[0];
   const [expanded, setExpanded] = React.useState<ExpandedVariants>(null);
   return (
     <>
       <ScrollView>
-        <ScreenBase source={hdoSource}>
+        <ScreenBase source={source.HDO}>
           <View
             style={{
               display: 'flex',
@@ -26,7 +26,7 @@ export default function AppsHDO() {
               gap: 10,
             }}>
             <View>
-              <InstallButton source={hdoSource} />
+              <InstallButton source={source.HDO} />
             </View>
             <ListItem.Accordion
               isExpanded={expanded === 'What Is HDO BOX?'}

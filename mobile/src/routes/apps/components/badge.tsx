@@ -1,33 +1,28 @@
 import {useEffect, useState} from 'react';
 import {View} from 'react-native';
-import {AppState, getAppState} from '../../../utils/apps';
 import {Icon, Button} from '@rneui/themed';
-import {SourceType, useSource} from '../../../hooks/useSource';
+import {AppState, SourceType, useSource} from '../../../hooks/useSource';
 import {colors} from '../../../utils/theme';
+import React from 'react';
+import {getMultipleState} from '../../../utils/apps';
 
 const borderColors: Record<AppState, string> = {
-  'NOT INSTALLED': colors.RED.opaque,
-  'UP TO DATE': colors.GREEN.opaque,
-  'UPDATE AVAILABLE': colors.YELLOW.opaque,
+  NOT_INSTALLED: colors.RED.opaque,
+  NOT_UPDATED: colors.YELLOW.opaque,
+  UPDATED: colors.GREEN.opaque,
 };
 
 const backgroundColors: Record<AppState, string> = {
-  'NOT INSTALLED': colors.RED.transparent,
-  'UP TO DATE': colors.GREEN.transparent,
-  'UPDATE AVAILABLE': colors.YELLOW.transparent,
+  NOT_INSTALLED: colors.RED.transparent,
+  NOT_UPDATED: colors.YELLOW.transparent,
+  UPDATED: colors.GREEN.transparent,
 };
 
 const icons: Record<AppState, {name: string; type: string}> = {
-  'NOT INSTALLED': {name: 'close', type: 'material-community'},
-  'UP TO DATE': {name: 'check', type: 'material-community'},
-  'UPDATE AVAILABLE': {name: 'arrow-up', type: 'material-community'},
+  NOT_INSTALLED: {name: 'close', type: 'material-community'},
+  NOT_UPDATED: {name: 'arrow-up', type: 'material-community'},
+  UPDATED: {name: 'check', type: 'material-community'},
 };
-
-type AppStateType =
-  | 'NOT INSTALLED'
-  | 'UP TO DATE'
-  | 'UPDATE AVAILABLE'
-  | 'LOADING';
 
 export default function Badge({
   appSource,
@@ -36,15 +31,11 @@ export default function Badge({
   appSource: SourceType;
   microgSource?: SourceType;
 }) {
-  const [appState, setAppState] = useState<AppStateType>('LOADING');
-  const source = useSource()[0];
-
-  useEffect(() => {
-    getAppState(appSource, microgSource).then(state => {
-      state ? setAppState(state) : setAppState('LOADING');
-    });
-  }, [source, microgSource]);
-
+  const [appState, setAppState] = useState<AppState | "LOADING">(
+    microgSource?.state
+      ? getMultipleState(appSource, microgSource)
+      : appSource.state ?? "LOADING",
+  );
   return (
     <View
       style={{

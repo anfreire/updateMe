@@ -8,11 +8,19 @@ import React from 'react';
 export default function AppsMain({
   navigation,
 }: HomeScreenTypes.StackScreenProps<'Apps-Main'>) {
-  const [source, updateSource] = useSource();
+  const [source, updateSource, _] = useSource();
+  const [refreshing, setRefreshing] = React.useState(false);
   const {theme} = useTheme();
 
+  const update = () => {
+    setRefreshing(true);
+    updateSource().then(() => {
+      setRefreshing(false);
+    });
+  };
+
   useEffect(() => {
-    updateSource();
+    update();
   }, []);
 
   return (
@@ -24,18 +32,25 @@ export default function AppsMain({
       }}>
       <ScrollView
         refreshControl={
-          <RefreshControl refreshing={false} onRefresh={updateSource} />
+          <RefreshControl refreshing={refreshing} onRefresh={update} />
         }>
-        {RoutesKeys.map((key, i) => (
-          <View key={i}>
-            <ListItem
-              appSource={source[key]}
-              microgSource={source.YOUTUBE_MICROG}
-              navigation={navigation}
-            />
-            {i !== RoutesKeys.length - 1 && <Divider style={{opacity: 0.2}} />}
-          </View>
-        ))}
+        {source &&
+          RoutesKeys.map((key, i) => (
+            <View key={i}>
+              <ListItem
+                appSource={source[key]}
+                microgSource={
+                  key === 'YOUTUBE_YOUTUBE' || key === 'YOUTUBE_MUSIC'
+                    ? source.YOUTUBE_MICROG
+                    : undefined
+                }
+                navigation={navigation}
+              />
+              {i !== RoutesKeys.length - 1 && (
+                <Divider style={{opacity: 0.2}} />
+              )}
+            </View>
+          ))}
       </ScrollView>
       <FAB
         style={{
@@ -47,7 +62,7 @@ export default function AppsMain({
           backgroundColor: theme.colors.primary,
         }}
         size="large"
-        onPress={updateSource}>
+        onPress={update}>
         <Icon name="refresh" type="material-comunity" />
       </FAB>
     </View>

@@ -86,7 +86,6 @@ export default function ToolsDownloads({
   const update = () => {
     setRefreshing(true);
     Files.listFiles().then(files => {
-      console.log(files);
       setFiles(files.filter(file => file.endsWith('updateme.apk')));
       setRefreshing(false);
     });

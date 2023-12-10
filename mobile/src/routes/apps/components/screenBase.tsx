@@ -1,13 +1,8 @@
 import React, {useEffect} from 'react';
-import {SourceType, useSource} from '../../../hooks/useSource';
-import {WarningType, getWarning} from '../../../utils/apps';
+import {SourceType} from '../../../hooks/useSource';
+import {LoadingState, WarningType, getWarning} from '../../../utils/apps';
 import {RefreshControl, ScrollView, View} from 'react-native';
 import Warning from './warning';
-
-const warningLoading: WarningType = {
-  type: 'YELLOW',
-  message: 'Loading...',
-};
 
 export default function ScreenBase({
   source,
@@ -18,11 +13,9 @@ export default function ScreenBase({
   microgSource?: SourceType;
   children?: React.ReactNode;
 }) {
-  const [warning, setWarning] = React.useState<WarningType>(warningLoading);
-  const gSource = useSource()[0];
+  const [warning, setWarning] = React.useState<WarningType>(LoadingState);
 
   const update = () => {
-    setWarning(warningLoading);
     getWarning(source, microgSource).then(res => {
       setWarning(res);
     });
@@ -30,11 +23,7 @@ export default function ScreenBase({
 
   useEffect(() => {
     update();
-  }, []);
-
-  useEffect(() => {
-    update();
-  }, [gSource]);
+  }, [source, microgSource]);
 
   return (
     <ScrollView

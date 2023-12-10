@@ -1,29 +1,12 @@
 import Permissions from '../modules/permissions';
 import Files from '../modules/files';
 import Apps from '../modules/apps';
-import {SourceType} from '../hooks/useSource';
+import {AppState, SourceType} from '../hooks/useSource';
 import {StateColors} from '../common/types';
 
 export async function deleteAllFiles(files: string[]): Promise<void> {
   Promise.all(files.map(async file => await Files.deleteFile(file)));
 }
-
-const getFileName = (source: SourceType): string => {
-  switch (source.title) {
-    case 'Spotify':
-      return 'spotify_updateme.apk';
-    case 'Youtube':
-      return 'youtube_updateme.apk';
-    case 'Youtube Music':
-      return 'youtube_music_updateme.apk';
-    case 'MicroG':
-      return 'microg_updateme.apk';
-    case 'HDO Box':
-      return 'hdo_updateme.apk';
-    default:
-      return 'unkown_updateme.apk';
-  }
-};
 
 export async function downloadAndInstall(
   source: SourceType,
@@ -35,45 +18,37 @@ export async function downloadAndInstall(
   if (!granted_write) await Permissions.requestPermissions('WRITE');
   const granted_read = await Permissions.getPermissions('READ');
   if (!granted_read) await Permissions.requestPermissions('READ');
-  const filename = getFileName(source);
-  const path = await Files.download(source.link, filename, onProgress);
+  const path = await Files.download(source.link, source.fileName, onProgress);
   const granted = await Permissions.getPermissions('INSTALL');
   if (!granted) await Permissions.requestPermissions('INSTALL');
   await Apps.installAPK(path);
   return true;
 }
 
-export type AppState = 'UP TO DATE' | 'UPDATE AVAILABLE' | 'NOT INSTALLED';
-
-export async function getSingleAppSate(
-  source: SourceType,
-): Promise<AppState | null> {
-  if (!source.version) return null;
-  const version = await Apps.getAppVersion(source.packageName);
-  if (!version) return 'NOT INSTALLED';
-  if (version !== source.version) return 'UPDATE AVAILABLE';
-  return 'UP TO DATE';
-}
-
-export async function getAppState(
-  source: SourceType,
-  microGSource?: SourceType,
-): Promise<AppState | null> {
-  if (!source.version) return null;
-  const sourceState = await getSingleAppSate(source);
-  if (
-    source.packageName === 'app.revanced.android.youtube' ||
-    source.packageName === 'app.revanced.android.apps.youtube.music'
-  ) {
-    if (!microGSource) return null;
-    const microGState = await getSingleAppSate(microGSource);
-    if (sourceState === 'UP TO DATE' && microGState === 'UP TO DATE')
-      return 'UP TO DATE';
-    else if (sourceState === 'NOT INSTALLED' || microGState === 'NOT INSTALLED')
-      return 'NOT INSTALLED';
-    return 'UPDATE AVAILABLE';
+export function getMultipleState(
+  source1: SourceType,
+  source2: SourceType,
+): AppState {
+  switch (source1.state) {
+    case 'NOT_INSTALLED':
+      return 'NOT_INSTALLED';
+    case 'NOT_UPDATED':
+      switch (source2.state) {
+        case 'NOT_INSTALLED':
+          return 'NOT_INSTALLED';
+        default:
+          return 'NOT_UPDATED';
+      }
+    default:
+      switch (source2.state) {
+        case 'NOT_INSTALLED':
+          return 'NOT_INSTALLED';
+        case 'NOT_UPDATED':
+          return 'NOT_UPDATED';
+        default:
+          return 'UPDATED';
+      }
   }
-  return sourceState;
 }
 
 export interface WarningType {
@@ -81,134 +56,39 @@ export interface WarningType {
   message: string;
 }
 
-const ErrorState: WarningType = {
-  type: 'RED',
-  message: 'Error loading updated version.',
-};
-
-const State_UP_TO_DATE = (source: SourceType): WarningType => {
-  if (
-    source.packageName === 'app.revanced.android.youtube' ||
-    source.packageName === 'app.revanced.android.apps.youtube.music'
-  ) {
-    return {
-      type: 'GREEN',
-      message: `${source.title} and MicroG are up to date.`,
-    };
-  }
-  return {
-    type: 'GREEN',
-    message: `${source.title} is up to date.`,
-  };
-};
-
-const State_UPDATE_AVAILABLE = async (
-  source: SourceType,
-  microGSource?: SourceType,
-): Promise<WarningType> => {
-  if (!source.version) return ErrorState;
-  const sourceVersion = await Apps.getAppVersion(source.packageName);
-  if (
-    source.packageName === 'app.revanced.android.youtube' ||
-    source.packageName === 'app.revanced.android.apps.youtube.music'
-  ) {
-    if (!microGSource || !microGSource.version) return ErrorState;
-    const microGVersion = await Apps.getAppVersion(microGSource.packageName);
-    switch (sourceVersion) {
-      case source.version:
-        switch (microGVersion) {
-          case microGSource.version:
-            return {
-              type: 'YELLOW',
-              message: `${source.title} and MicroG are not up to date.`,
-            };
-          default:
-            return {
-              type: 'YELLOW',
-              message: `MicroG is up to date, but ${source.title} is not.`,
-            };
-        }
-      default:
-        switch (microGVersion) {
-          case microGSource.version:
-            return {
-              type: 'YELLOW',
-              message: `${source.title} is up to date, but MicroG is not.`,
-            };
-          default:
-            return {
-              type: 'YELLOW',
-              message: `${source.title} and MicroG are not up to date.`,
-            };
-        }
-    }
-  }
-  return {
-    type: 'YELLOW',
-    message: `${source.title} is not up to date.`,
-  };
-};
-
-const State_NOT_INSTALLED = async (
-  source: SourceType,
-  microGSource?: SourceType,
-): Promise<WarningType> => {
-  if (!source.version) return ErrorState;
-  const sourceVersion = await Apps.getAppVersion(source.packageName);
-  if (
-    source.packageName === 'app.revanced.android.youtube' ||
-    source.packageName === 'app.revanced.android.apps.youtube.music'
-  ) {
-    if (!microGSource || !microGSource.version) return ErrorState;
-    const microGVersion = await Apps.getAppVersion(microGSource.packageName);
-    switch (sourceVersion) {
-      case source.version:
-        switch (microGVersion) {
-          case microGSource.version:
-            return {
-              type: 'RED',
-              message: `${source.title} and MicroG are not installed.`,
-            };
-          default:
-            return {
-              type: 'RED',
-              message: `MicroG is installed, but ${source.title} is not.`,
-            };
-        }
-      default:
-        switch (microGVersion) {
-          case microGSource.version:
-            return {
-              type: 'RED',
-              message: `${source.title} is installed, but MicroG is not.`,
-            };
-          default:
-            return {
-              type: 'RED',
-              message: `${source.title} and MicroG are not installed.`,
-            };
-        }
-    }
-  }
-  return {
-    type: 'RED',
-    message: `${source.title} is not installed.`,
-  };
+export const LoadingState: WarningType = {
+  type: 'YELLOW',
+  message: 'Loading...',
 };
 
 export async function getWarning(
-  source: SourceType,
-  microGSource?: SourceType,
+  source1: SourceType,
+  source2?: SourceType,
 ): Promise<{type: StateColors; message: string}> {
-  const state = await getAppState(source, microGSource);
-  switch (state) {
-    case 'UP TO DATE':
-      return State_UP_TO_DATE(source);
-    case 'UPDATE AVAILABLE':
-      return await State_UPDATE_AVAILABLE(source, microGSource);
-    case 'NOT INSTALLED':
-      return await State_NOT_INSTALLED(source, microGSource);
-    default:
-      return ErrorState;
-  }
+  if (!source1.state) return LoadingState;
+  const colors: Record<AppState, StateColors> = {
+    NOT_INSTALLED: 'RED',
+    NOT_UPDATED: 'YELLOW',
+    UPDATED: 'GREEN',
+  };
+  const messages: Record<AppState, (source: SourceType) => string> = {
+    NOT_INSTALLED: (source: SourceType): string => {
+      return `${source.title} is not installed`;
+    },
+    NOT_UPDATED: (source: SourceType): string => {
+      return `${source.title} has an update`;
+    },
+    UPDATED: (source: SourceType): string => {
+      return `${source.title} is up to date`;
+    },
+  };
+  const message =
+    messages[source1.state](source1) +
+    (source2?.state ? `\n${messages[source2.state](source2)}` : '');
+  return {
+    type: colors[
+      source2?.state ? getMultipleState(source1, source2) : source1.state
+    ],
+    message,
+  };
 }

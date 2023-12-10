@@ -1,14 +1,14 @@
-import React from 'react';
+import { View } from 'react-native';
 import {useSource} from '../../../../hooks/useSource';
 import ScreenBase from '../../components/screenBase';
-import { View } from 'react-native';
+import React from 'react';
 import InstallButton from '../../components/installButton';
 
-export default function AppsYoutubeMusic() {
+export default function AppsWhatsapp() {
   const source = useSource()[0];
 
   return (
-    <ScreenBase source={source.YOUTUBE_MUSIC} microgSource={source.YOUTUBE_MICROG}>
+    <ScreenBase source={source.WHATSAPP}>
       <View
         style={{
           display: 'flex',
@@ -20,11 +20,9 @@ export default function AppsYoutubeMusic() {
           gap: 10,
         }}>
         <View>
-          <InstallButton source={source.YOUTUBE_MUSIC} />
-          <InstallButton source={source.YOUTUBE_MICROG} />
+          <InstallButton source={source.WHATSAPP} />
         </View>
       </View>
     </ScreenBase>
   );
-
 }

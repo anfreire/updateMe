@@ -1,9 +1,4 @@
 import {SourceType, useSource} from '../../../hooks/useSource';
-import {
-  AppState,
-  downloadAndInstall,
-  getSingleAppSate,
-} from '../../../utils/apps';
 import {useEffect, useState} from 'react';
 import {
   Button,
@@ -18,46 +13,32 @@ import {View} from 'react-native';
 import {TouchableOpacity} from 'react-native';
 import {greys} from '../../../utils/theme';
 import {Linking} from 'react-native';
-
-type ShowState = 'UPDATE AVAILABLE' | 'NOT INSTALLED';
+import {downloadAndInstall} from '../../../utils/apps';
 
 const VariantProps: Record<
-  ShowState,
+  'NOT_INSTALLED' | 'NOT_UPDATED',
   {
     text: string;
     iconName: string;
   }
 > = {
-  'NOT INSTALLED': {
+  NOT_INSTALLED: {
     text: 'Install',
     iconName: 'download',
   },
-  'UPDATE AVAILABLE': {
+  NOT_UPDATED: {
     text: 'Update',
     iconName: 'update',
   },
 };
 
 export default function InstallButton({source}: {source: SourceType}) {
-  const [gSource, updateSource] = useSource();
+  const updateSource = useSource()[1];
   const {theme} = useTheme();
-  const [appState, setAppState] = useState<AppState>('UP TO DATE');
   const [downloading, setDownloading] = useState(false);
   const [progress, setProgress] = useState(0);
 
-  useEffect(() => {
-    getSingleAppSate(source).then(res => {
-      if (res) setAppState(res);
-    });
-  }, []);
-
-  useEffect(() => {
-    getSingleAppSate(source).then(res => {
-      if (res) setAppState(res);
-    });
-  }, [gSource]);
-
-  return appState !== 'UP TO DATE' ? (
+  return source.state === 'NOT_INSTALLED' || source.state === 'NOT_UPDATED' ? (
     <View
       style={{
         display: 'flex',
@@ -91,11 +72,11 @@ export default function InstallButton({source}: {source: SourceType}) {
             textAlign: 'center',
             color: theme.colors.primary,
           }}>
-          {VariantProps[appState].text + ' ' + source.title}
+          {VariantProps[source.state].text + ' ' + source.title}
         </Text>
         <Icon
           color={theme.colors.primary}
-          name={VariantProps[appState].iconName}
+          name={VariantProps[source.state].iconName}
         />
       </TouchableOpacity>
       {downloading ? (

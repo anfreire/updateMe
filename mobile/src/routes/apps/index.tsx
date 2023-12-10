@@ -16,6 +16,10 @@ const Screens = [
   'Apps-YoutubeMusic',
   'Apps-Spotify',
   'Apps-HDO',
+  'Apps-Instagram',
+  'Apps-WhatsApp',
+  'Apps-CapCut',
+  'Apps-PhotoEditorPro',
 ] as const;
 
 export namespace HomeScreenTypes {
@@ -38,7 +42,14 @@ export default function HomeScreen() {
     () => import('./screens/youtubeMusic'),
   );
   const DynamicHDOScreen = React.lazy(() => import('./screens/hdo'));
-
+  const DynamicWhatsAppScreen = React.lazy(() => import('./screens/whatsapp'));
+  const DynamicInstagramScreen = React.lazy(
+    () => import('./screens/instagram'),
+  );
+  const DynamicCapCutScreen = React.lazy(() => import('./screens/capcut'));
+  const DynamicPhotoEditorProScreen = React.lazy(
+    () => import('./screens/photoEditorPro'),
+  );
   useEffect(() => {
     accentColor().then(accent => {
       if (accent) {
@@ -93,6 +104,38 @@ export default function HomeScreen() {
           }}
           name="Apps-HDO"
           component={DynamicHDOScreen}
+        />
+        <Stack.Screen
+          options={{
+            headerShown: true,
+            headerTitle: 'Instagram',
+          }}
+          name="Apps-Instagram"
+          component={DynamicInstagramScreen}
+        />
+        <Stack.Screen
+          options={{
+            headerShown: true,
+            headerTitle: 'WhatsApp',
+          }}
+          name="Apps-WhatsApp"
+          component={DynamicWhatsAppScreen}
+        />
+        <Stack.Screen
+          options={{
+            headerShown: true,
+            headerTitle: 'CapCut',
+          }}
+          name="Apps-CapCut"
+          component={DynamicCapCutScreen}
+        />
+        <Stack.Screen
+          options={{
+            headerShown: true,
+            headerTitle: 'Photo Editor Pro',
+          }}
+          name="Apps-PhotoEditorPro"
+          component={DynamicPhotoEditorProScreen}
         />
       </Stack.Navigator>
     </Suspense>

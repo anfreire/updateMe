@@ -19,6 +19,7 @@ namespace Apps {
     packageName: string,
   ): Promise<string | null> {
     const version = await MyAppsModule.getAppVersion(packageName);
+    console.log(version, packageName);
     return version === 'N/A' ? null : version;
   }
 

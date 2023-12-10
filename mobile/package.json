@@ -9,13 +9,15 @@
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest",
-    "purge": "adb uninstall com.updateme; gnome-terminal -- bash -c 'cd /home/anfreire/Documents/Projects/Android/updateMe/mobile && npm run clean-start'; sleep 20 && gnome-terminal -- bash -c 'cd /home/anfreire/Documents/Projects/Android/updateMe/mobile && npm run android'",
+    "restart": "adb uninstall com.updateme; gnome-terminal -- bash -c 'cd /home/anfreire/Documents/Projects/Android/updateMe/mobile && npm run clean-start'; sleep 20 && gnome-terminal --wait -- bash -c 'cd /home/anfreire/Documents/Projects/Android/updateMe/mobile && npm run android' && nohup \"scrcpy --no-audio &\"; rm -rf nohup.out",
     "rm-rn": "rm node_modules/rn-fetch-blob/react-native.config.js",
     "reinstall-modules": "rm -rf node_modules && npm install",
     "reset-watch": "watchman watch-del '/home/anfreire/Documents/Projects/Android/updateMe/mobile' ; watchman watch-project '/home/anfreire/Documents/Projects/Android/updateMe/mobile'"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.21.0",
+    "@react-native-firebase/app": "^18.7.2",
+    "@react-native-firebase/firestore": "^18.7.2",
     "@react-navigation/bottom-tabs": "^6.5.11",
     "@react-navigation/native": "^6.1.9",
     "@react-navigation/native-stack": "^6.9.17",

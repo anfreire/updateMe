@@ -1,4 +1,3 @@
-import {get} from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
 import RNFetchBlob from 'rn-fetch-blob';
 
 namespace Files {
@@ -17,6 +16,10 @@ namespace Files {
 
   export async function deleteFile(filename: string): Promise<void> {
     await RNFetchBlob.fs.unlink(`${dir}/${filename}`);
+  }
+
+  export async function deleteMultiple(files: string[]): Promise<void> {
+    Promise.all(files.map(async file => await Files.deleteFile(file)));
   }
 
   export async function getFileInfos(filename: string): Promise<FileInfo> {
