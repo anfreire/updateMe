@@ -16,4 +16,9 @@ export type IconType =
   | 'zocial'
   | 'material-community';
 
+export interface IconProps {
+  name: string;
+  type: IconType;
+}
+
 export type StateColors = 'RED' | 'GREEN' | 'YELLOW';

@@ -2,6 +2,7 @@ import React, {version} from 'react';
 import {ImageSourcePropType} from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 import Apps from '../modules/apps';
+import {IconProps} from '../common/types';
 
 export type SourceKeysType =
   | 'HDO'
@@ -12,7 +13,9 @@ export type SourceKeysType =
   | 'INSTAGRAM'
   | 'WHATSAPP'
   | 'CAPCUT'
-  | 'PHOTO_EDITOR_PRO';
+  | 'PHOTO_EDITOR_PRO'
+  | 'PHOTOSHOP_EXPRESS'
+  | 'INSHOT';
 
 export const RoutesKeys: SourceKeysType[] = [
   'CAPCUT',
@@ -23,7 +26,10 @@ export const RoutesKeys: SourceKeysType[] = [
   'WHATSAPP',
   'YOUTUBE_YOUTUBE',
   'YOUTUBE_MUSIC',
+  'PHOTOSHOP_EXPRESS',
+  'INSHOT',
 ];
+
 export const SourceKeys: SourceKeysType[] = [...RoutesKeys, 'YOUTUBE_MICROG'];
 
 export type AppState = 'NOT_INSTALLED' | 'NOT_UPDATED' | 'UPDATED';
@@ -31,6 +37,7 @@ export type AppState = 'NOT_INSTALLED' | 'NOT_UPDATED' | 'UPDATED';
 export interface SourceType {
   title: string;
   icon: ImageSourcePropType;
+  warnings: string[];
   packageName: string;
   route: string;
   url: string;
@@ -46,6 +53,7 @@ export const initialSource: SourceProps = {
   HDO: {
     title: 'HDO Box',
     icon: require('../../assets/hdo.png'),
+    warnings: [],
     packageName: 'com.hdobox',
     route: 'Apps-HDO',
     fileName: 'HDOBox.apk',
@@ -54,6 +62,7 @@ export const initialSource: SourceProps = {
   YOUTUBE_MICROG: {
     title: 'MicroG',
     icon: require('../../assets/microg.png'),
+    warnings: [],
     packageName: 'com.mgoogle.android.gms',
     route: '',
     fileName: 'microg.apk',
@@ -62,6 +71,7 @@ export const initialSource: SourceProps = {
   YOUTUBE_YOUTUBE: {
     title: 'YouTube',
     icon: require('../../assets/youtube.png'),
+    warnings: [],
     packageName: 'app.revanced.android.youtube',
     route: 'Apps-Youtube',
     fileName: 'YouTube.apk',
@@ -70,6 +80,7 @@ export const initialSource: SourceProps = {
   YOUTUBE_MUSIC: {
     title: 'YouTube Music',
     icon: require('../../assets/youtube_music.png'),
+    warnings: [],
     packageName: 'app.revanced.android.apps.youtube.music',
     route: 'Apps-YoutubeMusic',
     fileName: 'YouTubeMusic.apk',
@@ -78,6 +89,7 @@ export const initialSource: SourceProps = {
   SPOTIFY: {
     title: 'Spotify',
     icon: require('../../assets/spotify.png'),
+    warnings: [],
     packageName: 'com.spotify.music',
     route: 'Apps-Spotify',
     fileName: 'Spotify.apk',
@@ -86,13 +98,15 @@ export const initialSource: SourceProps = {
   INSTAGRAM: {
     title: 'Instagram',
     icon: require('../../assets/instagram.png'),
+    warnings: [],
     packageName: 'com.instagram.android',
     route: 'Apps-Instagram',
     fileName: 'Instagram.apk',
-    url: 'https://instander.app/',
+    url: 'https://thedise.me/instander/',
   },
   WHATSAPP: {
     title: 'WhatsApp',
+    warnings: [],
     icon: require('../../assets/whatsapp.png'),
     packageName: 'com.whatsapp',
     route: 'Apps-WhatsApp',
@@ -102,6 +116,7 @@ export const initialSource: SourceProps = {
   CAPCUT: {
     title: 'CapCut',
     icon: require('../../assets/capcut.png'),
+    warnings: [],
     packageName: 'com.lemon.lvoverseas',
     route: 'Apps-CapCut',
     fileName: 'CapCut.apk',
@@ -110,10 +125,29 @@ export const initialSource: SourceProps = {
   PHOTO_EDITOR_PRO: {
     title: 'Photo Editor Pro',
     icon: require('../../assets/photo_editor_pro.png'),
+    warnings: [],
     packageName: 'photo.editor.photoeditor.photoeditorpro',
     route: 'Apps-PhotoEditorPro',
     fileName: 'PhotoEditorPro.apk',
     url: 'https://modyolo.com/polish-photo-editor-pro.html',
+  },
+  PHOTOSHOP_EXPRESS: {
+    title: 'Photoshop Express',
+    icon: require('../../assets/photoshop_express.png'),
+    warnings: [],
+    packageName: 'com.adobe.psmobile',
+    route: 'Apps-PhotoshopExpress',
+    fileName: 'PhotoshopExpress.apk',
+    url: 'https://modyolo.com/photoshop-express-photo-editor.html',
+  },
+  INSHOT: {
+    title: 'InShot',
+    icon: require('../../assets/inshot.png'),
+    warnings: [],
+    packageName: 'com.camerasideas.instashot',
+    route: 'Apps-InShot',
+    fileName: 'InShot.apk',
+    url: 'https://inshotpro.app/pro-mod',
   },
 };
 

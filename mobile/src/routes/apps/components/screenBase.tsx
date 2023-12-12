@@ -4,29 +4,19 @@ import {LoadingState, WarningType, getWarning} from '../../../utils/apps';
 import {RefreshControl, ScrollView, View} from 'react-native';
 import Warning from './warning';
 import InstallButton from './installButton';
-import DownloadDialog from './downloadDialog';
+import {useDownload} from '../../../hooks/useDownload';
+import SpeedDial from './speedDial';
 
 export default function ScreenBase({
   source,
-  downloadData,
-  setDownloadData,
   microgSource,
   children,
 }: {
   source: SourceType;
-  downloadData: {
-    open: boolean;
-    source: null | SourceType;
-  };
-  setDownloadData: React.Dispatch<
-    React.SetStateAction<{
-      open: boolean;
-      source: null | SourceType;
-    }>
-  >;
   microgSource?: SourceType;
   children?: React.ReactNode;
 }) {
+  const {setData} = useDownload();
   const [warning, setWarning] = React.useState<WarningType>(LoadingState);
   const updateSource = useSource()[1];
 
@@ -70,22 +60,18 @@ export default function ScreenBase({
           }}>
           <InstallButton
             source={source}
-            setDownloadOpen={() =>
-              setDownloadData({open: true, source: source})
-            }
+            openDownloadDialog={() => setData(source)}
           />
           {microgSource && (
             <InstallButton
               source={microgSource}
-              setDownloadOpen={() =>
-                setDownloadData({open: true, source: microgSource})
-              }
+              openDownloadDialog={() => setData(microgSource)}
             />
           )}
           {children}
         </View>
       </ScrollView>
-      <DownloadDialog data={downloadData} setData={setDownloadData} />
+      <SpeedDial source={source} microgSource={microgSource} />
     </>
   );
 }

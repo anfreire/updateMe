@@ -10,7 +10,7 @@ export async function deleteAllFiles(files: string[]): Promise<void> {
 
 export async function downloadAndInstall(
   source: SourceType,
-  onProgress?: (progress: number) => void,
+  onProgress?: React.Dispatch<React.SetStateAction<number>>,
 ): Promise<boolean> {
   if (!source.link) return false;
   onProgress ||= () => {};

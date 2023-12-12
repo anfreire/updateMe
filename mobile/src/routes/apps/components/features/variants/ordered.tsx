@@ -2,28 +2,8 @@ import {View} from 'react-native';
 import React from 'react';
 import {Text, useTheme} from '@rneui/themed';
 import {greys} from '../../../../../utils/theme';
-export interface StepProps {
-  side: 'LEFT' | 'RIGHT';
-  number: number;
-  title: string;
-  description: string;
-}
 
-const JustifyVariants: Record<'LEFT' | 'RIGHT', 'flex-start' | 'flex-end'> = {
-  LEFT: 'flex-start',
-  RIGHT: 'flex-end',
-};
-
-const TextAlignVariants: Record<'LEFT' | 'RIGHT', 'left' | 'right'> = {
-  LEFT: 'left',
-  RIGHT: 'right',
-};
-
-const StepNumber = ({
-  number,
-}: {
-  number: number;
-}) => {
+const FeatureNumber = ({number}: {number: number}) => {
   const {theme} = useTheme();
 
   return (
@@ -72,14 +52,24 @@ const StepNumber = ({
   );
 };
 
-export default function Step({side, number, title, description}: StepProps) {
+function OrderedFeature({
+  side,
+  number,
+  title,
+  description,
+}: {
+  side: 'LEFT' | 'RIGHT';
+  number: number;
+  title: string;
+  description: string;
+}) {
   return (
     <View
       style={{
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: JustifyVariants[side],
+        justifyContent: side === 'LEFT' ? 'flex-start' : 'flex-end',
         padding: 10,
         marginVertical: 20,
         gap: 10,
@@ -87,7 +77,7 @@ export default function Step({side, number, title, description}: StepProps) {
         borderWidth: 1,
         borderColor: greys[1],
       }}>
-      {side === 'LEFT' && <StepNumber number={number} />}
+      {side === 'LEFT' && <FeatureNumber number={number} />}
       <View
         style={{
           width: '80%',
@@ -98,7 +88,7 @@ export default function Step({side, number, title, description}: StepProps) {
         <Text
           style={{
             fontWeight: 'bold',
-            textAlign: TextAlignVariants[side],
+            textAlign: side === 'LEFT' ? 'left' : 'right',
             fontSize: 20,
             marginBottom: 10,
           }}>
@@ -106,15 +96,47 @@ export default function Step({side, number, title, description}: StepProps) {
         </Text>
         <Text
           style={{
-            textAlign: TextAlignVariants[side],
+            textAlign: side === 'LEFT' ? 'left' : 'right',
             fontSize: 15,
           }}>
           {description}
         </Text>
       </View>
-      {side === 'RIGHT' && (
-        <StepNumber number={number}  />
-      )}
+      {side === 'RIGHT' && <FeatureNumber number={number} />}
+    </View>
+  );
+}
+
+export interface OrderedFeaturesType {
+  title: string;
+  description: string;
+}
+
+export interface OrderedFeaturesProps {
+  features: OrderedFeaturesType[];
+}
+
+export default function OrderedFeatures({features}: OrderedFeaturesProps) {
+  return (
+    <View
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 40,
+        marginTop: 10,
+        marginBottom: 10,
+      }}>
+      {features.map((feature, index) => (
+        <OrderedFeature
+          key={index}
+          side={index % 2 === 0 ? 'LEFT' : 'RIGHT'}
+          number={index + 1}
+          title={feature.title}
+          description={feature.description}
+        />
+      ))}
     </View>
   );
 }

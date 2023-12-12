@@ -11,10 +11,8 @@
     "test": "jest",
     "rm_app_adb": "adb uninstall com.updateme > /dev/null",
     "gnome_clean_start": "gnome-terminal -- bash -c 'cd /home/anfreire/Documents/Projects/Android/updateMe/mobile && npm run clean-start'",
-    "gnome_android": "gnome-terminal --wait -- bash -c 'cd /home/anfreire/Documents/Projects/Android/updateMe/mobile && npm run android'",
-    "_scrcpy": "nohup scrcpy --no-audio  &",
-    "scrcpy": "npm run _scrcpy; rm -rf nohup.out",
-    "restart": "npm run rm_app_adb && npm run gnome_clean_start && sleep 20 && npm run gnome_android && npm run scrcpy && rm -rf nohup.out",
+    "gnome_android": "gnome-terminal -- bash -c 'cd /home/anfreire/Documents/Projects/Android/updateMe/mobile && npm run android'",
+    "restart": "npm run gnome_clean_start; sleep 20 && npm run gnome_android",
     "rm-rn": "rm node_modules/rn-fetch-blob/react-native.config.js",
     "reinstall-modules": "rm -rf node_modules && npm install",
     "reset-watch": "watchman watch-del '/home/anfreire/Documents/Projects/Android/updateMe/mobile' ; watchman watch-project '/home/anfreire/Documents/Projects/Android/updateMe/mobile'"

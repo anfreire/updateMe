@@ -1,10 +1,13 @@
 import {Icon, Text} from '@rneui/themed';
-import {Variants} from '..';
 import React from 'react';
 import {View} from 'react-native';
-import {StepProps} from './step';
+import {OrderedFeaturesType} from '../../../components/features';
 
-export const Content: Record<Variants, React.ReactNode> = {
+export type HDOVariants = 'What Is HDO BOX?' | 'Why HDO BOX?';
+
+export const HDOKeys: HDOVariants[] = ['What Is HDO BOX?', 'Why HDO BOX?'];
+
+export const HDOContent: Record<HDOVariants, React.ReactNode> = {
   'What Is HDO BOX?': (
     <>
       <Text
@@ -130,45 +133,33 @@ export const Content: Record<Variants, React.ReactNode> = {
   ),
 };
 
-export const Steps: StepProps[] = [
+export const HDOFeatures: OrderedFeaturesType[] = [
   {
-    side: 'RIGHT',
-    number: 1,
     title: '1 Click To Play',
     description:
       'The app is so simple to use. Just one click and you ready to play.',
   },
   {
-    side: 'RIGHT',
-    number: 2,
     title: 'Completely Free App',
     description:
       'HDO BOX is completely free. You can watch any movies, TV shows, and anime for free.',
   },
   {
-    side: 'RIGHT',
-    number: 3,
     title: 'Coolest User Interface',
     description:
       "It has a very cool user interface and users will fall in love with the app's design and navigation. User may not do a lot to find out their favorite flick because they will see everything right on the home screen of the app.",
   },
   {
-    side: 'LEFT',
-    number: 4,
     title: 'Subtitles',
     description:
       'You may choose the default language of the subtitles to English or any other language. It supports over 25 Languages such as Spanish, Romanian, Portuguese, Polish, Latin, French, Thai, Turkish, Arabic and German, etc.',
   },
   {
-    side: 'LEFT',
-    number: 5,
     title: 'Regular Updates',
     description:
       "HDO BOX is very keen to provide regular updates to the app to keep it bug free. So, users will get timely updates to the content and to the app's version as well.",
   },
   {
-    side: 'LEFT',
-    number: 5,
     title: 'HD Content Options',
     description:
       "It has a big catalogue of HD Movies and TV Shows for all it's users.",

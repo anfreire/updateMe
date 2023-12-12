@@ -8,7 +8,6 @@ import {
 import Files from '../../../../modules/files';
 import {useEffect, useState} from 'react';
 
-
 import DownloadsListItem from './components/listItem';
 import {Icon, Text} from '@rneui/themed';
 import DownloadInfoModal, {ModalControllerProps} from './components/infoModal';
@@ -60,6 +59,7 @@ const getHeaderRightEmpty = (onPress: () => void) => (
 
 export default function ToolsDownloads({
   navigation,
+  route,
 }: ToolsScreenTypes.StackScreenProps<'Tools-Downloads'>) {
   const [files, setFiles] = useState<string[]>([]);
   const [modal, setModal] = useState<ModalControllerProps>({
@@ -87,14 +87,16 @@ export default function ToolsDownloads({
   }, [files]);
 
   useEffect(() => {
-    Permissions.getPermissions('READ').then(res =>
-      !res ? Permissions.requestPermissions('READ') : null,
-    );
-    Permissions.getPermissions('WRITE').then(res =>
-      !res ? Permissions.requestPermissions('WRITE') : null,
-    );
-    update();
-  }, []);
+    if (route.name === 'Tools-Downloads') {
+      Permissions.getPermissions('READ').then(res =>
+        !res ? Permissions.requestPermissions('READ') : null,
+      );
+      Permissions.getPermissions('WRITE').then(res =>
+        !res ? Permissions.requestPermissions('WRITE') : null,
+      );
+      update();
+    }
+  }, [route]);
 
   return (
     <>

@@ -1,4 +1,5 @@
 import RNFetchBlob from 'rn-fetch-blob';
+import React from 'react';
 
 namespace Files {
   export async function listFiles(): Promise<string[]> {
@@ -36,20 +37,19 @@ namespace Files {
   export async function download(
     url: string,
     filename: string,
-    onProgress: (progress: number) => void,
+    onProgress: React.Dispatch<React.SetStateAction<number>>,
   ): Promise<string> {
-    const path = await RNFetchBlob.config({
-      path: `${RNFetchBlob.fs.dirs.DownloadDir}/${filename}`,
-      fileCache: false,
+    const dest = `${RNFetchBlob.fs.dirs.DownloadDir}/${filename}`;
+    const exists = await RNFetchBlob.fs.exists(dest);
+    if (exists) await RNFetchBlob.fs.unlink(dest);
+    await RNFetchBlob.config({
+      path: dest,
     })
       .fetch('GET', url, {
-        'Cache-Control': 'no-store',
+        'Content-Type': 'application/octet-stream',
       })
-      .progress((received, total) => {
-        onProgress(received / total);
-      })
-      .then(res => res.path());
-    return path;
+      .progress((received, total) => onProgress(received / total));
+    return dest;
   }
 }
 

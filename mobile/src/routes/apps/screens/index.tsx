@@ -1,16 +1,15 @@
-import {Divider, FAB, Icon, useTheme} from '@rneui/themed';
+import {Divider, FAB, Icon, ListItem, useTheme} from '@rneui/themed';
 import {useEffect} from 'react';
 import {RefreshControl, ScrollView, View} from 'react-native';
-import ListItem from '../components/listItem';
-import {RoutesKeys, useSource} from '../../../hooks/useSource';
+import {useSource} from '../../../hooks/useSource';
 import {HomeScreenTypes} from '..';
 import React from 'react';
 import useAccentColor from '../../../hooks/useAccentColor';
+import useRouteEffect from '../../../hooks/useRouteEffect';
+import MainList from '../components/mainList';
 
-export default function AppsMain({
-  navigation,
-}: HomeScreenTypes.StackScreenProps<'Apps-Main'>) {
-  const [source, updateSource, _] = useSource();
+export default function AppsMain({}: HomeScreenTypes.StackScreenProps<'Apps-Main'>) {
+  const updateSource = useSource()[1];
   const [refreshing, setRefreshing] = React.useState(false);
   const theme = useTheme();
   const accentColor = useAccentColor(theme)[0];
@@ -21,6 +20,10 @@ export default function AppsMain({
       setRefreshing(false);
     });
   };
+
+  useRouteEffect({
+    onRoute: update,
+  });
 
   useEffect(() => {
     accentColor().then(accent => {
@@ -45,28 +48,7 @@ export default function AppsMain({
         display: 'flex',
         flexDirection: 'column',
       }}>
-      <ScrollView
-        refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={update} />
-        }>
-        {source &&
-          RoutesKeys.map((key, i) => (
-            <View key={i}>
-              <ListItem
-                appSource={source[key]}
-                microgSource={
-                  key === 'YOUTUBE_YOUTUBE' || key === 'YOUTUBE_MUSIC'
-                    ? source.YOUTUBE_MICROG
-                    : undefined
-                }
-                navigation={navigation}
-              />
-              {i !== RoutesKeys.length - 1 && (
-                <Divider style={{opacity: 0.2}} />
-              )}
-            </View>
-          ))}
-      </ScrollView>
+      <MainList refreshing={refreshing} onRefresh={update} />
       <FAB
         style={{
           position: 'absolute',

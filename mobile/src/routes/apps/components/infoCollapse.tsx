@@ -4,22 +4,16 @@ import {View} from 'react-native';
 import {greys} from '../../../utils/theme';
 
 export interface InfoCollapseProps {
-  isExpanded: boolean;
-  onPress: () => void;
   title: string;
   content: React.ReactNode;
 }
 
-export default function InfoCollapse({
-  isExpanded,
-  onPress,
-  title,
-  content,
-}: InfoCollapseProps) {
+export default function InfoCollapse({title, content}: InfoCollapseProps) {
+  const [isExpanded, setIsExpanded] = React.useState(false);
   return (
     <ListItem.Accordion
       isExpanded={isExpanded}
-      onPress={onPress}
+      onPress={() => setIsExpanded(prev => !prev)}
       icon={<Icon name={'chevron-down'} type="material-community" />}
       style={{
         width: '100%',

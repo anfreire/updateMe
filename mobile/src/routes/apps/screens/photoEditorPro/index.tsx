@@ -1,27 +1,23 @@
 import React from 'react';
-import {SourceType, useSource} from '../../../../hooks/useSource';
+import {useSource} from '../../../../hooks/useSource';
 import ScreenBase from '../../components/screenBase';
-import {View} from 'react-native';
-import InstallButton from '../../components/installButton';
-import SpeedDial from '../../components/speedDial';
+import {PhotoEditorProContent, PhotoEditorProKeys} from './data';
+import InfoCollapse from '../../components/infoCollapse';
+import Features from '../../components/features';
 
 export default function AppsPhotoEditorPro() {
   const source = useSource()[0];
-  const [downloadData, setDownloadData] = React.useState<{
-    open: boolean;
-    source: null | SourceType;
-  }>({open: false, source: null});
 
   return (
-    <>
-      <ScreenBase
-        source={source.PHOTO_EDITOR_PRO}
-        downloadData={downloadData}
-        setDownloadData={setDownloadData}></ScreenBase>
-      <SpeedDial
-        source={source.PHOTO_EDITOR_PRO}
-        setDownloadData={setDownloadData}
-      />
-    </>
+    <ScreenBase source={source.PHOTO_EDITOR_PRO}>
+      {PhotoEditorProKeys.map(key => (
+        <InfoCollapse
+          key={key}
+          title={key}
+          content={PhotoEditorProContent[key]}
+        />
+      ))}
+      <Features title="Features" features={['Premium Unlocked', 'No Ads']} />
+    </ScreenBase>
   );
 }

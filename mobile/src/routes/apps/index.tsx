@@ -4,6 +4,7 @@ import {
 } from '@react-navigation/native-stack';
 import React, {Suspense} from 'react';
 import AppsMain from './screens/index';
+import DownloadDialog from './components/downloadDialog';
 
 const Stack = createNativeStackNavigator();
 
@@ -45,9 +46,14 @@ export default function HomeScreen() {
   const DynamicPhotoEditorProScreen = React.lazy(
     () => import('./screens/photoEditorPro'),
   );
+  const DynamicInshotScreen = React.lazy(() => import('./screens/inshot'));
+  const DynamicPhotoshopExpressScreen = React.lazy(
+    () => import('./screens/photoshopExpress'),
+  );
 
   return (
     <Suspense>
+      <DownloadDialog />
       <Stack.Navigator
         initialRouteName="Apps-Main"
         screenOptions={{
@@ -117,6 +123,22 @@ export default function HomeScreen() {
           }}
           name="Apps-PhotoEditorPro"
           component={DynamicPhotoEditorProScreen}
+        />
+        <Stack.Screen
+          options={{
+            headerShown: true,
+            headerTitle: 'Inshot',
+          }}
+          name="Apps-InShot"
+          component={DynamicInshotScreen}
+        />
+        <Stack.Screen
+          options={{
+            headerShown: true,
+            headerTitle: 'Photoshop Express',
+          }}
+          name="Apps-PhotoshopExpress"
+          component={DynamicPhotoshopExpressScreen}
         />
       </Stack.Navigator>
     </Suspense>
