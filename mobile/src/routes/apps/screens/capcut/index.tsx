@@ -10,19 +10,13 @@ export default function AppsCapcut() {
   const source = useSource()[0];
 
   return (
-    <>
       <ScreenBase source={source.CAPCUT}>
+        <ShortFeatures
+          title="Unlocked Features"
+          features={['No Watermark', 'No Ads', 'Premium Unlocked']}
+        />
         <InfoCollapse title={CapCutInfo.title} content={CapCutInfo.content} />
-        <View
-          style={{
-            marginVertical: 10,
-          }}>
-          <ShortFeatures
-            features={['No Watermark', 'No Ads', 'Premium Unlocked']}
-          />
-        </View>
         <LongFeatures features={CapcutFeatures} />
       </ScreenBase>
-    </>
   );
 }

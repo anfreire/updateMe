@@ -1,46 +1,106 @@
 import {Text} from '@rneui/themed';
+import {LongFeatureType} from '../../../components/features';
 import React from 'react';
 
-export type PhotoEditorProVariants = 'Introduction' | 'What does it do?';
+export type PhotoEditorProVariants =
+  | 'What Is Photo Editor Pro?'
+  | 'Why Photo Editor Pro?';
 
 export const PhotoEditorProKeys: PhotoEditorProVariants[] = [
-  'Introduction',
-  'What does it do?',
+  'What Is Photo Editor Pro?',
+  'Why Photo Editor Pro?',
 ];
 
-export const PhotoEditorProContent: Record<
+export const photoEditorProContent: Record<
   PhotoEditorProVariants,
   React.ReactNode
 > = {
-  Introduction: (
-    <Text>
-      While you're now able to take incredible pictures with great details on
-      most of your Android smartphones, it's still necessary for a few final
-      touches to create amazing images that you can truly satisfy with. That
-      being said, many people are still opt for going with the certain photo
-      editor apps on their mobile devices. And speaking of which, for those of
-      you who're looking for the actually “good” apps that can help you
-      customizing the interesting visuals in your images, VSCO and PicsArt are
-      certainly the two apps that you just can't overlook. Together with the
-      release of this new app from InShot Inc, Android users will find
-      themselves having access to another brilliant tool for editing your
-      images.
-    </Text>
+  'What Is Photo Editor Pro?': (
+    <>
+      <Text
+        style={{
+          textAlign: 'center',
+          fontSize: 15,
+        }}>
+        Photo Editor Pro is a modern photo editing application packed with
+        unique features to transform your photos into stunning visuals.
+      </Text>
+      <Text
+        style={{
+          textAlign: 'center',
+          fontSize: 15,
+        }}>
+        Elevate your photo editing experience with a perfect combination of
+        modern features suitable for various purposes.
+      </Text>
+    </>
   ),
-  'What does it do?': (
-    <Text>
-      To allow Android users to fully utilize their smartphone cameras, Photo
-      Editor Pro: Polish is a powerful editing tool that lets you retouch, add
-      cool effects, and enhance your photos for a beautiful finish. comes with a
-      variety of different customizations that you can have on your photos.
-      Here, you can make complete changes to your photos with many available
-      settings. Feel free to apply the different configurations from the
-      simplest to the most advanced in-app features that Photo Editor Pro has to
-      offer. With the app, you can easily edit your newly taken photos,
-      artworks, and even downloaded images from the Internet with simple and
-      accessible features. Find yourself completely in-control of your in-app
-      settings and enjoy the simple UI in Photo Editor Pro as you easily create
-      amazing arts from the available customizations in the app.
-    </Text>
+  'Why Photo Editor Pro?': (
+    <>
+      <Text
+        style={{
+          textAlign: 'center',
+          fontSize: 15,
+        }}>
+        Enjoy a powerful editing tool with Photo Editor Pro, recently updated
+        with new features for a perfect editing experience.
+      </Text>
+      <Text
+        style={{
+          textAlign: 'center',
+          fontSize: 15,
+        }}>
+        Explore over 100 filters, in-depth customizations, body retouch options,
+        and an aesthetic photo editor for unique and impressive images.
+      </Text>
+    </>
   ),
 };
+
+export const photoEditorProFeatures: LongFeatureType[] = [
+  {
+    title: 'Hundreds of Photo Effects',
+    icon: {
+      name: 'image-filter-black-white',
+      type: 'material-community',
+    },
+    description:
+      'Explore a vast collection of over 100 photo effects, including sparkles, glitters, vintage filters, and more.',
+  },
+  {
+    title: 'In-Depth Customizations',
+    icon: {
+      name: 'tune',
+      type: 'material',
+    },
+    description:
+      'Make detailed changes to your images with crop, rotate, brightness, contrast, warmth, saturation adjustments, and more.',
+  },
+  {
+    title: 'Body Retouch Options',
+    icon: {
+      name: 'human',
+      type: 'material-community',
+    },
+    description:
+      'Enhance your body shapes with options to slim down, elongate, change hairstyles, add muscles, and customize tattoos.',
+  },
+  {
+    title: 'Aesthetic Photo Editor',
+    icon: {
+      name: 'style',
+      type: 'material',
+    },
+    description:
+      'Experience profound visual effects with aesthetic styles, glitch effects, blur background, and unique lighting effects.',
+  },
+  {
+    title: 'Create Stunning Collages',
+    icon: {
+      name: 'grid',
+      type: 'material-community',
+    },
+    description:
+      'Arrange your images in beautiful collages with customizable grids, frames, filters, and backgrounds.',
+  },
+];

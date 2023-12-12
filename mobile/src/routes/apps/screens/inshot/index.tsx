@@ -2,7 +2,7 @@ import React from 'react';
 import {useSource} from '../../../../hooks/useSource';
 import ScreenBase from '../../components/screenBase';
 import {InshotKeys, inshotContent, inshotFeatures} from './data';
-import {ShortFeatures} from '../../components/features';
+import {LongFeatures, ShortFeatures} from '../../components/features';
 import {InfoCollapse} from '../../components/info';
 
 export default function AppsInshot() {
@@ -10,10 +10,14 @@ export default function AppsInshot() {
 
   return (
     <ScreenBase source={source.INSHOT}>
+      <ShortFeatures
+        title="Unlocked Features"
+        features={['Premium Unlocked', 'No Ads', 'AI Effects Unlocked']}
+      />
       {InshotKeys.map(key => (
         <InfoCollapse key={key} title={key} content={inshotContent[key]} />
       ))}
-      <ShortFeatures features={inshotFeatures} />
+      <LongFeatures features={inshotFeatures} />
     </ScreenBase>
   );
 }

@@ -1,42 +1,95 @@
-import React from 'react';
-import {Text} from '@rneui/themed';
+import {GridFeauturesItemProps} from '../../../components/features';
 
-export type InshotVariants = 'What Is Inshot?' | '#1 on Play Store';
-
-export const InshotKeys: InshotVariants[] = [
-  'What Is Inshot?',
-  '#1 on Play Store',
+export const YoutubeCOmpleteFeautures = [
+  'Always repeats the currently playing video for continuous playback.',
+  'Spoofs the client to allow playback of restricted content.',
+  'Hides components related to comments for a cleaner viewing experience.',
+  'Adds convenient buttons in the player to easily copy video links.',
+  'Customizes the YouTube launcher icon and name, defaults to ReVanced.',
+  'Disables playing YouTube Shorts upon app launch.',
+  'Prevents forced captions from being automatically enabled.',
+  'Disables video description and comments panel in fullscreen view mode.',
+  'Disables panels from appearing automatically in fullscreen mode (playlist or live chat).',
+  'Turns off haptic feedback when zooming on the screen.',
+  'Includes additional debugging options for troubleshooting.',
+  'Enables the option to download and save YouTube videos using an external app.',
+  "Adapts HDR video brightness to match the system's default settings.",
+  'Hides components specific to YouTube Shorts for a streamlined interface.',
+  'Removes general ads that appear during video playback.',
+  'Suppresses the display of album cards beneath artist descriptions.',
+  'Eliminates the autoplay button from the video player.',
+  'Removes the breaking news shelf from the homepage tab.',
+  'Conceals the captions button on the video player interface.',
+  'Hides the cast button in the video player for casting purposes.',
+  'Suppresses the crowdfunding box positioned between the player and video description.',
+  'Hides the email address within the account switcher for privacy.',
+  'Conceals suggested video cards at the end of fullscreen videos.',
+  'Removes the filter bar in video feeds for a cleaner look.',
+  'Eliminates the floating microphone button that appears during search.',
+  'Conceals info cards in videos to reduce clutter.',
+  'Hides various general layout components for a simpler interface.',
+  'Removes the button that loads similar videos beneath the main video player.',
+  "Offers the option to hide video player's previous and next buttons.",
+  'Hides the dark background overlay when player controls are visible.',
+  'Conceals the seekbar that shows video progress.',
+  'Hides the timestamp display in the video player interface.',
+  'Provides options to hide action buttons under a video for a cleaner appearance.',
+  'Removes creator watermarks from videos for unobstructed viewing.',
+  'Enables minimized and background playback for multitasking.',
+  'Customizes or hides navigation buttons for personalization.',
+  'Displays the old video quality interface with advanced quality options.',
+  'Opens links directly in the browser for seamless external browsing.',
+  'Adds custom playback speeds and remembers chosen speed settings.',
+  'Conceals specific items in the player flyout menu.',
+  'Displays premium branding on the home screen for a distinguished look.',
+  'Remembers selected video quality using the quality flyout.',
+  'Removes background from the video player controls for a cleaner appearance.',
+  'Shows dislike count using the Return YouTube Dislike API.',
+  'Enables tap-to-seek functionality on the seekbar.',
+  'Integrates SponsorBlock to skip video segments like sponsored content.',
+  "Tricks YouTube into thinking you're using an older version of the app, restoring the old UI.",
+  'Introduces swipe controls for volume and brightness adjustments.',
+  'Enables tablet mini player layout for better tablet user experience.',
+  'Applies a custom theme for a unique visual style.',
+  'Allows YouTube ReVanced to operate without root and under a different package name using Vanced MicroG.',
+  'Removes ads from the video player for an uninterrupted viewing experience.',
+  'Replaces the search icon with a wide search bar, hiding the YouTube logo while active.',
 ];
 
-export const inshotContent: Record<InshotVariants, React.ReactNode> = {
-  'What Is Inshot?': (
-    <Text
-      style={{
-        textAlign: 'center',
-        fontSize: 15,
-      }}>
-      Inshot is a powerful video editing & Photo editing app for your Android
-      device. Inshot offers you amazing filters for merging videos, slideshows,
-      video effects, adding text and much more. It provides you all the premium
-      features and advanced video editing features.
-    </Text>
-  ),
-  '#1 on Play Store': (
-    <Text
-      style={{
-        textAlign: 'center',
-        fontSize: 15,
-      }}>
-      Inshot has received hundreds of millions of users and has become one
-      of the #1 Most Propular editing App on Google Play since its launch in
-      2004.
-    </Text>
-  ),
-};
-
-export const inshotFeatures = [
-  '4k Editing',
-  'No Ads',
-  'Premium Unlocked',
-  'AI Effects Unlocked',
-]
+// the 4 most important features
+export const AppealingFeatures: GridFeauturesItemProps[] = [
+  {
+    title: 'No Ads',
+    description: 'Removes all ads from the app.',
+    icon: {
+      name: 'ads-click',
+      type: 'material',
+    },
+  },
+  {
+    title: 'Background playback',
+    description: 'Enables you to listen to music even when the app is closed.',
+    icon: {
+      name: 'music',
+      type: 'material',
+    },
+  },
+  {
+    title: 'Audio-only mode',
+    description:
+      'Allows you to play music without the video, saving data and battery.',
+    icon: {
+      name: 'videocam-off',
+      type: 'material',
+    },
+  },
+  {
+    title: 'Video ad-blocking',
+    description:
+      'Recognizes ads in the video itself and blocks them, for a cleaner viewing experience.',
+    icon: {
+      name: 'remove-circle-outline',
+      type: 'material',
+    },
+  },
+];

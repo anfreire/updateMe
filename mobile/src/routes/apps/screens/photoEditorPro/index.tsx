@@ -1,8 +1,8 @@
 import React from 'react';
 import {useSource} from '../../../../hooks/useSource';
 import ScreenBase from '../../components/screenBase';
-import {PhotoEditorProContent, PhotoEditorProKeys} from './data';
-import {ShortFeatures} from '../../components/features';
+import {PhotoEditorProKeys, photoEditorProContent, photoEditorProFeatures} from './data';
+import {LongFeatures, ShortFeatures} from '../../components/features';
 import {InfoCollapse} from '../../components/info';
 
 export default function AppsPhotoEditorPro() {
@@ -10,14 +10,18 @@ export default function AppsPhotoEditorPro() {
 
   return (
     <ScreenBase source={source.PHOTO_EDITOR_PRO}>
+      <ShortFeatures
+        title="Unlocked Features"
+        features={['Premium Unlocked', 'No Ads']}
+      />
       {PhotoEditorProKeys.map(key => (
         <InfoCollapse
           key={key}
           title={key}
-          content={PhotoEditorProContent[key]}
+          content={photoEditorProContent[key]}
         />
       ))}
-      <ShortFeatures features={['Premium Unlocked', 'No Ads']} />
+      <LongFeatures features={photoEditorProFeatures} />
     </ScreenBase>
   );
 }

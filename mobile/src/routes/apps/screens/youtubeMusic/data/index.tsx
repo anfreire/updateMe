@@ -1,42 +1,75 @@
-import React from 'react';
-import {Text} from '@rneui/themed';
+import {GridFeauturesItemProps} from '../../../components/features';
 
-export type InshotVariants = 'What Is Inshot?' | '#1 on Play Store';
-
-export const InshotKeys: InshotVariants[] = [
-  'What Is Inshot?',
-  '#1 on Play Store',
+export const YoutubeMusicFeatures: GridFeauturesItemProps[] = [
+  {
+    title: 'Background playback',
+    description: 'Enables you to listen to music even when the app is closed.',
+    icon: {
+      name: 'music',
+      type: 'material',
+    },
+  },
+  {
+    title: 'Android Auto support',
+    description:
+      'Allows you to use YouTube Music on Android Auto without any problems.',
+    icon: {
+      name: 'car',
+      type: 'material',
+    },
+  },
+  {
+    title: 'Audio codec options',
+    description:
+      'Lets you choose from a variety of audio codecs, for better audio quality.',
+    icon: {
+      name: 'headphones',
+      type: 'material',
+    },
+  },
+  {
+    title: 'Video-free playback',
+    description:
+      'Enables you to play music without the video, saving data and battery.',
+    icon: {
+      name: 'videocam-off',
+      type: 'material',
+    },
+  },
+  {
+    title: 'No "Get Premium" ads',
+    description:
+      'Removes all the "Get Premium" ads from the app, for a more pleasant experience.',
+    icon: {
+      name: 'remove-circle-outline',
+      type: 'material',
+    },
+  },
+  {
+    title: 'Ad-free music player',
+    description:
+      'Removes all ads from the music player, for a distraction-free listening experience.',
+    icon: {
+      name: 'ads-click',
+      type: 'material',
+    },
+  },
+  {
+    title: 'No upgrade tab',
+    description:
+      'Removes the "Upgrade to Premium" tab from the pivot bar, for a cleaner look.',
+    icon: {
+      name: 'remove',
+      type: 'material',
+    },
+  },
+  {
+    title: 'Rootless and package name change',
+    description:
+      'Allows you to use YouTube Music Premium without root and under a different package name, for more flexibility.',
+    icon: {
+      name: 'remove',
+      type: 'material',
+    },
+  }
 ];
-
-export const inshotContent: Record<InshotVariants, React.ReactNode> = {
-  'What Is Inshot?': (
-    <Text
-      style={{
-        textAlign: 'center',
-        fontSize: 15,
-      }}>
-      Inshot is a powerful video editing & Photo editing app for your Android
-      device. Inshot offers you amazing filters for merging videos, slideshows,
-      video effects, adding text and much more. It provides you all the premium
-      features and advanced video editing features.
-    </Text>
-  ),
-  '#1 on Play Store': (
-    <Text
-      style={{
-        textAlign: 'center',
-        fontSize: 15,
-      }}>
-      Inshot has received hundreds of millions of users and has become one
-      of the #1 Most Propular editing App on Google Play since its launch in
-      2004.
-    </Text>
-  ),
-};
-
-export const inshotFeatures = [
-  '4k Editing',
-  'No Ads',
-  'Premium Unlocked',
-  'AI Effects Unlocked',
-]
