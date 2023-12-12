@@ -1,6 +1,5 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {Colors, Icon} from '@rneui/base';
-import {Theme, useTheme} from '@rneui/themed';
+import {Colors, Icon, Theme, useTheme} from '@rneui/themed';
 import {View} from 'react-native';
 import React, {Suspense, useEffect} from 'react';
 import HomeScreen from './apps';

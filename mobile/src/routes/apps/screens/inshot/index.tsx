@@ -1,9 +1,9 @@
 import React from 'react';
 import {useSource} from '../../../../hooks/useSource';
 import ScreenBase from '../../components/screenBase';
-import InfoCollapse from '../../components/infoCollapse';
 import {InshotKeys, inshotContent, inshotFeatures} from './data';
 import {ShortFeatures} from '../../components/features';
+import { InfoCollapse } from '../../components/info';
 
 export default function AppsInshot() {
   const source = useSource()[0];

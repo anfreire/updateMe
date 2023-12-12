@@ -1,7 +1,7 @@
 import {Icon, ListItem, Text} from '@rneui/themed';
 import React from 'react';
 import {View} from 'react-native';
-import {greys} from '../../../utils/theme';
+import { greys } from '../../../../../utils/theme';
 
 export interface InfoCollapseProps {
   title: string;

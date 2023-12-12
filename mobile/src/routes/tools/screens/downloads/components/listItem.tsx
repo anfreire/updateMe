@@ -1,8 +1,7 @@
 import {View} from 'react-native';
-import {Divider, Icon, ListItem} from '@rneui/themed';
+import {Divider, Icon, ListItem, Button} from '@rneui/themed';
 import {ModalControllerProps} from './infoModal';
 import Files from '../../../../../modules/files';
-import {Button} from '@rneui/base';
 import {colors} from '../../../../../utils/theme';
 import React from 'react';
 
