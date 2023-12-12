@@ -1,8 +1,8 @@
-import {SourceType} from '../../../hooks/useSource';
+import {SourceType} from '../../../../../hooks/useSource';
 import {Icon, Text, useTheme} from '@rneui/themed';
 import React from 'react';
 import {View} from 'react-native';
-import GhostButton from '../../../common/ghostButton';
+import GhostButton from '../../../../../common/ghostButton';
 
 const VariantProps: Record<
   'NOT_INSTALLED' | 'NOT_UPDATED',

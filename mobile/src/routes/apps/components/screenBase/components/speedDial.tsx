@@ -1,8 +1,8 @@
 import React from 'react';
 import {Linking} from 'react-native';
 import {SpeedDial as SD, Icon, useTheme} from '@rneui/themed';
-import {SourceType} from '../../../hooks/useSource';
-import {useDownload} from '../../../hooks/useDownload';
+import {SourceType} from '../../../../../hooks/useSource';
+import {useDownload} from '../../../../../hooks/useDownload';
 
 export interface SpeedDialProps {
   source: SourceType;

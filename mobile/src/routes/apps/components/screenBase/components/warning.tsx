@@ -1,9 +1,9 @@
 import {View} from 'react-native';
-import {colors} from '../../../utils/theme';
+import {colors} from '../../../../../utils/theme';
 import {Icon, Text} from '@rneui/themed';
 import {IconType} from '@rneui/base';
-import {StateColors} from '../../../common/types';
-import {WarningType} from '../../../utils/apps';
+import {StateColors} from '../../../../../common/types';
+import {WarningType} from '../../../../../utils/apps';
 import React from 'react';
 
 const icons: Record<StateColors, {name: string; type: IconType}> = {

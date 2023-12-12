@@ -1,10 +1,10 @@
 import {useEffect, useState} from 'react';
 import {View} from 'react-native';
 import {Icon, Button} from '@rneui/themed';
-import {AppState, SourceType, useSource} from '../../../hooks/useSource';
-import {colors} from '../../../utils/theme';
+import {AppState, SourceType, useSource} from '../../../../../hooks/useSource';
+import {colors} from '../../../../../utils/theme';
 import React from 'react';
-import {getMultipleState} from '../../../utils/apps';
+import {getMultipleState} from '../../../../../utils/apps';
 
 const borderColors: Record<AppState, string> = {
   NOT_INSTALLED: colors.RED.opaque,

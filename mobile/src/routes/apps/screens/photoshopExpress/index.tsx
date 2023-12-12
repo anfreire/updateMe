@@ -1,7 +1,7 @@
 import React from 'react';
 import {useSource} from '../../../../hooks/useSource';
 import ScreenBase from '../../components/screenBase';
-import { ShortFeatures } from '../../components/features';
+import {ShortFeatures} from '../../components/features';
 
 export default function AppsPhotoshopExpress() {
   const source = useSource()[0];

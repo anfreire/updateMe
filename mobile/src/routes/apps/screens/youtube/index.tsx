@@ -1,4 +1,4 @@
-import { useSource} from '../../../../hooks/useSource';
+import {useSource} from '../../../../hooks/useSource';
 import ScreenBase from '../../components/screenBase';
 import React from 'react';
 

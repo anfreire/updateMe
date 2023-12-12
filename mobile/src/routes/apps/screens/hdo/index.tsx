@@ -3,7 +3,7 @@ import {useSource} from '../../../../hooks/useSource';
 import ScreenBase from '../../components/screenBase';
 import {HDOContent, HDOFeatures, HDOKeys} from './data';
 import {OrderedFeatures} from '../../components/features';
-import { InfoCollapse } from '../../components/info';
+import {InfoCollapse} from '../../components/info';
 
 export default function AppsHDO() {
   const source = useSource()[0];
