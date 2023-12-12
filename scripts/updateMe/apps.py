@@ -144,3 +144,12 @@ def updatePhotoEditorPro():
     except Exception as e:
         print(e)
         return
+
+
+def updateInshot():
+    link = "https://inshotpro.app/dl"
+    try:
+        AppBase(MACROS.INSHOT, link)
+    except Exception as e:
+        print(e)
+        return

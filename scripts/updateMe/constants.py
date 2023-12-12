@@ -23,6 +23,7 @@ class MACROS:
     WHATSAPP = "WHATSAPP"
     CAPCUT = "CAPCUT"
     PHOTO_EDITOR_PRO = "PHOTO_EDITOR_PRO"
+    INSHOT = "INSHOT"
 
 
 PATHS = {
@@ -35,6 +36,7 @@ PATHS = {
     MACROS.WHATSAPP: GLOBAL.ARCHIVE_DIR + "/whatsapp.apk",
     MACROS.CAPCUT: GLOBAL.ARCHIVE_DIR + "/capcut.apk",
     MACROS.PHOTO_EDITOR_PRO: GLOBAL.ARCHIVE_DIR + "/photo_editor_pro.apk",
+    MACROS.INSHOT: GLOBAL.ARCHIVE_DIR + "/inshot.apk",
 }
 
 PACKAGES = {
@@ -47,6 +49,7 @@ PACKAGES = {
     MACROS.WHATSAPP: "com.whatsapp",
     MACROS.CAPCUT: "com.lemon.lvoverseas",
     MACROS.PHOTO_EDITOR_PRO: "photo.editor.photoeditor.photoeditorpro",
+    MACROS.INSHOT: "com.camerasideas.instashot",
 }
 
 GITHUB_DATA = {

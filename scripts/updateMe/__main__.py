@@ -12,6 +12,7 @@ def main():
     updateWhatsapp()
     updateCapcut()
     updatePhotoEditorPro()
+    updateInshot()
     publish_changes()
     push_changes()
 
