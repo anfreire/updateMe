@@ -43,6 +43,8 @@ class AppBase:
         index = None
         with open(GLOBAL.INDEX_PATH, "r") as index_file:
             index = json.load(index_file)
+        if self.macro not in index.keys():
+            raise Exceptions.KeyNotInIndex(self.macro)
         try:
             oldAPKInfo = APKInfo(
                 index[self.macro]["version"], index[self.macro]["link"]

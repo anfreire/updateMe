@@ -153,3 +153,23 @@ def updateInshot():
     except Exception as e:
         print(e)
         return
+
+def updatePhotoshopExpress():
+    link = "https://modyolo.com/download/photoshop-express-12281/1"
+    scrapper = WebScrapper(selenium=True)
+    scrapper.driver.get(link)
+    link = None
+    time.sleep(5)
+    as_ = scrapper.get_selenium_tags(scrapper.driver, "a")
+    for a in as_:
+        if a.get_attribute("href") and a.get_attribute("href").endswith(".apk"):
+            link = a.get_attribute("href")
+            scrapper.quit_selenium()
+            break
+    try:
+        AppBase(MACROS.PHOTOSHOP_EXPRESS, link)
+    except Exception as e:
+        print(e)
+        print(type(e))
+        print(e.__str__())
+        return

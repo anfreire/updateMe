@@ -24,6 +24,7 @@ class MACROS:
     CAPCUT = "CAPCUT"
     PHOTO_EDITOR_PRO = "PHOTO_EDITOR_PRO"
     INSHOT = "INSHOT"
+    PHOTOSHOP_EXPRESS = "PHOTOSHOP_EXPRESS"
 
 
 PATHS = {
@@ -37,6 +38,7 @@ PATHS = {
     MACROS.CAPCUT: GLOBAL.ARCHIVE_DIR + "/capcut.apk",
     MACROS.PHOTO_EDITOR_PRO: GLOBAL.ARCHIVE_DIR + "/photo_editor_pro.apk",
     MACROS.INSHOT: GLOBAL.ARCHIVE_DIR + "/inshot.apk",
+    MACROS.PHOTOSHOP_EXPRESS: GLOBAL.ARCHIVE_DIR + "/photoshop_express.apk",
 }
 
 PACKAGES = {
@@ -50,6 +52,7 @@ PACKAGES = {
     MACROS.CAPCUT: "com.lemon.lvoverseas",
     MACROS.PHOTO_EDITOR_PRO: "photo.editor.photoeditor.photoeditorpro",
     MACROS.INSHOT: "com.camerasideas.instashot",
+    MACROS.PHOTOSHOP_EXPRESS: "com.adobe.psmobile",
 }
 
 GITHUB_DATA = {
@@ -81,3 +84,10 @@ class Exceptions:
 
         def __str__(self):
             return f"{COLORS.RED}Error{COLORS.RESET} Macro {COLORS.WHITE}{self.macro}{COLORS.RESET} has package {COLORS.WHITE}{self.package}{COLORS.RESET} instead of {COLORS.WHITE}{PACKAGES[self.macro]}{COLORS.RESET}"
+
+    class KeyNotInIndex(Exception):
+        def __init__(self, key: str):
+            self.key = key
+
+        def __str__(self):
+            return f"{COLORS.RED}Error{COLORS.RESET} Key {COLORS.WHITE}{self.key}{COLORS.RESET} not in index.json"
