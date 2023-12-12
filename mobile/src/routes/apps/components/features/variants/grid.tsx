@@ -63,13 +63,22 @@ function GridFeaturesItem({title, description, icon}: GridFeauturesItemProps) {
         }}>
         {title}
       </Text>
-      <Text
+      <View
         style={{
-          fontSize: 14,
-          textAlign: 'center',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          flex: 1,
         }}>
-        {description}
-      </Text>
+        <Text
+          style={{
+            fontSize: 14,
+            textAlign: 'center',
+          }}>
+          {description}
+        </Text>
+      </View>
     </View>
   );
 }

@@ -20,12 +20,7 @@ const SingleLongFeature = ({
   return (
     <View
       style={{
-        display: 'flex',
-        flexDirection: 'column',
         gap: 10,
-        padding: 10,
-        width: '100%',
-        justifyContent: side === 'LEFT' ? 'flex-start' : 'flex-end',
       }}>
       <View
         style={{
@@ -38,26 +33,24 @@ const SingleLongFeature = ({
           style={{
             display: 'flex',
             flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'center',
             gap: 10,
             backgroundColor: greys[2],
             padding: 15,
             borderRadius: 10,
           }}>
           {side === 'LEFT' ? (
-            <Icon size={50} name={iconName} type={iconType} />
+            <Icon size={30} name={iconName} type={iconType} />
           ) : null}
           <Text
             style={{
               textAlign: side === 'LEFT' ? 'left' : 'right',
               fontWeight: 'bold',
-              fontSize: 30,
+              fontSize: 22,
             }}>
             {title}
           </Text>
           {side === 'RIGHT' ? (
-            <Icon size={50} name={iconName} type={iconType} />
+            <Icon size={30} name={iconName} type={iconType} />
           ) : null}
         </View>
       </View>
@@ -67,15 +60,10 @@ const SingleLongFeature = ({
           backgroundColor: greys[1],
           padding: 10,
           borderRadius: 10,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'flex-start',
-          justifyContent: 'center',
-          width: '100%',
         }}>
         <Text
           style={{
-            textAlign: 'justify',
+            textAlign: side === 'LEFT' ? 'left' : 'right',
             fontSize: 15,
           }}>
           {description}
@@ -101,8 +89,7 @@ export default function LongFeatures({features}: LongFeaturesProps) {
       style={{
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
+
         gap: 40,
         marginTop: 10,
         marginBottom: 10,

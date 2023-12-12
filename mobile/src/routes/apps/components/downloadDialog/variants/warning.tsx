@@ -1,10 +1,11 @@
 import {useEffect, useState} from 'react';
-import {View} from 'react-native';
+import {Alert, View} from 'react-native';
 import {CheckBox, Icon, Overlay, Text} from '@rneui/themed';
 import React from 'react';
 import {colors} from '../../../../../utils/theme';
 import {useDownload} from '../../../../../hooks/useDownload';
 import GhostButton from '../../../../../common/ghostButton';
+import useWarnings from '../../../../../hooks/useWarnings';
 
 const checkboxesBuilder = (warnings: string[]) => {
   const checkboxes: Record<string, boolean> = {};
@@ -85,19 +86,30 @@ export default function DownloadDialog_Warning({
   setWarningsAccepted: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const {data, setData} = useDownload();
+  const {checkIfAccepted, addWarning} = useWarnings();
   const [checkboxes, setCheckboxes] = useState<Record<string, boolean>>(
     checkboxesBuilder(data?.warnings ?? []),
   );
 
   useEffect(() => {
-    if (data && data.warnings.length === 0) {
-      setWarningsAccepted(true);
+    if (data) {
+      checkIfAccepted(data.packageName).then(accepted => {
+        if (data.warnings.length === 0 || accepted) {
+          setWarningsAccepted(true);
+        } else {
+          setCheckboxes(checkboxesBuilder(data.warnings));
+        }
+      });
     }
   }, [data]);
 
   const accept = () => {
-    if (Object.values(checkboxes).every(checkbox => checkbox)) {
-      setWarningsAccepted(true);
+    if (data) {
+      if (Object.values(checkboxes).every(checkbox => checkbox)) {
+        addWarning(data.packageName).then(() => {
+          setWarningsAccepted(true);
+        });
+      } else Alert.alert('Please accept all warnings to continue');
     }
   };
 
@@ -147,6 +159,7 @@ export default function DownloadDialog_Warning({
           justifyContent: 'space-evenly',
           gap: 15,
           marginTop: 10,
+          marginBottom: 10,
         }}>
         <GhostButton onPress={() => setData(null)} text="Cancel" color="RED" />
         <GhostButton text="Accept" color="YELLOW" onPress={accept} />

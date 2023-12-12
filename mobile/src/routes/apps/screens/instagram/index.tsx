@@ -6,26 +6,29 @@ import {greys} from '../../../../utils/theme';
 import {Text} from '@rneui/themed';
 import {GridFeautures} from '../../components/features';
 import {InstagramFeatures} from './data';
-import {InfoShort} from '../../components/info';
+import Frame from '../../../../common/frame';
 
 export default function AppsInstagram() {
   const source = useSource()[0];
 
   return (
     <ScreenBase source={source.INSTAGRAM}>
-      <InfoShort
-        title="About"
-        content={
-          <Text
-            style={{
-              textAlign: 'center',
-              fontSize: 15,
-            }}>
-            Instander is a free modification of the Instagram app for android.
-            It contains many improvements over the original application.
-          </Text>
-        }
-      />
+      <Frame>
+        <Text
+          style={{
+            textAlign: 'center',
+            fontSize: 20,
+          }}>
+          Instander is a free modification of the Instagram app for android.
+        </Text>
+        <Text
+          style={{
+            textAlign: 'center',
+            fontSize: 20,
+          }}>
+          It contains many improvements over the original application.
+        </Text>
+      </Frame>
       <View
         style={{
           display: 'flex',

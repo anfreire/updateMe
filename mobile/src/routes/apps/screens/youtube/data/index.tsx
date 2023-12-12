@@ -59,7 +59,7 @@ export const YoutubeCOmpleteFeautures = [
 // the 4 most important features
 export const AppealingFeatures: GridFeauturesItemProps[] = [
   {
-    title: 'No Ads',
+    title: 'Ad-free',
     description: 'Removes all ads from the app.',
     icon: {
       name: 'ads-click',
@@ -71,7 +71,7 @@ export const AppealingFeatures: GridFeauturesItemProps[] = [
     description: 'Enables you to listen to music even when the app is closed.',
     icon: {
       name: 'music',
-      type: 'material',
+      type: 'material-community',
     },
   },
   {
@@ -86,7 +86,7 @@ export const AppealingFeatures: GridFeauturesItemProps[] = [
   {
     title: 'Video ad-blocking',
     description:
-      'Recognizes ads in the video itself and blocks them, for a cleaner viewing experience.',
+      'Ads in the video are recognized and blocked for a cleaner watching experience.',
     icon: {
       name: 'remove-circle-outline',
       type: 'material',

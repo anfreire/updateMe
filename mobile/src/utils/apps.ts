@@ -3,6 +3,7 @@ import Files from '../modules/files';
 import Apps from '../modules/apps';
 import {AppState, SourceType} from '../hooks/useSource';
 import {StateColors} from '../common/types';
+import {Linking} from 'react-native';
 
 export async function deleteAllFiles(files: string[]): Promise<void> {
   Promise.all(files.map(async file => await Files.deleteFile(file)));
@@ -13,15 +14,21 @@ export async function downloadAndInstall(
   onProgress?: React.Dispatch<React.SetStateAction<number>>,
 ): Promise<boolean> {
   if (!source.link) return false;
-  onProgress ||= () => {};
-  const granted_write = await Permissions.getPermissions('WRITE');
-  if (!granted_write) await Permissions.requestPermissions('WRITE');
-  const granted_read = await Permissions.getPermissions('READ');
-  if (!granted_read) await Permissions.requestPermissions('READ');
-  const path = await Files.download(source.link, source.fileName, onProgress);
-  const granted = await Permissions.getPermissions('INSTALL');
-  if (!granted) await Permissions.requestPermissions('INSTALL');
-  await Apps.installAPK(path);
+  try {
+    onProgress ||= () => {};
+    const granted_write = await Permissions.getPermissions('WRITE');
+    if (!granted_write) await Permissions.requestPermissions('WRITE');
+    const granted_read = await Permissions.getPermissions('READ');
+    if (!granted_read) await Permissions.requestPermissions('READ');
+    const path = await Files.download(source.link, source.fileName, onProgress);
+    const granted = await Permissions.getPermissions('INSTALL');
+    if (!granted) await Permissions.requestPermissions('INSTALL');
+    await Apps.installAPK(path);
+  } catch (e) {
+    console.log(e);
+    Linking.openURL(source.link);
+    return false;
+  }
   return true;
 }
 
@@ -63,7 +70,6 @@ export const LoadingState: WarningType = {
 
 export async function getWarning(
   source1: SourceType,
-  source2?: SourceType,
 ): Promise<{type: StateColors; message: string}> {
   if (!source1.state) return LoadingState;
   const colors: Record<AppState, StateColors> = {
@@ -82,13 +88,8 @@ export async function getWarning(
       return `${source.title} is up to date`;
     },
   };
-  const message =
-    messages[source1.state](source1) +
-    (source2?.state ? `\n${messages[source2.state](source2)}` : '');
   return {
-    type: colors[
-      source2?.state ? getMultipleState(source1, source2) : source1.state
-    ],
-    message,
+    type: colors[source1.state],
+    message: messages[source1.state](source1),
   };
 }

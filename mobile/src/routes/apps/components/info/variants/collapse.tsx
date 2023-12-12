@@ -23,9 +23,9 @@ export default function InfoCollapse({title, content}: InfoCollapseProps) {
         justifyContent: 'center',
         borderRadius: 10,
         borderWidth: 1,
-        borderColor: greys[2],
+        borderColor: greys[1],
       }}
-      content={<Text h3>{title}</Text>}>
+      content={<Text h4>{title}</Text>}>
       <View
         style={{
           display: 'flex',

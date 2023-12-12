@@ -1,5 +1,6 @@
 import RNFetchBlob from 'rn-fetch-blob';
 import React from 'react';
+import {Linking} from 'react-native';
 
 namespace Files {
   export async function listFiles(): Promise<string[]> {
@@ -40,8 +41,12 @@ namespace Files {
     onProgress: React.Dispatch<React.SetStateAction<number>>,
   ): Promise<string> {
     const dest = `${RNFetchBlob.fs.dirs.DownloadDir}/${filename}`;
-    const exists = await RNFetchBlob.fs.exists(dest);
-    if (exists) await RNFetchBlob.fs.unlink(dest);
+    try {
+      const exists = await RNFetchBlob.fs.exists(dest);
+      if (exists) await RNFetchBlob.fs.unlink(dest);
+    } catch (e) {
+      console.log('insideDownload', e);
+    }
     await RNFetchBlob.config({
       path: dest,
     })

@@ -83,7 +83,7 @@ export const inshotFeatures: LongFeatureType[] = [
     title: 'Wide Range of Visual Elements',
     icon: {
       name: 'format-shapes',
-      type: 'material-community',
+      type: 'material',
     },
     description:
       'Add animations, transitions, text, stickers, and more to make your videos stand out and capture attention.',

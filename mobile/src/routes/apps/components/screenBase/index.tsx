@@ -1,12 +1,11 @@
 import React, {useEffect} from 'react';
-import { SourceType, useSource } from '../../../../hooks/useSource';
-import { useDownload } from '../../../../hooks/useDownload';
-import { LoadingState, WarningType, getWarning } from '../../../../utils/apps';
-import { RefreshControl, ScrollView, View } from 'react-native';
+import {SourceType, useSource} from '../../../../hooks/useSource';
+import {useDownload} from '../../../../hooks/useDownload';
+import {LoadingState, WarningType, getWarning} from '../../../../utils/apps';
+import {RefreshControl, ScrollView, View} from 'react-native';
 import Warning from './components/warning';
 import InstallButton from './components/installButton';
 import SpeedDial from './components/speedDial';
-
 
 export default function ScreenBase({
   source,
@@ -26,7 +25,7 @@ export default function ScreenBase({
   };
 
   useEffect(() => {
-    getWarning(source, microgSource).then(res => {
+    getWarning(source).then(res => {
       setWarning(res);
     });
   }, [source, microgSource]);
@@ -56,7 +55,7 @@ export default function ScreenBase({
             justifyContent: 'center',
             padding: 5,
             margin: 5,
-            gap: 10,
+            gap: 20,
             marginBottom: 100,
           }}>
           <InstallButton

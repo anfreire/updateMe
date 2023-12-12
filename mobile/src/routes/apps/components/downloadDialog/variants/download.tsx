@@ -24,7 +24,11 @@ export default function DownloadDialog_Download({
           padding: 20,
           gap: 25,
         }}>
-        <Image source={data?.icon as any} style={{width: 50, height: 50}} />
+        <Image
+          resizeMode="contain"
+          source={data?.icon as any}
+          style={{width: 50, height: 50}}
+        />
         <Text h4 style={{marginBottom: 10}}>
           Downloading {data?.title}
         </Text>

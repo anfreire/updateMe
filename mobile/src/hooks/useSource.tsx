@@ -71,7 +71,7 @@ export const initialSource: SourceProps = {
   YOUTUBE_YOUTUBE: {
     title: 'YouTube',
     icon: require('../../assets/youtube.png'),
-    warnings: [],
+    warnings: ['This app requires MicroG to be installed to work properly.'],
     packageName: 'app.revanced.android.youtube',
     route: 'Apps-Youtube',
     fileName: 'YouTube.apk',
@@ -80,7 +80,7 @@ export const initialSource: SourceProps = {
   YOUTUBE_MUSIC: {
     title: 'YouTube Music',
     icon: require('../../assets/youtube_music.png'),
-    warnings: [],
+    warnings: ['This app requires MicroG to be installed to work properly.'],
     packageName: 'app.revanced.android.apps.youtube.music',
     route: 'Apps-YoutubeMusic',
     fileName: 'YouTubeMusic.apk',
@@ -89,7 +89,12 @@ export const initialSource: SourceProps = {
   SPOTIFY: {
     title: 'Spotify',
     icon: require('../../assets/spotify.png'),
-    warnings: [],
+    warnings: [
+      'This app will not work if you have the official Spotify app installed.',
+      "If you have the official Spotify app installed, you'll need to uninstall it first.",
+      "Social media authentication (Facebook, Google) won't work.",
+      'You only can authenticate with your Spotify account.',
+    ],
     packageName: 'com.spotify.music',
     route: 'Apps-Spotify',
     fileName: 'Spotify.apk',
@@ -98,7 +103,10 @@ export const initialSource: SourceProps = {
   INSTAGRAM: {
     title: 'Instagram',
     icon: require('../../assets/instagram.png'),
-    warnings: [],
+    warnings: [
+      'This app will not work if you have the official Instagram app installed.',
+      "If you have the official Instagram app installed, you'll need to uninstall it first.",
+    ],
     packageName: 'com.instagram.android',
     route: 'Apps-Instagram',
     fileName: 'Instagram.apk',
@@ -106,7 +114,11 @@ export const initialSource: SourceProps = {
   },
   WHATSAPP: {
     title: 'WhatsApp',
-    warnings: [],
+    warnings: [
+      'This app will not work if you have the official WhatsApp app installed.',
+      "If you have the official WhatsApp app installed, you'll need to uninstall it first.",
+      "Google Drive backup won't work. You may loose your data in the transition.",
+    ],
     icon: require('../../assets/whatsapp.png'),
     packageName: 'com.whatsapp',
     route: 'Apps-WhatsApp',
@@ -116,7 +128,11 @@ export const initialSource: SourceProps = {
   CAPCUT: {
     title: 'CapCut',
     icon: require('../../assets/capcut.png'),
-    warnings: [],
+    warnings: [
+      'This app will not work if you have the official CapCut app installed.',
+      "If you have the official CapCut app installed, you'll need to uninstall it first.",
+      'Social media authentication (Facebook, Google) may not work.',
+    ],
     packageName: 'com.lemon.lvoverseas',
     route: 'Apps-CapCut',
     fileName: 'CapCut.apk',
@@ -125,7 +141,10 @@ export const initialSource: SourceProps = {
   PHOTO_EDITOR_PRO: {
     title: 'Photo Editor Pro',
     icon: require('../../assets/photo_editor_pro.png'),
-    warnings: [],
+    warnings: [
+      'This app will not work if you have the official Photo Editor Pro app installed.',
+      "If you have the official Photo Editor Pro app installed, you'll need to uninstall it first.",
+    ],
     packageName: 'photo.editor.photoeditor.photoeditorpro',
     route: 'Apps-PhotoEditorPro',
     fileName: 'PhotoEditorPro.apk',
@@ -134,7 +153,11 @@ export const initialSource: SourceProps = {
   PHOTOSHOP_EXPRESS: {
     title: 'Photoshop Express',
     icon: require('../../assets/photoshop_express.png'),
-    warnings: [],
+    warnings: [
+      'This app will not work if you have the official Photoshop Express app installed.',
+      "If you have the official Photoshop Express app installed, you'll need to uninstall it first.",
+      'Adobe ID authentication may not work.',
+    ],
     packageName: 'com.adobe.psmobile',
     route: 'Apps-PhotoshopExpress',
     fileName: 'PhotoshopExpress.apk',
@@ -143,7 +166,10 @@ export const initialSource: SourceProps = {
   INSHOT: {
     title: 'InShot',
     icon: require('../../assets/inshot.png'),
-    warnings: [],
+    warnings: [
+      'This app will not work if you have the official InShot app installed.',
+      "If you have the official InShot app installed, you'll need to uninstall it first.",
+    ],
     packageName: 'com.camerasideas.instashot',
     route: 'Apps-InShot',
     fileName: 'InShot.apk',

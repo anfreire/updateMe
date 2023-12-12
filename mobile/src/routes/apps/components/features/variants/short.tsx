@@ -23,7 +23,7 @@ export default function ShortFeatures({
         width: '100%',
         borderRadius: 10,
         borderWidth: 1,
-        borderColor: greys[2],
+        borderColor: greys[1],
         gap: 15,
         padding: 15,
       }}>

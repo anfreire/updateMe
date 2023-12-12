@@ -6,7 +6,7 @@ export const YoutubeMusicFeatures: GridFeauturesItemProps[] = [
     description: 'Enables you to listen to music even when the app is closed.',
     icon: {
       name: 'music',
-      type: 'material',
+      type: 'material-community',
     },
   },
   {
@@ -15,7 +15,7 @@ export const YoutubeMusicFeatures: GridFeauturesItemProps[] = [
       'Allows you to use YouTube Music on Android Auto without any problems.',
     icon: {
       name: 'car',
-      type: 'material',
+      type: 'material-community',
     },
   },
   {
@@ -59,17 +59,17 @@ export const YoutubeMusicFeatures: GridFeauturesItemProps[] = [
     description:
       'Removes the "Upgrade to Premium" tab from the pivot bar, for a cleaner look.',
     icon: {
-      name: 'remove',
-      type: 'material',
+      name: 'card-remove',
+      type: 'material-community',
     },
   },
   {
     title: 'Rootless and package name change',
     description:
-      'Allows you to use YouTube Music Premium without root and under a different package name, for more flexibility.',
+      'Allows you to use this app without root and under a different package name, for more flexibility.',
     icon: {
-      name: 'remove',
-      type: 'material',
+      name: 'package-variant',
+      type: 'material-community',
     },
-  }
+  },
 ];

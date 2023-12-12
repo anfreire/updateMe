@@ -46,7 +46,7 @@ export const photoshopExpressFeatures: LongFeatureType[] = [
     title: 'Professional Editing Tools',
     icon: {
       name: 'edit',
-      type: 'material-community',
+      type: 'material',
     },
     description:
       'Access a complete set of professional editing tools for detailed and realistic photo enhancements.',

@@ -9,6 +9,7 @@
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest",
+    "build_apk": "cd android && ./gradlew assembleRelease",
     "rm_app_adb": "adb uninstall com.updateme > /dev/null",
     "gnome_clean_start": "gnome-terminal -- bash -c 'cd /home/anfreire/Documents/Projects/Android/updateMe/mobile && npm run clean-start'",
     "gnome_android": "gnome-terminal -- bash -c 'cd /home/anfreire/Documents/Projects/Android/updateMe/mobile && npm run android'",
