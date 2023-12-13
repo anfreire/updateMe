@@ -9,11 +9,11 @@
     },
     "YOUTUBE_YOUTUBE": {
         "version": "18.45.43",
-        "link": "https://github.com//j-hc/revanced-magisk-module/releases/download/20220917/youtube-revanced-v18.45.43-all.apk"
+        "link": "https://github.com//j-hc/revanced-magisk-module/releases/download/20220918/youtube-revanced-v18.45.43-all.apk"
     },
     "YOUTUBE_MUSIC": {
         "version": "6.28.52",
-        "link": "https://github.com//j-hc/revanced-magisk-module/releases/download/20220917/music-revanced-v6.28.52-arm64-v8a.apk"
+        "link": "https://github.com//j-hc/revanced-magisk-module/releases/download/20220918/music-revanced-v6.28.52-arm64-v8a.apk"
     },
     "SPOTIFY": {
         "version": "8.8.94.577",
