@@ -2,8 +2,9 @@ import {View} from 'react-native';
 import {Divider, Icon, ListItem, Button} from '@rneui/themed';
 import {ModalControllerProps} from './infoModal';
 import Files from '../../../../../modules/files';
-import {colors} from '../../../../../utils/theme';
 import React from 'react';
+import ThemeModule from '../../../../../modules/theme';
+import FilesModule from '../../../../../modules/files';
 
 const getTitle = (file: string) => {
   const lowerFile = file.toLowerCase();
@@ -39,6 +40,7 @@ export default function DownloadsListItem({
   return (
     <View>
       <ListItem.Swipeable
+      onPress={() => FilesModule.installApk(file)}
         rightWidth={75}
         minSlideWidth={75}
         leftWidth={75}
@@ -65,7 +67,7 @@ export default function DownloadsListItem({
             containerStyle={{
               flex: 1,
               justifyContent: 'center',
-              backgroundColor: colors.RED.transparent,
+              backgroundColor: ThemeModule.Colors.red.transparent,
             }}
             type="clear"
             icon={<Icon name="delete-outline" type="material" />}

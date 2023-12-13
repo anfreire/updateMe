@@ -2,10 +2,10 @@ import {useEffect, useState} from 'react';
 import {Alert, View} from 'react-native';
 import {CheckBox, Icon, Overlay, Text} from '@rneui/themed';
 import React from 'react';
-import {colors} from '../../../../../utils/theme';
 import {useDownload} from '../../../../../hooks/useDownload';
 import GhostButton from '../../../../../common/ghostButton';
 import useWarnings from '../../../../../hooks/useWarnings';
+import ThemeModule from '../../../../../modules/theme';
 
 const checkboxesBuilder = (warnings: string[]) => {
   const checkboxes: Record<string, boolean> = {};
@@ -43,7 +43,7 @@ function WarningCheckbox({
           justifyContent: 'flex-start',
         }}>
         <CheckBox
-          checkedColor={colors.YELLOW.opaque}
+          checkedColor={ThemeModule.Colors.yellow.opaque}
           checked={checkboxes[warning]}
           onIconPress={() => {
             setCheckboxes(prev => {
@@ -55,7 +55,7 @@ function WarningCheckbox({
             backgroundColor: 'transparent',
           }}
           style={{
-            borderColor: colors.YELLOW.opaque,
+            borderColor: ThemeModule.Colors.yellow.opaque,
           }}
         />
       </View>
@@ -127,7 +127,7 @@ export default function DownloadDialog_Warning({
         name="warning"
         size={50}
         type="material"
-        color={colors.YELLOW.opaque}
+        color={ThemeModule.Colors.yellow.opaque}
         style={{
           marginTop: 10,
         }}
@@ -161,8 +161,8 @@ export default function DownloadDialog_Warning({
           marginTop: 10,
           marginBottom: 10,
         }}>
-        <GhostButton onPress={() => setData(null)} text="Cancel" color="RED" />
-        <GhostButton text="Accept" color="YELLOW" onPress={accept} />
+        <GhostButton onPress={() => setData(null)} text="Cancel" color="red" />
+        <GhostButton text="Accept" color="red" onPress={accept} />
       </View>
     </Overlay>
   );

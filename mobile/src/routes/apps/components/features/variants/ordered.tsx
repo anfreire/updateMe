@@ -1,7 +1,7 @@
 import {View} from 'react-native';
 import React from 'react';
 import {Text, useTheme} from '@rneui/themed';
-import {greys} from '../../../../../utils/theme';
+import ThemeModule from '../../../../../modules/theme';
 
 const FeatureNumber = ({number}: {number: number}) => {
   const {theme} = useTheme();
@@ -75,7 +75,7 @@ function OrderedFeature({
         gap: 10,
         borderRadius: 10,
         borderWidth: 1,
-        borderColor: greys[1],
+        borderColor: ThemeModule.Colors.grey[1],
       }}>
       {side === 'LEFT' && <FeatureNumber number={number} />}
       <View

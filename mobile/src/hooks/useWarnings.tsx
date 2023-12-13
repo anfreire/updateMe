@@ -1,4 +1,3 @@
-import {SourceKeysType} from './useSource';
 import useStorage from './useStorage';
 
 export default function useWarnings(): {

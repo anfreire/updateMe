@@ -1,20 +1,13 @@
-import {
-  RefreshControl,
-  ScrollView,
-  Modal,
-  View,
-  TouchableOpacity,
-} from 'react-native';
+import {RefreshControl, ScrollView, View, TouchableOpacity} from 'react-native';
 import Files from '../../../../modules/files';
 import {useEffect, useState} from 'react';
-
 import DownloadsListItem from './components/listItem';
 import {Icon, Text} from '@rneui/themed';
 import DownloadInfoModal, {ModalControllerProps} from './components/infoModal';
-import {deleteAllFiles} from '../../../../utils/apps';
 import React from 'react';
-import {ToolsScreenTypes} from '../..';
 import Permissions from '../../../../modules/permissions';
+import {useNavigation} from '@react-navigation/native';
+import useRouteEffect from '../../../../hooks/useRouteEffect';
 
 const getHeaderRightFiles = (onPress: () => void) => (
   <TouchableOpacity
@@ -57,10 +50,7 @@ const getHeaderRightEmpty = (onPress: () => void) => (
   </TouchableOpacity>
 );
 
-export default function ToolsDownloads({
-  navigation,
-  route,
-}: ToolsScreenTypes.StackScreenProps<'Tools-Downloads'>) {
+export default function ToolsDownloads({navigation}: any) {
   const [files, setFiles] = useState<string[]>([]);
   const [modal, setModal] = useState<ModalControllerProps>({
     file: null,
@@ -70,7 +60,7 @@ export default function ToolsDownloads({
 
   const update = () => {
     setRefreshing(true);
-    Files.listFiles().then(files => {
+    Files.listDir().then(files => {
       setFiles(files.filter(file => file.endsWith('.apk')));
       setRefreshing(false);
     });
@@ -78,25 +68,25 @@ export default function ToolsDownloads({
 
   useEffect(() => {
     if (files.length == 0)
-      navigation.setOptions({headerRight: _ => getHeaderRightEmpty(update)});
+      navigation.setOptions({
+        headerRight: (_: any) => getHeaderRightEmpty(update),
+      });
     else
       navigation.setOptions({
-        headerRight: _ =>
-          getHeaderRightFiles(() => deleteAllFiles(files).then(update)),
+        headerRight: (_: any) =>
+          getHeaderRightFiles(() =>
+            Files.deleteMultipleFiles(files).then(update),
+          ),
       });
   }, [files]);
 
-  useEffect(() => {
-    if (route.name === 'Tools-Downloads') {
-      Permissions.getPermissions('READ').then(res =>
-        !res ? Permissions.requestPermissions('READ') : null,
-      );
-      Permissions.getPermissions('WRITE').then(res =>
-        !res ? Permissions.requestPermissions('WRITE') : null,
-      );
+  useRouteEffect({
+    onRoute: () => {
+      Permissions.grantReadPermission();
+      Permissions.grantWritePermission();
       update();
-    }
-  }, [route]);
+    },
+  });
 
   return (
     <>

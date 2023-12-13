@@ -1,6 +1,6 @@
-import {Divider, FAB, Icon, ListItem, useTheme} from '@rneui/themed';
+import {FAB, Icon, useTheme} from '@rneui/themed';
 import {useEffect} from 'react';
-import {RefreshControl, ScrollView, View} from 'react-native';
+import {View} from 'react-native';
 import {useSource} from '../../../hooks/useSource';
 import {HomeScreenTypes} from '..';
 import React from 'react';

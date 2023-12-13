@@ -1,28 +1,25 @@
 import {TouchableOpacity} from 'react-native';
-import {IconProps} from './types';
+import {IconProps, StateColors} from './types';
 import React from 'react';
-import {colors} from '../utils/theme';
+import ThemeModule from '../modules/theme';
 import {Icon, Text, useTheme} from '@rneui/themed';
 
 export interface IButtonProps {
-  color: 'primary' | 'GREEN' | 'YELLOW' | 'RED';
+  color: 'primary' | StateColors;
   text: string;
   onPress: () => void;
   leftIcon?: IconProps;
   rightIcon?: IconProps;
 }
 
-const opaqueColors = (
-  theme: any,
-  color: 'primary' | 'GREEN' | 'YELLOW' | 'RED',
-) => {
+const opaqueColors = (theme: any, color: 'primary' | StateColors) => {
   switch (color) {
-    case 'GREEN':
-      return colors.GREEN.opaque;
-    case 'YELLOW':
-      return colors.YELLOW.opaque;
-    case 'RED':
-      return colors.RED.opaque;
+    case 'green':
+      return ThemeModule.Colors.green.opaque;
+    case 'yellow':
+      return ThemeModule.Colors.yellow.opaque;
+    case 'red':
+      return ThemeModule.Colors.red.opaque;
     default:
       return theme.colors.primary;
   }
@@ -30,9 +27,9 @@ const opaqueColors = (
 
 const transparentColors = {
   primary: 'transparent',
-  GREEN: colors.GREEN.transparent,
-  YELLOW: colors.YELLOW.transparent,
-  RED: colors.RED.transparent,
+  green: ThemeModule.Colors.green.transparent,
+  yellow: ThemeModule.Colors.yellow.transparent,
+  red: ThemeModule.Colors.red.transparent,
 };
 
 export default function GhostButton({

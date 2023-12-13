@@ -1,33 +1,15 @@
-import RNFetchBlob from 'rn-fetch-blob';
-import React from 'react';
-import {Linking} from 'react-native';
+import ReactNativeBlobUtil from 'react-native-blob-util';
 
-namespace Files {
-  export async function listFiles(): Promise<string[]> {
-    const files = await RNFetchBlob.fs.ls(RNFetchBlob.fs.dirs.DownloadDir);
-    return files;
-  }
-
+namespace FilesModule {
+  export const dir: string = ReactNativeBlobUtil.fs.dirs.DocumentDir;
   export interface FileInfo {
     filename: string;
     lastModified: number;
     size: number;
   }
 
-  export async function deleteFile(filename: string): Promise<void> {
-    await RNFetchBlob.fs.unlink(
-      `${RNFetchBlob.fs.dirs.DownloadDir}/${filename}`,
-    );
-  }
-
-  export async function deleteMultiple(files: string[]): Promise<void> {
-    Promise.all(files.map(async file => await Files.deleteFile(file)));
-  }
-
   export async function getFileInfos(filename: string): Promise<FileInfo> {
-    const infos = await RNFetchBlob.fs.stat(
-      `${RNFetchBlob.fs.dirs.DownloadDir}/${filename}`,
-    );
+    const infos = await ReactNativeBlobUtil.fs.stat(`${dir}/${filename}`);
     return {
       filename: infos.filename,
       lastModified: infos.lastModified,
@@ -35,27 +17,43 @@ namespace Files {
     };
   }
 
-  export async function download(
+  export async function listDir(): Promise<string[]> {
+    return await ReactNativeBlobUtil.fs.ls(dir);
+  }
+
+  export async function downloadApk(
     url: string,
     filename: string,
-    onProgress: React.Dispatch<React.SetStateAction<number>>,
+    onProgress: (progress: number) => void,
   ): Promise<string> {
-    const dest = `${RNFetchBlob.fs.dirs.DownloadDir}/${filename}`;
-    try {
-      const exists = await RNFetchBlob.fs.exists(dest);
-      if (exists) await RNFetchBlob.fs.unlink(dest);
-    } catch (e) {
-      console.log('insideDownload', e);
-    }
-    await RNFetchBlob.config({
-      path: dest,
-    })
-      .fetch('GET', url, {
-        'Content-Type': 'application/octet-stream',
-      })
-      .progress((received, total) => onProgress(received / total));
-    return dest;
+    const path = `${dir}/${filename}`;
+    const res = await ReactNativeBlobUtil.config({fileCache: true, path})
+      .fetch('GET', url, {})
+      .progress((received, total) => {
+        onProgress(parseFloat(received) / parseFloat(total));
+      });
+    return res.path();
+  }
+
+  export async function installApk(path: string): Promise<void> {
+    if (!path.startsWith(dir)) path = `${dir}/${path}`;
+    await ReactNativeBlobUtil.android.actionViewIntent(
+      path,
+      'application/vnd.android.package-archive',
+    );
+  }
+
+  export async function deleteFile(fileName: string): Promise<void> {
+    await ReactNativeBlobUtil.fs.unlink(`${dir}/${fileName}`);
+  }
+
+  export async function deleteMultipleFiles(
+    fileNames: string[],
+  ): Promise<void> {
+    await Promise.all(
+      fileNames.map(async fileName => await deleteFile(fileName)),
+    );
   }
 }
 
-export default Files;
+export default FilesModule;

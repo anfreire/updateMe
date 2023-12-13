@@ -2,7 +2,7 @@ import {View} from 'react-native';
 import {IconProps} from '../../../../../common/types';
 import {Icon, Text, useTheme} from '@rneui/themed';
 import React from 'react';
-import {greys} from '../../../../../utils/theme';
+import ThemeModule from '../../../../../modules/theme';
 
 export interface GridFeauturesItemProps {
   title: string;
@@ -17,7 +17,7 @@ function GridFeaturesItem({title, description, icon}: GridFeauturesItemProps) {
       style={{
         flex: 1,
         borderWidth: 1,
-        borderColor: greys[1],
+        borderColor: ThemeModule.Colors.grey[1],
         borderRadius: 10,
         display: 'flex',
         flexDirection: 'column',

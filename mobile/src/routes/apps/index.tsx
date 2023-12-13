@@ -5,6 +5,16 @@ import {
 import React, {Suspense} from 'react';
 import AppsMain from './screens/index';
 import DownloadDialog from './components/downloadDialog';
+import AppsYoutube from './screens/youtube';
+import AppsYoutubeMusic from './screens/youtubeMusic';
+import AppsSpotify from './screens/spotify';
+import AppsHDO from './screens/hdo';
+import AppsInstagram from './screens/instagram';
+import AppsWhatsapp from './screens/whatsapp';
+import AppsCapcut from './screens/capcut';
+import AppsPhotoEditorPro from './screens/photoEditorPro';
+import AppsInshot from './screens/inshot';
+import AppsPhotoshopExpress from './screens/photoshopExpress';
 
 const Stack = createNativeStackNavigator();
 
@@ -32,25 +42,6 @@ export namespace HomeScreenTypes {
 }
 
 export default function HomeScreen() {
-  const DynamicSpotifyScreen = React.lazy(() => import('./screens/spotify'));
-  const DynamicYoutubeScreen = React.lazy(() => import('./screens/youtube'));
-  const DynamicYoutubeMusicScreen = React.lazy(
-    () => import('./screens/youtubeMusic'),
-  );
-  const DynamicHDOScreen = React.lazy(() => import('./screens/hdo'));
-  const DynamicWhatsAppScreen = React.lazy(() => import('./screens/whatsapp'));
-  const DynamicInstagramScreen = React.lazy(
-    () => import('./screens/instagram'),
-  );
-  const DynamicCapCutScreen = React.lazy(() => import('./screens/capcut'));
-  const DynamicPhotoEditorProScreen = React.lazy(
-    () => import('./screens/photoEditorPro'),
-  );
-  const DynamicInshotScreen = React.lazy(() => import('./screens/inshot'));
-  const DynamicPhotoshopExpressScreen = React.lazy(
-    () => import('./screens/photoshopExpress'),
-  );
-
   return (
     <Suspense>
       <DownloadDialog />
@@ -66,7 +57,7 @@ export default function HomeScreen() {
             headerTitle: 'Youtube',
           }}
           name="Apps-Youtube"
-          component={DynamicYoutubeScreen}
+          component={AppsYoutube}
         />
         <Stack.Screen
           options={{
@@ -74,7 +65,7 @@ export default function HomeScreen() {
             headerTitle: 'Youtube Music',
           }}
           name="Apps-YoutubeMusic"
-          component={DynamicYoutubeMusicScreen}
+          component={AppsYoutubeMusic}
         />
         <Stack.Screen
           options={{
@@ -82,7 +73,7 @@ export default function HomeScreen() {
             headerTitle: 'Spotify',
           }}
           name="Apps-Spotify"
-          component={DynamicSpotifyScreen}
+          component={AppsSpotify}
         />
         <Stack.Screen
           options={{
@@ -90,7 +81,7 @@ export default function HomeScreen() {
             headerTitle: 'HDO Box',
           }}
           name="Apps-HDO"
-          component={DynamicHDOScreen}
+          component={AppsHDO}
         />
         <Stack.Screen
           options={{
@@ -98,7 +89,7 @@ export default function HomeScreen() {
             headerTitle: 'Instagram',
           }}
           name="Apps-Instagram"
-          component={DynamicInstagramScreen}
+          component={AppsInstagram}
         />
         <Stack.Screen
           options={{
@@ -106,7 +97,7 @@ export default function HomeScreen() {
             headerTitle: 'WhatsApp',
           }}
           name="Apps-WhatsApp"
-          component={DynamicWhatsAppScreen}
+          component={AppsWhatsapp}
         />
         <Stack.Screen
           options={{
@@ -114,7 +105,7 @@ export default function HomeScreen() {
             headerTitle: 'CapCut',
           }}
           name="Apps-CapCut"
-          component={DynamicCapCutScreen}
+          component={AppsCapcut}
         />
         <Stack.Screen
           options={{
@@ -122,7 +113,7 @@ export default function HomeScreen() {
             headerTitle: 'Photo Editor Pro',
           }}
           name="Apps-PhotoEditorPro"
-          component={DynamicPhotoEditorProScreen}
+          component={AppsPhotoEditorPro}
         />
         <Stack.Screen
           options={{
@@ -130,7 +121,7 @@ export default function HomeScreen() {
             headerTitle: 'Inshot',
           }}
           name="Apps-InShot"
-          component={DynamicInshotScreen}
+          component={AppsInshot}
         />
         <Stack.Screen
           options={{
@@ -138,7 +129,7 @@ export default function HomeScreen() {
             headerTitle: 'Photoshop Express',
           }}
           name="Apps-PhotoshopExpress"
-          component={DynamicPhotoshopExpressScreen}
+          component={AppsPhotoshopExpress}
         />
       </Stack.Navigator>
     </Suspense>

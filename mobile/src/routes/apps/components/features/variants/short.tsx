@@ -1,7 +1,7 @@
 import React from 'react';
 import {View} from 'react-native';
-import {greys} from '../../../../../utils/theme';
 import {Text} from '@rneui/themed';
+import ThemeModule from '../../../../../modules/theme';
 
 export interface ShortFeaturesProps {
   title?: string;
@@ -23,7 +23,7 @@ export default function ShortFeatures({
         width: '100%',
         borderRadius: 10,
         borderWidth: 1,
-        borderColor: greys[1],
+        borderColor: ThemeModule.Colors.grey[1],
         gap: 15,
         padding: 15,
       }}>
@@ -51,7 +51,7 @@ export default function ShortFeatures({
               textAlign: 'center',
               fontSize: 15,
               borderRadius: 10,
-              backgroundColor: greys[1],
+              backgroundColor: ThemeModule.Colors.grey[1],
               padding: 10,
             }}>
             {feature}

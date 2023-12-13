@@ -1,4 +1,4 @@
-import {Button, Dialog, Overlay, Text} from '@rneui/themed';
+import {Button, Dialog, Text} from '@rneui/themed';
 import {useEffect, useState} from 'react';
 import {View} from 'react-native';
 import Files from '../../../../../modules/files';

@@ -4,6 +4,10 @@ import {
 } from '@react-navigation/native-stack';
 import React, {Suspense} from 'react';
 import ToolsMain from './screens';
+import ToolsDownloads from './screens/downloads';
+import ToolsAccentColor from './screens/accent';
+import ToolsReport from './screens/report';
+import ToolsHelp from './screens/help';
 
 const Stack = createNativeStackNavigator();
 
@@ -27,10 +31,6 @@ export namespace ToolsScreenTypes {
 }
 
 export default function ToolsScreen() {
-  const DynamicDownloads = React.lazy(() => import('./screens/downloads'));
-  const DynamicAccent = React.lazy(() => import('./screens/accent'));
-  const DynamicReport = React.lazy(() => import('./screens/report'));
-  const DynamicHelp = React.lazy(() => import('./screens/help'));
   return (
     <Suspense>
       <Stack.Navigator
@@ -45,7 +45,7 @@ export default function ToolsScreen() {
             headerShown: true,
           }}
           name="Tools-Accent"
-          component={DynamicAccent}
+          component={ToolsAccentColor}
         />
         <Stack.Screen
           options={{
@@ -54,7 +54,7 @@ export default function ToolsScreen() {
             headerRight: undefined,
           }}
           name="Tools-Downloads"
-          component={DynamicDownloads}
+          component={ToolsDownloads}
         />
         <Stack.Screen
           options={{
@@ -62,7 +62,7 @@ export default function ToolsScreen() {
             headerShown: true,
           }}
           name="Tools-Report"
-          component={DynamicReport}
+          component={ToolsReport}
         />
         <Stack.Screen
           options={{
@@ -70,7 +70,7 @@ export default function ToolsScreen() {
             headerShown: true,
           }}
           name="Tools-Help"
-          component={DynamicHelp}
+          component={ToolsHelp}
         />
       </Stack.Navigator>
     </Suspense>

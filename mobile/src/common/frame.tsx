@@ -1,6 +1,6 @@
 import {StyleProp, View, ViewStyle} from 'react-native';
-import {colors, greys} from '../utils/theme';
 import React from 'react';
+import ThemeModule from '../modules/theme';
 
 type BorderColorType =
   | 'GREY-1'
@@ -12,19 +12,19 @@ type BorderColorType =
 type BackgroundColorType = 'transparent' | 'RED' | 'GREEN' | 'YELLOW';
 
 const borderColors: Record<BorderColorType, string> = {
-  'GREY-1': greys[1],
-  'GREY-2': greys[2],
-  'GREY-3': greys[3],
-  RED: colors.RED.opaque,
-  GREEN: colors.GREEN.opaque,
-  YELLOW: colors.YELLOW.opaque,
+  'GREY-1': ThemeModule.Colors.grey[1],
+  'GREY-2': ThemeModule.Colors.grey[2],
+  'GREY-3': ThemeModule.Colors.grey[3],
+  RED: ThemeModule.Colors.red.opaque,
+  GREEN: ThemeModule.Colors.green.opaque,
+  YELLOW: ThemeModule.Colors.yellow.opaque,
 };
 
 const backgroundColors: Record<BackgroundColorType, string> = {
   transparent: 'transparent',
-  RED: colors.RED.transparent,
-  GREEN: colors.GREEN.transparent,
-  YELLOW: colors.YELLOW.transparent,
+  RED: ThemeModule.Colors.red.transparent,
+  GREEN: ThemeModule.Colors.green.transparent,
+  YELLOW: ThemeModule.Colors.yellow.transparent,
 };
 
 export interface FrameProps {

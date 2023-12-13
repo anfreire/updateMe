@@ -1,4 +1,4 @@
-import {Divider, Icon, ListItem, Text} from '@rneui/themed';
+import {Divider, Icon, ListItem} from '@rneui/themed';
 import React from 'react';
 import {Categories, CategoryKeyType, CategoryKeys} from './data';
 import {useSource} from '../../../../../hooks/useSource';

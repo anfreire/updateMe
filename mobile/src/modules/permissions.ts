@@ -1,39 +1,35 @@
-import {NativeModules, PermissionsAndroid} from 'react-native';
-const {MyAppsModule} = NativeModules;
+import {PermissionsAndroid, NativeModules} from 'react-native';
 
-namespace Permissions {
-  export type PermissionType = 'READ' | 'WRITE' | 'INSTALL';
-
-  export async function getPermissions(type: PermissionType) {
-    switch (type) {
-      case 'READ':
-        return await PermissionsAndroid.check(
-          PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
-        );
-      case 'WRITE':
-        return await PermissionsAndroid.check(
-          PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
-        );
-      case 'INSTALL':
-        return await MyAppsModule.checkUnkwonSource();
-    }
+namespace PermissionsModule {
+  export function grantUnknownSource(): void {
+    NativeModules.AppsModule.checkUnknownSource().then((res: boolean) => {
+      !res ? NativeModules.AppsModule.requestUnknownSource() : null;
+    });
   }
 
-  export async function requestPermissions(type: PermissionType) {
-    switch (type) {
-      case 'READ':
-        return await PermissionsAndroid.request(
-          PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
-        );
-      case 'WRITE':
-        return await PermissionsAndroid.request(
+  export function grantReadPermission(): void {
+    PermissionsAndroid.check(
+      PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+    ).then(hasPermission => {
+      if (!hasPermission) {
+        PermissionsAndroid.request(
           PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
         );
-      case 'INSTALL':
-        MyAppsModule.requestUnkwonSource();
-        return;
-    }
+      }
+    });
+  }
+
+  export function grantWritePermission(): void {
+    PermissionsAndroid.check(
+      PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+    ).then(hasPermission => {
+      if (!hasPermission) {
+        PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+        );
+      }
+    });
   }
 }
 
-export default Permissions;
+export default PermissionsModule;

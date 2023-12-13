@@ -1,8 +1,7 @@
-import React, {version} from 'react';
+import React from 'react';
 import {ImageSourcePropType} from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 import Apps from '../modules/apps';
-import {IconProps} from '../common/types';
 
 export type SourceKeysType =
   | 'HDO'

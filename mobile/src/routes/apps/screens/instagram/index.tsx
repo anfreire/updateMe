@@ -2,11 +2,11 @@ import React from 'react';
 import {useSource} from '../../../../hooks/useSource';
 import ScreenBase from '../../components/screenBase';
 import {View} from 'react-native';
-import {greys} from '../../../../utils/theme';
 import {Text} from '@rneui/themed';
 import {GridFeautures} from '../../components/features';
 import {InstagramFeatures} from './data';
 import Frame from '../../../../common/frame';
+import ThemeModule from '../../../../modules/theme';
 
 export default function AppsInstagram() {
   const source = useSource()[0];
@@ -39,7 +39,7 @@ export default function AppsInstagram() {
           width: '100%',
           borderRadius: 10,
           borderWidth: 1,
-          borderColor: greys[2],
+          borderColor: ThemeModule.Colors.grey[2],
           gap: 15,
           padding: 15,
         }}>

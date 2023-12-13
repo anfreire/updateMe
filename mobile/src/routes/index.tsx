@@ -1,10 +1,11 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Colors, Icon, Theme, useTheme} from '@rneui/themed';
 import {View} from 'react-native';
-import React, {Suspense, useEffect} from 'react';
+import React, {Suspense} from 'react';
 import HomeScreen from './apps';
-import {greys} from '../utils/theme';
-import useAccentColor from '../hooks/useAccentColor';
+import ThemeModule from '../modules/theme';
+import SpecialScreen from './special';
+import ToolsScreen from './tools';
 
 const Tab = createBottomTabNavigator();
 
@@ -28,7 +29,7 @@ function TabIcon({
         size={30}
         name={name}
         type="material-community"
-        color={focused ? theme.colors.primary : greys[1]}
+        color={focused ? theme.colors.primary : ThemeModule.Colors.grey[1]}
       />
     </View>
   );
@@ -36,8 +37,6 @@ function TabIcon({
 
 export default function Routes() {
   const theme = useTheme();
-  const DynamicSpecialScreen = React.lazy(() => import('./special'));
-  const DynamicToolsScreen = React.lazy(() => import('./tools'));
 
   return (
     <Suspense>
@@ -55,7 +54,7 @@ export default function Routes() {
             ),
           }}
           name="Special"
-          component={DynamicSpecialScreen}
+          component={SpecialScreen}
         />
         <Tab.Screen
           options={{
@@ -73,7 +72,7 @@ export default function Routes() {
             ),
           }}
           name="Tools"
-          component={DynamicToolsScreen}
+          component={ToolsScreen}
         />
       </Tab.Navigator>
     </Suspense>

@@ -1,7 +1,8 @@
 import {Icon, ListItem, Text} from '@rneui/themed';
 import React from 'react';
 import {View} from 'react-native';
-import { greys } from '../../../../../utils/theme';
+import ThemeModule from '../../../../../modules/theme';
+
 
 export interface InfoCollapseProps {
   title: string;
@@ -23,7 +24,7 @@ export default function InfoCollapse({title, content}: InfoCollapseProps) {
         justifyContent: 'center',
         borderRadius: 10,
         borderWidth: 1,
-        borderColor: greys[1],
+        borderColor: ThemeModule.Colors.grey[1],
       }}
       content={<Text h4>{title}</Text>}>
       <View
@@ -35,7 +36,7 @@ export default function InfoCollapse({title, content}: InfoCollapseProps) {
           margin: 5,
           borderRadius: 10,
           borderWidth: 1,
-          borderColor: greys[1],
+          borderColor: ThemeModule.Colors.grey[1],
           gap: 15,
           padding: 10,
         }}>

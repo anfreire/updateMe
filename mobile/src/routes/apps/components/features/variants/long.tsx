@@ -1,8 +1,8 @@
 import {View} from 'react-native';
 import React from 'react';
 import {Icon, Text} from '@rneui/themed';
-import {greys} from '../../../../../utils/theme';
 import {IconProps} from '../../../../../common/types';
+import ThemeModule from '../../../../../modules/theme';
 
 const SingleLongFeature = ({
   side,
@@ -34,7 +34,7 @@ const SingleLongFeature = ({
             display: 'flex',
             flexDirection: 'row',
             gap: 10,
-            backgroundColor: greys[2],
+            backgroundColor: ThemeModule.Colors.grey[2],
             padding: 15,
             borderRadius: 10,
           }}>
@@ -57,7 +57,7 @@ const SingleLongFeature = ({
       <View
         style={{
           gap: 10,
-          backgroundColor: greys[1],
+          backgroundColor: ThemeModule.Colors.grey[1],
           padding: 10,
           borderRadius: 10,
         }}>

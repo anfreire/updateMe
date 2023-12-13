@@ -49,7 +49,7 @@ const MicrogVersion = ({
         VariantProps[source.state as 'NOT_INSTALLED' | 'NOT_UPDATED'].text +
         ' MicroG'
       }
-      color="YELLOW"
+      color="yellow"
       onPress={openDownloadDialog}
       rightIcon={{
         name: VariantProps[source.state as 'NOT_INSTALLED' | 'NOT_UPDATED']

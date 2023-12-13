@@ -1,8 +1,15 @@
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ *
+ * @format
+ */
+
 import {NavigationContainer} from '@react-navigation/native';
 import {useTheme} from '@rneui/themed';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import Routes from './src/routes';
-import {NavigationTheme} from './src/utils/theme';
+import ThemeModule from './src/modules/theme';
 import React from 'react';
 
 function App(): JSX.Element {
@@ -12,7 +19,7 @@ function App(): JSX.Element {
       style={{
         backgroundColor: theme.colors.background,
       }}>
-      <NavigationContainer theme={NavigationTheme(theme)}>
+      <NavigationContainer theme={ThemeModule.NavigationTheme(theme)}>
         <Routes />
       </NavigationContainer>
     </SafeAreaProvider>

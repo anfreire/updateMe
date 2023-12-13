@@ -6,7 +6,6 @@ import GridFeatures from '../../components/features/variants/grid';
 import Frame from '../../../../common/frame';
 import {Text} from '@rneui/themed';
 import {View} from 'react-native';
-import {greys} from '../../../../utils/theme';
 import {InfoCollapse} from '../../components/info';
 
 export default function AppsYoutube() {
