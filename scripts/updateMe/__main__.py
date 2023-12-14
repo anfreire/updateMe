@@ -15,12 +15,12 @@ def main():
     updatePhotoEditorPro()
     updateInshot()
     updatePhotoshopExpress()
+    display.stop()
     updateAeroInstagram()
     updateAeroTwitter()
     updateWhatsappAero()
     publish_changes()
     push_changes()
-    display.stop()
 
 
 if __name__ == "__main__":

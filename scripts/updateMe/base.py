@@ -80,9 +80,12 @@ class WebScrapper:
         return self.__driver
 
     def init_selenium(self) -> None:
+        ublock_path = r'/home/anfreire/Documents/Projects/Android/updateMe/scripts/updateMe/1.54.0_0'
         options = Options()
+        options.add_argument("load-extension=" + ublock_path)
         options.headless = True
-        return webdriver.Chrome(options=options)
+        driver = webdriver.Chrome(options=options)
+        return driver
 
     def open_link_selenuim(self, link: str) -> None:
         self.__driver.get(link)
