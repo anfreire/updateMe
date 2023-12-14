@@ -7,7 +7,6 @@ import ToolsMain from './screens';
 import ToolsDownloads from './screens/downloads';
 import ToolsAccentColor from './screens/accent';
 import ToolsReport from './screens/report';
-import ToolsHelp from './screens/help';
 
 const Stack = createNativeStackNavigator();
 
@@ -16,7 +15,6 @@ const Screens = [
   'Tools-Downloads',
   'Tools-Accent',
   'Tools-Report',
-  'Tools-Help',
 ] as const;
 
 export namespace ToolsScreenTypes {
@@ -63,14 +61,6 @@ export default function ToolsScreen() {
           }}
           name="Tools-Report"
           component={ToolsReport}
-        />
-        <Stack.Screen
-          options={{
-            headerTitle: 'Help',
-            headerShown: true,
-          }}
-          name="Tools-Help"
-          component={ToolsHelp}
         />
       </Stack.Navigator>
     </Suspense>

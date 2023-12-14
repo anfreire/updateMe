@@ -18,8 +18,9 @@
     <package android:name="app.revanced.android.youtube" />
     <package android:name="app.revanced.android.apps.youtube.music" />
     <package android:name="com.spotify.music" />
-    <package android:name="com.instagram.android" />
-    <package android:name="com.whatsapp" />
+    <package android:name="com.aeroinsta.android" />
+    <package android:name="com.aero" />
+    <package android:name="com.twitter.aeromod" />
     <package android:name="com.lemon.lvoverseas" />
     <package android:name="photo.editor.photoeditor.photoeditorpro" />
     <package android:name="com.adobe.psmobile" />

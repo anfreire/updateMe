@@ -45,20 +45,6 @@ export default function ToolsMain({
         }}
       />
       <IListItem
-        title="Help"
-        icon={
-          <Icon
-            size={40}
-            name="help"
-            type="material"
-            color={theme.colors.primary}
-          />
-        }
-        onPress={() => {
-          navigation.navigate('Tools-Help' as never);
-        }}
-      />
-      <IListItem
         title="Report a problem"
         icon={
           <Icon

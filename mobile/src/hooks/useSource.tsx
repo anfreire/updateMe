@@ -121,9 +121,9 @@ export const initialSource: SourceProps = {
       'It\'s recommended to keep the original WhatsApp app installed, to be able to access your old chats.',
     ],
     icon: require('../../assets/whatsapp.png'),
-    packageName: 'com.whatsapp',
+    packageName: 'com.aero',
     route: 'Apps-WhatsApp',
-    fileName: 'com.aero',
+    fileName: 'WhatsApp.apk',
     url: 'https://whatsaero.com/',
   },
   CAPCUT: {

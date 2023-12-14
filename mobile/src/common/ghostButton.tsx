@@ -10,6 +10,7 @@ export interface IButtonProps {
   onPress: () => void;
   leftIcon?: IconProps;
   rightIcon?: IconProps;
+  disabled?: boolean;
 }
 
 const opaqueColors = (theme: any, color: 'primary' | StateColors) => {
@@ -38,10 +39,12 @@ export default function GhostButton({
   onPress,
   leftIcon,
   rightIcon,
+  disabled,
 }: IButtonProps) {
   const {theme} = useTheme();
   return (
     <TouchableOpacity
+      disabled={disabled}
       style={{
         borderRadius: 5,
         padding: 5,
@@ -52,6 +55,7 @@ export default function GhostButton({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
+        opacity: disabled ? 0.5 : 1,
       }}
       onPress={onPress}>
       {leftIcon && (
