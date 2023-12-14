@@ -1,7 +1,8 @@
 from selenium.webdriver.common.by import By
-from base import AppBase, GithubScrapping, WebScrapper
-from constants import MACROS, GITHUB_DATA
+from base import AppBase, GithubScrapping, WebScrapper, AeroScrapping
+from constants import MACROS, GITHUB_DATA, COLORS
 import time
+import re
 
 
 def updateHDO():
@@ -154,6 +155,7 @@ def updateInshot():
         print(e)
         return
 
+
 def updatePhotoshopExpress():
     link = "https://modyolo.com/download/photoshop-express-12281/1"
     scrapper = WebScrapper(selenium=True)
@@ -173,3 +175,80 @@ def updatePhotoshopExpress():
         print(type(e))
         print(e.__str__())
         return
+
+
+def updateAeroInstagram():
+    link = "https://aeroinsta.com/download-insta-aero/package-2/?lang=en"
+    scrapping = AeroScrapping()
+    scrapping.open_link(link)
+    link = scrapping.findLinkByText("Download via AeroMods.app (suggested)")
+    scrapping.open_link(link)
+    time.sleep(5)
+    scrapping.click_span("checkbox-custom")
+    link = scrapping.findLinkByText("Redirect Me!")
+    scrapping.open_link(link)
+    link = scrapping.find_link_that_ends_width(".apk")
+    AppBase(MACROS.INSTAGRAM, link)
+
+
+def updateAeroTwitter():
+    link = "https://aerowitter.com/download-aero-twitter/package-2/?lang=en"
+    scrapping = AeroScrapping()
+    scrapping.open_link(link)
+    link = scrapping.findLinkByText("Download Button 1 - AeroMods.app (Recommended)")
+    scrapping.open_link(link)
+    time.sleep(5)
+    scrapping.click_span("checkbox-custom")
+    link = scrapping.findLinkByText("Redirect Me!")
+    scrapping.open_link(link)
+    link = scrapping.find_link_that_ends_width(".apk")
+    AppBase(MACROS.TWITTER, link)
+
+
+def updateWhatsappAero():
+    link = "https://whatsaero.com/download-wpaero/com_aero_modern/?lang=en"
+    scrapping = AeroScrapping()
+    scrapping.open_link(link)
+    link = None
+    h3s = scrapping.driver.driver.find_elements(By.XPATH, "//h3")
+    for h3 in h3s:
+        if h3.text == "Download Service 1":
+            parent = h3.find_element(By.XPATH, "..")
+            childs = parent.find_elements(By.XPATH, ".//*")
+            _as = []
+            for child in childs:
+                if child.tag_name == "a":
+                    _as.append(child)
+            pattern = r"V([\d\.]+)"
+            versions = dict()
+            for a in _as:
+                match = re.search(pattern, a.text)
+                if match:
+                    versions[a] = match.group(1)
+                else:
+                    versions[a] = None
+            highest = None
+            for a in versions:
+                if versions[a] is None:
+                    continue
+                if highest is None:
+                    highest = a
+                elif versions[a] > versions[highest]:
+                    highest = a
+            link = highest.get_attribute("href")
+    if link is None:
+        raise Exception(
+            f"{COLORS.RED}Error{COLORS.RESET} Link not found: {COLORS.WHITE}WhatsApp Aero{COLORS.RESET}"
+        )
+    scrapping.open_link(link)
+    try:
+        link = scrapping.searchLinkByText("Redirect Me")
+        scrapping.open_link(link)
+    except:
+        pass
+    time.sleep(5)
+    scrapping.click_span("checkbox-custom")
+    link = scrapping.findLinkByText("Redirect Me!")
+    scrapping.open_link(link)
+    link = scrapping.find_link_that_ends_width(".apk")
+    AppBase(MACROS.WHATSAPP, link)

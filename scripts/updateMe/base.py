@@ -84,6 +84,9 @@ class WebScrapper:
         options.headless = True
         return webdriver.Chrome(options=options)
 
+    def open_link_selenuim(self, link: str) -> None:
+        self.__driver.get(link)
+
     def quit_selenium(self) -> None:
         if self.__driver:
             self.__driver.quit()
@@ -156,3 +159,63 @@ class GithubScrapping:
                     if link not in links:
                         links.append(link)
         return links
+
+
+class AeroScrapping:
+    def __init__(self) -> None:
+        self.driver = WebScrapper(selenium=True)
+
+    def open_link(self, link: str) -> None:
+        self.driver.open_link_selenuim(link)
+
+    def searchLinkByText(self, text: str) -> str:
+        link = None
+        _as = self.driver.get_selenium_tags(self.driver.driver, "a")
+        for a in _as:
+            if a.get_attribute("href") and text.lower() in a.text.lower():
+                link = a.get_attribute("href")
+                break
+        if link:
+            return link
+        raise Exception(
+            f"{COLORS.RED}Error{COLORS.RESET} Link not found. Trying to search link with text {COLORS.WHITE}{text}{COLORS.RESET}"
+        )
+
+    def findLinkByText(self, text: str) -> str:
+        link = None
+        _as = self.driver.get_selenium_tags(self.driver.driver, "a")
+        for a in _as:
+            if a.get_attribute("href") and a.text == text:
+                link = a.get_attribute("href")
+                break
+        if link:
+            return link
+        raise Exception(
+            f"{COLORS.RED}Error{COLORS.RESET} Link not found. Trying to find link with text {COLORS.WHITE}{text}{COLORS.RESET}"
+        )
+
+    def click_span(self, class_attr: str) -> None:
+        span = self.driver.get_selenium_tags(self.driver.driver, "span")
+        clicked = False
+        for s in span:
+            if s.get_attribute("class") == class_attr:
+                clicked = True
+                s.click()
+                break
+        if not clicked:
+            raise Exception(
+                f"{COLORS.RED}Error{COLORS.RESET} Span not found. Trying to find span with class {COLORS.WHITE}{class_attr}{COLORS.RESET}"
+            )
+
+    def find_link_that_ends_width(self, endswith: str) -> str:
+        link = None
+        _as = self.driver.get_selenium_tags(self.driver.driver, "a")
+        for a in _as:
+            if a.get_attribute("href") and a.get_attribute("href").endswith(endswith):
+                link = a.get_attribute("href")
+                break
+        if link:
+            return link
+        raise Exception(
+            f"{COLORS.RED}Error{COLORS.RESET} Link not found. Trying to find link that ends with {COLORS.WHITE}{endswith}{COLORS.RESET}"
+        )

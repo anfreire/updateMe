@@ -20,6 +20,7 @@ class MACROS:
     YOUTUBE_MUSIC = "YOUTUBE_MUSIC"
     YOUTUBE_MICROG = "YOUTUBE_MICROG"
     INSTAGRAM = "INSTAGRAM"
+    TWITTER = "TWITTER"
     WHATSAPP = "WHATSAPP"
     CAPCUT = "CAPCUT"
     PHOTO_EDITOR_PRO = "PHOTO_EDITOR_PRO"
@@ -34,6 +35,7 @@ PATHS = {
     MACROS.YOUTUBE_MUSIC: GLOBAL.ARCHIVE_DIR + "/youtube_music.apk",
     MACROS.YOUTUBE_MICROG: GLOBAL.ARCHIVE_DIR + "/micro_g.apk",
     MACROS.INSTAGRAM: GLOBAL.ARCHIVE_DIR + "/instagram.apk",
+    MACROS.TWITTER: GLOBAL.ARCHIVE_DIR + "/twitter.apk",
     MACROS.WHATSAPP: GLOBAL.ARCHIVE_DIR + "/whatsapp.apk",
     MACROS.CAPCUT: GLOBAL.ARCHIVE_DIR + "/capcut.apk",
     MACROS.PHOTO_EDITOR_PRO: GLOBAL.ARCHIVE_DIR + "/photo_editor_pro.apk",
@@ -47,8 +49,9 @@ PACKAGES = {
     MACROS.YOUTUBE_MUSIC: "app.revanced.android.apps.youtube.music",
     MACROS.YOUTUBE_MICROG: "com.mgoogle.android.gms",
     MACROS.SPOTIFY: "com.spotify.music",
-    MACROS.INSTAGRAM: "com.instagram.android",
-    MACROS.WHATSAPP: "com.whatsapp",
+    MACROS.INSTAGRAM: "com.aeroinsta.android",
+    MACROS.TWITTER: "com.twitter.aeromod",
+    MACROS.WHATSAPP: "com.aero",
     MACROS.CAPCUT: "com.lemon.lvoverseas",
     MACROS.PHOTO_EDITOR_PRO: "photo.editor.photoeditor.photoeditorpro",
     MACROS.INSHOT: "com.camerasideas.instashot",
