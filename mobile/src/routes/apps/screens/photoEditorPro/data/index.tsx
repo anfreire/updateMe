@@ -1,6 +1,7 @@
 import {Text} from '@rneui/themed';
 import {LongFeatureType} from '../../../components/features';
 import React from 'react';
+import {View} from 'react-native';
 
 export type PhotoEditorProVariants =
   | 'What Is Photo Editor Pro?'
@@ -16,7 +17,15 @@ export const photoEditorProContent: Record<
   React.ReactNode
 > = {
   'What Is Photo Editor Pro?': (
-    <>
+    <View
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 10,
+        gap: 10,
+      }}>
       <Text
         style={{
           textAlign: 'center',
@@ -33,10 +42,18 @@ export const photoEditorProContent: Record<
         Elevate your photo editing experience with a perfect combination of
         modern features suitable for various purposes.
       </Text>
-    </>
+    </View>
   ),
   'Why Photo Editor Pro?': (
-    <>
+    <View
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 10,
+        gap: 10,
+      }}>
       <Text
         style={{
           textAlign: 'center',
@@ -53,7 +70,7 @@ export const photoEditorProContent: Record<
         Explore over 100 filters, in-depth customizations, body retouch options,
         and an aesthetic photo editor for unique and impressive images.
       </Text>
-    </>
+    </View>
   ),
 };
 

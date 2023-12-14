@@ -39,7 +39,7 @@ export const Categories: Record<CategoryKeyType, CategoryType> = {
       name: 'group',
       type: 'material',
     },
-    apps: ['INSTAGRAM', 'WHATSAPP'],
+    apps: ['INSTAGRAM', 'WHATSAPP', 'TWITTER'],
   },
   'MUSIC STREAMING': {
     title: 'Music Streaming',

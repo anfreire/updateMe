@@ -19,7 +19,7 @@ export default function AppsInstagram() {
             textAlign: 'center',
             fontSize: 20,
           }}>
-          Instander is a free modification of the Instagram app for android.
+          This Instagram version is a free modification of the Instagram app for android.
         </Text>
         <Text
           style={{

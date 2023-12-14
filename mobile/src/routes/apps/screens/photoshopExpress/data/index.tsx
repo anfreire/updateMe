@@ -1,6 +1,7 @@
 import React from 'react';
 import {Text} from '@rneui/themed';
 import {LongFeatureType} from '../../../components/features';
+import { View } from 'react-native';
 
 export type PhotoshopExpressVariants =
   | 'What Is Photoshop Express?'
@@ -16,7 +17,15 @@ export const photoshopExpressContent: Record<
   React.ReactNode
 > = {
   'What Is Photoshop Express?': (
-    <>
+    <View
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 10,
+        gap: 10,
+      }}>
       <Text style={{textAlign: 'center', fontSize: 15}}>
         Elevate your photo editing with Photoshop Express, an all-in-one editor
         packed with professional tools and modern features.
@@ -25,10 +34,18 @@ export const photoshopExpressContent: Record<
         Its sleek interface and extensive toolset, including multi-layer edits,
         empower you to transform photos with precision and creativity.
       </Text>
-    </>
+    </View>
   ),
   'Why Photoshop Express?': (
-    <>
+    <View
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 10,
+        gap: 10,
+      }}>
       <Text style={{textAlign: 'center', fontSize: 15}}>
         Unleash your creativity on the go! Photoshop Express offers an array of
         templates, background swapping, font editing, and AI-enhanced details.
@@ -37,7 +54,7 @@ export const photoshopExpressContent: Record<
         Create stunning collages, highlight hidden details, and achieve
         professional-level photo edits right from your mobile device.
       </Text>
-    </>
+    </View>
   ),
 };
 

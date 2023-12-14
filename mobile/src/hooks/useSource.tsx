@@ -14,7 +14,8 @@ export type SourceKeysType =
   | 'CAPCUT'
   | 'PHOTO_EDITOR_PRO'
   | 'PHOTOSHOP_EXPRESS'
-  | 'INSHOT';
+  | 'INSHOT'
+  | 'TWITTER';
 
 export const RoutesKeys: SourceKeysType[] = [
   'CAPCUT',
@@ -27,6 +28,7 @@ export const RoutesKeys: SourceKeysType[] = [
   'YOUTUBE_MUSIC',
   'PHOTOSHOP_EXPRESS',
   'INSHOT',
+  'TWITTER',
 ];
 
 export const SourceKeys: SourceKeysType[] = [...RoutesKeys, 'YOUTUBE_MICROG'];
@@ -103,26 +105,26 @@ export const initialSource: SourceProps = {
     title: 'Instagram',
     icon: require('../../assets/instagram.png'),
     warnings: [
-      'This app will not work if you have the official Instagram app installed.',
-      "If you have the official Instagram app installed, you'll need to uninstall it first.",
+      'Social media authentication (Facebook, Google) may not work.',
+      'You do not need to uninstall the official Instagram app to use this app. It will be installed as a separate app.',
     ],
-    packageName: 'com.instagram.android',
+    packageName: 'com.aeroinsta.android',
     route: 'Apps-Instagram',
     fileName: 'Instagram.apk',
-    url: 'https://thedise.me/instander/',
+    url: 'https://aeroinsta.com/',
   },
   WHATSAPP: {
     title: 'WhatsApp',
     warnings: [
-      'This app will not work if you have the official WhatsApp app installed.',
-      "If you have the official WhatsApp app installed, you'll need to uninstall it first.",
-      "Google Drive backup won't work. You may loose your data in the transition.",
+      'Google drive backup will not work.',
+      'You do not need to uninstall the official WhatsApp app to use this app. It will be installed as a separate app.',
+      'It\'s recommended to keep the original WhatsApp app installed, to be able to access your old chats.',
     ],
     icon: require('../../assets/whatsapp.png'),
     packageName: 'com.whatsapp',
     route: 'Apps-WhatsApp',
-    fileName: 'WhatsApp.apk',
-    url: 'https://gbapkpro.com/fouad-whatsapp/',
+    fileName: 'com.aero',
+    url: 'https://whatsaero.com/',
   },
   CAPCUT: {
     title: 'CapCut',
@@ -174,9 +176,21 @@ export const initialSource: SourceProps = {
     fileName: 'InShot.apk',
     url: 'https://inshotpro.app/pro-mod',
   },
+  TWITTER: {
+    title: 'Twitter',
+    icon: require('../../assets/twitter.png'),
+    warnings: [
+      'Social media authentication (Facebook, Google) may not work.',
+      'You do not need to uninstall the official Twitter app to use this app. It will be installed as a separate app.',
+    ],
+    packageName: 'com.twitter.aeromod',
+    route: 'Apps-Twitter',
+    fileName: 'Twitter.apk',
+    url: 'https://aerowitter.com/',
+  },
 };
 
-async function getAppState(source: SourceType): Promise<AppState | undefined> {
+async function getAppState(source: SourceType): Promise<AppState> {
   const version = await Apps.getAppVersion(source.packageName);
   if (!version) return 'NOT_INSTALLED';
   return version === source.version ? 'UPDATED' : 'NOT_UPDATED';

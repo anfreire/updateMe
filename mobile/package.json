@@ -7,12 +7,13 @@
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest",
-    "build-android": "cd android && ./gradlew assembleRelease",
-    "gnome-start": "gnome-terminal -- bash -c \"cd /home/anfreire/Documents/Projects/Android/updateme && npm start\"",
-    "gnome-android": "gnome-terminal -- bash -c \"cd /home/anfreire/Documents/Projects/Android/updateme && npm run android\"",
+    "build-android": "npx react-native build-android --mode=release; cd android && ./gradlew assembleRelease",
+    "gnome-start": "gnome-terminal -- bash -c \"cd /home/anfreire/Documents/Projects/Android/updateMe/mobile && npm start\"",
+    "gnome-android": "gnome-terminal -- bash -c \"cd /home/anfreire/Documents/Projects/Android/updateMe/mobile && npm run android\"",
     "restart": "npm run gnome-start; sleep 10 && npm run gnome-android"
   },
   "dependencies": {
+    "@formspree/react": "^2.5.1",
     "@react-native-async-storage/async-storage": "^1.21.0",
     "@react-native-firebase/app": "^18.7.3",
     "@react-native-firebase/firestore": "^18.7.3",

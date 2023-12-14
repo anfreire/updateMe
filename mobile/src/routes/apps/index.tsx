@@ -15,6 +15,7 @@ import AppsCapcut from './screens/capcut';
 import AppsPhotoEditorPro from './screens/photoEditorPro';
 import AppsInshot from './screens/inshot';
 import AppsPhotoshopExpress from './screens/photoshopExpress';
+import AppsTwitter from './screens/twitter';
 
 const Stack = createNativeStackNavigator();
 
@@ -28,6 +29,9 @@ const Screens = [
   'Apps-WhatsApp',
   'Apps-CapCut',
   'Apps-PhotoEditorPro',
+  'Apps-InShot',
+  'Apps-PhotoshopExpress',
+  'Apps-Twitter',
 ] as const;
 
 export namespace HomeScreenTypes {
@@ -130,6 +134,14 @@ export default function HomeScreen() {
           }}
           name="Apps-PhotoshopExpress"
           component={AppsPhotoshopExpress}
+        />
+        <Stack.Screen
+          options={{
+            headerShown: true,
+            headerTitle: 'Twitter',
+          }}
+          name="Apps-Twitter"
+          component={AppsTwitter}
         />
       </Stack.Navigator>
     </Suspense>

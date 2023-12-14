@@ -4,7 +4,6 @@ import {View} from 'react-native';
 import React, {Suspense} from 'react';
 import HomeScreen from './apps';
 import ThemeModule from '../modules/theme';
-import SpecialScreen from './special';
 import ToolsScreen from './tools';
 
 const Tab = createBottomTabNavigator();
@@ -47,15 +46,6 @@ export default function Routes() {
         }}
         backBehavior="initialRoute"
         initialRouteName="Apps">
-        <Tab.Screen
-          options={{
-            tabBarIcon: ({focused}) => (
-              <TabIcon focused={focused} name="star" theme={theme.theme} />
-            ),
-          }}
-          name="Special"
-          component={SpecialScreen}
-        />
         <Tab.Screen
           options={{
             tabBarIcon: ({focused}) => (

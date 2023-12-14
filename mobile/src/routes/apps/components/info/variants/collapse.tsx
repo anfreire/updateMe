@@ -3,7 +3,6 @@ import React from 'react';
 import {View} from 'react-native';
 import ThemeModule from '../../../../../modules/theme';
 
-
 export interface InfoCollapseProps {
   title: string;
   content: React.ReactNode;
@@ -26,7 +25,15 @@ export default function InfoCollapse({title, content}: InfoCollapseProps) {
         borderWidth: 1,
         borderColor: ThemeModule.Colors.grey[1],
       }}
-      content={<Text h4>{title}</Text>}>
+      content={
+        <Text
+          style={{
+            fontSize: 22,
+            fontWeight: 'bold',
+          }}>
+          {title}
+        </Text>
+      }>
       <View
         style={{
           display: 'flex',

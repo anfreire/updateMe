@@ -30,8 +30,9 @@ export default function ShortFeatures({
       <Text
         style={{
           marginBottom: 10,
-        }}
-        h3>
+          fontSize: 24,
+          fontWeight: 'bold',
+        }}>
         {title}
       </Text>
       <View

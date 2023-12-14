@@ -1,6 +1,7 @@
 import React from 'react';
 import {Text} from '@rneui/themed';
 import {LongFeatureType} from '../../../components/features';
+import {View} from 'react-native';
 
 export type InshotVariants = 'What Is Inshot?' | 'Why Inshot?';
 
@@ -8,7 +9,15 @@ export const InshotKeys: InshotVariants[] = ['What Is Inshot?', 'Why Inshot?'];
 
 export const inshotContent: Record<InshotVariants, React.ReactNode> = {
   'What Is Inshot?': (
-    <>
+    <View
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 10,
+        gap: 10,
+      }}>
       <Text
         style={{
           textAlign: 'center',
@@ -26,10 +35,18 @@ export const inshotContent: Record<InshotVariants, React.ReactNode> = {
         Transform ordinary videos into artistic masterpieces with powerful
         filters, effects, and glitches.
       </Text>
-    </>
+    </View>
   ),
   'Why Inshot?': (
-    <>
+    <View
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 10,
+        gap: 10,
+      }}>
       <Text
         style={{
           textAlign: 'center',
@@ -47,7 +64,7 @@ export const inshotContent: Record<InshotVariants, React.ReactNode> = {
         options, making Inshot the go-to choice for video and photo editing on
         Android.
       </Text>
-    </>
+    </View>
   ),
 };
 

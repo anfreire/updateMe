@@ -162,7 +162,7 @@ export default function DownloadDialog_Warning({
           marginBottom: 10,
         }}>
         <GhostButton onPress={() => setData(null)} text="Cancel" color="red" />
-        <GhostButton text="Accept" color="red" onPress={accept} />
+        <GhostButton text="Accept" color="yellow" onPress={accept} />
       </View>
     </Overlay>
   );

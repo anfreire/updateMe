@@ -2,9 +2,14 @@ import React, {useEffect} from 'react';
 import {SourceType, useSource} from '../../../../hooks/useSource';
 import {useDownload} from '../../../../hooks/useDownload';
 import {RefreshControl, ScrollView, View} from 'react-native';
-import Warning, { LoadingState, WarningType, getWarning } from './components/warning';
+import Warning, {
+  LoadingState,
+  WarningType,
+  getWarning,
+} from './components/warning';
 import InstallButton from './components/installButton';
 import SpeedDial from './components/speedDial';
+import AppsModule from '../../../../modules/apps';
 
 export default function ScreenBase({
   source,
