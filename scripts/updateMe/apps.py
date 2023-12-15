@@ -15,12 +15,12 @@ def updateHDO():
 
 
 def updateMicroG():
-    scrapper = GithubScrapping(
+    driver = GithubScrapping(
         GITHUB_DATA[MACROS.YOUTUBE_MICROG]["user"],
         GITHUB_DATA[MACROS.YOUTUBE_MICROG]["repo"],
     )
-    latest = scrapper.getVersions()[0]
-    link = scrapper.link(latest, [".apk"])[0]
+    latest = driver.getVersions()[0]
+    link = driver.link(latest, [".apk"])[0]
     try:
         AppBase(MACROS.YOUTUBE_MICROG, link)
     except Exception as e:
@@ -29,15 +29,15 @@ def updateMicroG():
 
 
 def updateYoutube():
-    scrapper = GithubScrapping(
+    driver = GithubScrapping(
         GITHUB_DATA[MACROS.YOUTUBE]["user"],
         GITHUB_DATA[MACROS.YOUTUBE]["repo"],
     )
-    versions = scrapper.getVersions()
+    versions = driver.getVersions()
     index = 0
     link = None
     while link is None and index < len(versions):
-        links = scrapper.link(
+        links = driver.link(
             versions[index], [".apk", "youtube"], ["extended", "arm-v7a"]
         )
         if len(links) > 0:
@@ -52,17 +52,15 @@ def updateYoutube():
 
 
 def updateYoutubeMusic():
-    scrapper = GithubScrapping(
+    driver = GithubScrapping(
         GITHUB_DATA[MACROS.YOUTUBE_MUSIC]["user"],
         GITHUB_DATA[MACROS.YOUTUBE_MUSIC]["repo"],
     )
-    versions = scrapper.getVersions()
+    versions = driver.getVersions()
     index = 0
     link = None
     while link is None and index < len(versions):
-        links = scrapper.link(
-            versions[index], [".apk", "music"], ["extended", "arm-v7a"]
-        )
+        links = driver.link(versions[index], [".apk", "music"], ["extended", "arm-v7a"])
         if len(links) > 0:
             link = links[0]
             break
@@ -75,45 +73,18 @@ def updateYoutubeMusic():
 
 
 def updateSpotify():
-    scrapper = WebScrapper(selenium=True)
-    scrapper.driver.get("https://spotifygeek.tricksnation.com/link/download/1/")
-    elements = scrapper.driver.find_elements(By.XPATH, "//a[@href]")
+    driver = WebScrapper()
+    driver.open_link("https://spotifygeek.tricksnation.com/link/download/1/")
+    elements = driver.driver.find_elements(By.XPATH, "//a[@href]")
     link = None
     for element in elements:
         if element.get_attribute("href") and element.get_attribute("href").endswith(
             ".apk"
         ):
             link = element.get_attribute("href")
-            scrapper.quit_selenium()
             break
     try:
         AppBase(MACROS.SPOTIFY, link)
-    except Exception as e:
-        print(e)
-        return
-
-
-def updateInstagram():
-    link = "https://thedise.me/instander/repo/"
-    scrapper = WebScrapper(selenium=True)
-    scrapper.driver.get(link)
-    as_ = scrapper.get_selenium_tags(scrapper.driver, "a")
-    for a in as_:
-        if a.get_attribute("href") and a.get_attribute("href").endswith(".apk"):
-            link = a.get_attribute("href")
-            scrapper.quit_selenium()
-            break
-    try:
-        AppBase(MACROS.INSTAGRAM, link)
-    except Exception as e:
-        print(e)
-        return
-
-
-def updateWhatsapp():
-    link = "https://dl.gbapkpro.com/fouadwa/"
-    try:
-        AppBase(MACROS.WHATSAPP, link)
     except Exception as e:
         print(e)
         return
@@ -130,15 +101,14 @@ def updateCapcut():
 
 def updatePhotoEditorPro():
     link = "https://modyolo.com/download/polish-photo-editor-pro-2578/1"
-    scrapper = WebScrapper(selenium=True)
-    scrapper.driver.get(link)
+    driver = WebScrapper()
+    driver.driver.get(link)
     link = None
     time.sleep(5)
-    as_ = scrapper.get_selenium_tags(scrapper.driver, "a")
+    as_ = driver.get_tags("a")
     for a in as_:
         if a.get_attribute("href") and a.get_attribute("href").endswith(".apk"):
             link = a.get_attribute("href")
-            scrapper.quit_selenium()
             break
     try:
         AppBase(MACROS.PHOTO_EDITOR_PRO, link)
@@ -158,15 +128,14 @@ def updateInshot():
 
 def updatePhotoshopExpress():
     link = "https://modyolo.com/download/photoshop-express-12281/1"
-    scrapper = WebScrapper(selenium=True)
-    scrapper.driver.get(link)
+    driver = WebScrapper()
+    driver.open_link(link)
     link = None
     time.sleep(5)
-    as_ = scrapper.get_selenium_tags(scrapper.driver, "a")
+    as_ = driver.get_tags("a")
     for a in as_:
         if a.get_attribute("href") and a.get_attribute("href").endswith(".apk"):
             link = a.get_attribute("href")
-            scrapper.quit_selenium()
             break
     try:
         AppBase(MACROS.PHOTOSHOP_EXPRESS, link)
@@ -184,7 +153,7 @@ def updateAeroInstagram():
         scrapping.open_link(link)
         link = scrapping.findLinkByText("Download via AeroMods.app (suggested)")
         scrapping.open_link(link)
-        time.sleep(6)
+        time.sleep(7)
         scrapping.click_span("checkbox-custom")
         link = scrapping.findLinkByText("Redirect Me!")
         scrapping.open_link(link)
@@ -194,14 +163,17 @@ def updateAeroInstagram():
         print(e)
         return
 
+
 def updateAeroTwitter():
     link = "https://aerowitter.com/download-aero-twitter/package-2/?lang=en"
     try:
         scrapping = AeroScrapping()
         scrapping.open_link(link)
-        link = scrapping.findLinkByText("Download Button 1 - AeroMods.app (Recommended)")
+        link = scrapping.findLinkByText(
+            "Download Button 1 - AeroMods.app (Recommended)"
+        )
         scrapping.open_link(link)
-        time.sleep(6)
+        time.sleep(7)
         scrapping.click_span("checkbox-custom")
         link = scrapping.findLinkByText("Redirect Me!")
         scrapping.open_link(link)
@@ -210,6 +182,7 @@ def updateAeroTwitter():
     except Exception as e:
         print(e)
         return
+
 
 def updateWhatsappAero():
     link = "https://whatsaero.com/download-wpaero/com_aero_modern/?lang=en"
@@ -245,7 +218,7 @@ def updateWhatsappAero():
                 link = highest.get_attribute("href")
         if link is None:
             raise Exception(
-                f"{COLORS.RED}Error{COLORS.RESET} Link not found: {COLORS.WHITE}WhatsApp Aero{COLORS.RESET}"
+                f"[ {COLORS.RED}FAIL{COLORS.RESET} ] Link not found: {COLORS.WHITE}WhatsApp Aero{COLORS.RESET}"
             )
         scrapping.open_link(link)
         try:
@@ -253,7 +226,7 @@ def updateWhatsappAero():
             scrapping.open_link(link)
         except:
             pass
-        time.sleep(6)
+        time.sleep(7)
         scrapping.click_span("checkbox-custom")
         link = scrapping.findLinkByText("Redirect Me!")
         scrapping.open_link(link)

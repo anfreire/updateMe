@@ -2,6 +2,7 @@ class GLOBAL:
     ARCHIVE_DIR = "/home/anfreire/Documents/Projects/Android/updateMe/scripts"
     INDEX_PATH = ARCHIVE_DIR + "/index.json"
     ENV_PATH = ARCHIVE_DIR + "/env.json"
+    CURR_APP = ARCHIVE_DIR + "/app.apk"
 
 
 class COLORS:
@@ -27,70 +28,25 @@ class MACROS:
     INSHOT = "INSHOT"
     PHOTOSHOP_EXPRESS = "PHOTOSHOP_EXPRESS"
 
-
-PATHS = {
-    MACROS.SPOTIFY: GLOBAL.ARCHIVE_DIR + "/spotify.apk",
-    MACROS.HDO: GLOBAL.ARCHIVE_DIR + "/hdo.apk",
-    MACROS.YOUTUBE: GLOBAL.ARCHIVE_DIR + "/youtube.apk",
-    MACROS.YOUTUBE_MUSIC: GLOBAL.ARCHIVE_DIR + "/youtube_music.apk",
-    MACROS.YOUTUBE_MICROG: GLOBAL.ARCHIVE_DIR + "/micro_g.apk",
-    MACROS.INSTAGRAM: GLOBAL.ARCHIVE_DIR + "/instagram.apk",
-    MACROS.TWITTER: GLOBAL.ARCHIVE_DIR + "/twitter.apk",
-    MACROS.WHATSAPP: GLOBAL.ARCHIVE_DIR + "/whatsapp.apk",
-    MACROS.CAPCUT: GLOBAL.ARCHIVE_DIR + "/capcut.apk",
-    MACROS.PHOTO_EDITOR_PRO: GLOBAL.ARCHIVE_DIR + "/photo_editor_pro.apk",
-    MACROS.INSHOT: GLOBAL.ARCHIVE_DIR + "/inshot.apk",
-    MACROS.PHOTOSHOP_EXPRESS: GLOBAL.ARCHIVE_DIR + "/photoshop_express.apk",
-}
-
-PACKAGES = {
-    MACROS.HDO: "com.hdobox",
-    MACROS.YOUTUBE: "app.revanced.android.youtube",
-    MACROS.YOUTUBE_MUSIC: "app.revanced.android.apps.youtube.music",
-    MACROS.YOUTUBE_MICROG: "com.mgoogle.android.gms",
-    MACROS.SPOTIFY: "com.spotify.music",
-    MACROS.INSTAGRAM: "com.aeroinsta.android",
-    MACROS.TWITTER: "com.twitter.aeromod",
-    MACROS.WHATSAPP: "com.aero",
-    MACROS.CAPCUT: "com.lemon.lvoverseas",
-    MACROS.PHOTO_EDITOR_PRO: "photo.editor.photoeditor.photoeditorpro",
-    MACROS.INSHOT: "com.camerasideas.instashot",
-    MACROS.PHOTOSHOP_EXPRESS: "com.adobe.psmobile",
-}
+    @classmethod
+    def get_col(cls) -> list:
+        return [
+            cls.SPOTIFY,
+            cls.HDO,
+            cls.YOUTUBE,
+            cls.YOUTUBE_MUSIC,
+            cls.YOUTUBE_MICROG,
+            cls.INSTAGRAM,
+            cls.TWITTER,
+            cls.WHATSAPP,
+            cls.CAPCUT,
+            cls.PHOTO_EDITOR_PRO,
+            cls.INSHOT,
+            cls.PHOTOSHOP_EXPRESS,
+        ]
 
 GITHUB_DATA = {
     MACROS.YOUTUBE_MICROG: {"user": "TeamVanced", "repo": "VancedMicroG"},
     MACROS.YOUTUBE: {"user": "j-hc", "repo": "revanced-magisk-module"},
     MACROS.YOUTUBE_MUSIC: {"user": "j-hc", "repo": "revanced-magisk-module"},
 }
-
-
-class Exceptions:
-    class InvalidMacro(Exception):
-        def __init__(self, macro: str):
-            self.macro = macro
-
-        def __str__(self):
-            return f"{COLORS.RED}Error{COLORS.RESET} Macro {COLORS.WHITE}{self.macro}{COLORS.RESET} not found in PATHS"
-
-    class InvalidUrl(Exception):
-        def __init__(self, url: str):
-            self.url = url
-
-        def __str__(self):
-            return f"{COLORS.RED}Error{COLORS.RESET} Invalid url {COLORS.WHITE}{self.url}{COLORS.RESET}"
-
-    class InvalidPackage(Exception):
-        def __init__(self, macro: str, package: str):
-            self.macro = macro
-            self.package = package
-
-        def __str__(self):
-            return f"{COLORS.RED}Error{COLORS.RESET} Macro {COLORS.WHITE}{self.macro}{COLORS.RESET} has package {COLORS.WHITE}{self.package}{COLORS.RESET} instead of {COLORS.WHITE}{PACKAGES[self.macro]}{COLORS.RESET}"
-
-    class KeyNotInIndex(Exception):
-        def __init__(self, key: str):
-            self.key = key
-
-        def __str__(self):
-            return f"{COLORS.RED}Error{COLORS.RESET} Key {COLORS.WHITE}{self.key}{COLORS.RESET} not in index.json"

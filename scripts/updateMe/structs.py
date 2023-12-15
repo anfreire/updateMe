@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 
 @dataclass
@@ -15,14 +15,19 @@ class APKInfo:
 
 
 @dataclass
-class AppInfo:
-    package: str
-    apkInfo: APKInfo
+class IndexInfo:
+    title: str
+    packageName: str
+    url: str
+    version: str
+    link: str
 
     @property
     def toDict(self):
         return {
-            "package": self.package,
-            "version": self.apkInfo.version,
-            "link": self.apkInfo.link,
+            "title": self.title,
+            "packageName": self.packageName,
+            "url": self.url,
+            "version": self.version,
+            "link": self.link,
         }

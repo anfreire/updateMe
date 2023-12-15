@@ -1,10 +1,10 @@
 from apps import *
-from publish import publish_changes, push_changes
 from pyvirtualdisplay import Display
+from index import IndexManager
 
 
 def main():
-    display = Display(visible=0, size=(800, 600))
+    display = Display(visible=0, size=(1920, 1080))
     display.start()
     updateHDO()
     updateMicroG()
@@ -15,12 +15,12 @@ def main():
     updatePhotoEditorPro()
     updateInshot()
     updatePhotoshopExpress()
-    display.stop()
     updateAeroInstagram()
     updateAeroTwitter()
     updateWhatsappAero()
-    publish_changes()
-    push_changes()
+    display.stop()
+    IndexManager.push_git()
+    IndexManager.push_firebase()
 
 
 if __name__ == "__main__":
