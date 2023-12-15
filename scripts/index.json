@@ -1,51 +1,86 @@
 {
-  "HDO": {
-    "package": "com.hdo.app",
-    "version": "2.0.19",
-    "link": "https://hdo.app/download"
-  },
-  "YOUTUBE_MICROG": {
-    "version": "0.2.24.220220",
-    "link": "https://github.com//TeamVanced/VancedMicroG/releases/download/v0.2.24.220220-220220001/microg.apk"
-  },
-  "YOUTUBE_YOUTUBE": {
-    "version": "18.45.43",
-    "link": "https://github.com//j-hc/revanced-magisk-module/releases/download/20220918/youtube-revanced-v18.45.43-all.apk"
-  },
-  "YOUTUBE_MUSIC": {
-    "version": "6.28.52",
-    "link": "https://github.com//j-hc/revanced-magisk-module/releases/download/20220918/music-revanced-v6.28.52-arm64-v8a.apk"
-  },
-  "SPOTIFY": {
-    "version": "8.8.94.577",
-    "link": "https://spotigeek.com/wp-content/uploads/APK/Spotify%20v8.8.94.577%20(SpotiGeek.com).apk"
-  },
-  "INSTAGRAM": {
-    "version": "292.0.0.28.110",
-    "link": "https://download.aeromods.app/AeroMods/AeroInsta/V23.0.2/9kdr9F7J5/Clone/AeroInsta_V23.0.2_Clone_DEFAULT__aeromods.app__.apk"
-  },
-  "TWITTER": {
-    "version": "9.95.0-release.0",
-    "link": "https://download.aeromods.app/AeroMods/AeroWitter/V3.5/krdwyP94aYVaRaRP/Clone/AeroWitter_V3.5_Clone_DEFAULT__aeromods.app__.apk"
-  },
-  "WHATSAPP": {
-    "version": "2.23.21.88",
-    "link": "https://download.aeromods.app/AeroMods/WhatsAero/BETA/V9.90/Hbsx6jYaUS7/WA_AERO_V9.90_BETA__--com_aero--__aeromods.app__.apk"
-  },
-  "CAPCUT": {
-    "version": "9.9.0",
-    "link": "https://capcutapk.io/dl"
-  },
-  "PHOTO_EDITOR_PRO": {
-    "version": "1.491.159",
-    "link": "https://files.modyolo.com/Polish%20Photo%20Editor%20Pro/Photo_Editor_Pro_-_Polish_v1.491.159_modded_by_Mixroot.apk"
-  },
-  "INSHOT": {
-    "version": "1.992.1429",
-    "link": "https://inshotpro.app/dl"
-  },
-  "PHOTOSHOP_EXPRESS": {
-    "version": "12.0.213",
-    "link": "https://files.modyolo.com/Photoshop%20Express%20Photo%20Editor/Adobe_Photoshop_Express-v12.0.213_build_1568-Mod.apk"
-  }
+    "HDO": {
+        "title": "HDO Box",
+        "packageName": "com.hdobox",
+        "url": "https://hdo.app",
+        "version": "2.0.19",
+        "link": "https://hdo.app/download"
+    },
+    "YOUTUBE_MICROG": {
+        "title": "MicroG",
+        "packageName": "com.mgoogle.android.gms",
+        "url": "https://github.com/TeamVanced/VancedMicroG",
+        "version": "0.2.24.220220",
+        "link": "https://github.com//TeamVanced/VancedMicroG/releases/download/v0.2.24.220220-220220001/microg.apk"
+    },
+    "YOUTUBE_YOUTUBE": {
+        "title": "YouTube",
+        "packageName": "app.revanced.android.youtube",
+        "url": "https://github.com/j-hc/revanced-magisk-module",
+        "version": "18.45.43",
+        "link": "https://github.com//j-hc/revanced-magisk-module/releases/download/20220918/youtube-revanced-v18.45.43-all.apk"
+    },
+    "YOUTUBE_MUSIC": {
+        "title": "YouTube Music",
+        "packageName": "app.revanced.android.apps.youtube.music",
+        "url": "https://github.com/j-hc/revanced-magisk-module",
+        "version": "6.28.52",
+        "link": "https://github.com//j-hc/revanced-magisk-module/releases/download/20220918/music-revanced-v6.28.52-arm64-v8a.apk"
+    },
+    "SPOTIFY": {
+        "title": "Spotify",
+        "packageName": "com.spotify.music",
+        "url": "https://spotigeek.com/",
+        "version": "8.8.94.577",
+        "link": "https://spotigeek.com/wp-content/uploads/APK/Spotify%20v8.8.94.577%20(SpotiGeek.com).apk"
+    },
+    "INSTAGRAM": {
+        "title": "Instagram",
+        "packageName": "com.aeroinsta.android",
+        "url": "https://aeroinsta.com/",
+        "version": "292.0.0.28.110",
+        "link": "https://download.aeromods.app/AeroMods/AeroInsta/V23.0.2/9kdr9F7J5/Clone/AeroInsta_V23.0.2_Clone_DEFAULT__aeromods.app__.apk"
+    },
+    "WHATSAPP": {
+        "title": "WhatsApp",
+        "packageName": "com.aero",
+        "url": "https://whatsaero.com/",
+        "version": "2.23.21.88",
+        "link": "https://download.aeromods.app/AeroMods/WhatsAero/BETA/V9.90/Hbsx6jYaUS7/WA_AERO_V9.90_BETA__--com_aero--__aeromods.app__.apk"
+    },
+    "CAPCUT": {
+        "title": "CapCut",
+        "packageName": "com.lemon.lvoverseas",
+        "url": "https://capcutapk.io/",
+        "version": "9.9.0",
+        "link": "https://capcutapk.io/dl"
+    },
+    "PHOTO_EDITOR_PRO": {
+        "title": "Photo Editor Pro",
+        "packageName": "photo.editor.photoeditor.photoeditorpro",
+        "url": "https://modyolo.com/polish-photo-editor-pro.html",
+        "version": "1.491.159",
+        "link": "https://files.modyolo.com/Polish%20Photo%20Editor%20Pro/Photo_Editor_Pro_-_Polish_v1.491.159_modded_by_Mixroot.apk"
+    },
+    "PHOTOSHOP_EXPRESS": {
+        "title": "Photoshop Express",
+        "packageName": "com.adobe.psmobile",
+        "url": "https://modyolo.com/photoshop-express-photo-editor.html",
+        "version": "12.0.213",
+        "link": "https://files.modyolo.com/Photoshop%20Express%20Photo%20Editor/Adobe_Photoshop_Express-v12.0.213_build_1568-Mod.apk"
+    },
+    "INSHOT": {
+        "title": "InShot",
+        "packageName": "com.camerasideas.instashot",
+        "url": "https://inshotpro.app/pro-mod",
+        "version": "1.992.1429",
+        "link": "https://inshotpro.app/dl"
+    },
+    "TWITTER": {
+        "title": "Twitter",
+        "packageName": "com.twitter.aeromod",
+        "url": "https://aerowitter.com/",
+        "version": "9.95.0-release.0",
+        "link": "https://download.aeromods.app/AeroMods/AeroWitter/V3.5/krdwyP94aYVaRaRP/Clone/AeroWitter_V3.5_Clone_DEFAULT__aeromods.app__.apk"
+    }
 }
