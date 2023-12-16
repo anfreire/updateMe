@@ -84,9 +84,9 @@ export default function ToolsMain({
         }
         onPress={() => {
           Share.share({
-            title: 'Update Me - Official Website',
-            message: 'https://updateme.tech',
-            url: 'https://updateme.tech',
+            title: 'Share this app',
+            message: 'https://anfreire.github.io/updateMe/updateMe.apk',
+            url: 'https://anfreire.github.io/updateMe/updateMe.apk',
           });
         }}
       />
