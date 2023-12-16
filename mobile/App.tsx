@@ -11,9 +11,13 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import Routes from './src/routes';
 import ThemeModule from './src/modules/theme';
 import React from 'react';
+import NotificationsModule from './src/modules/notification';
 
 function App(): JSX.Element {
   const {theme} = useTheme();
+
+  NotificationsModule.foreground();
+
   return (
     <SafeAreaProvider
       style={{

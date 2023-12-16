@@ -2,6 +2,7 @@ import React from 'react';
 import {ImageSourcePropType} from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 import Apps from '../modules/apps';
+import useStorage from './useStorage';
 
 export type SourceKeysType =
   | 'HDO'
@@ -118,7 +119,7 @@ export const initialSource: SourceProps = {
     warnings: [
       'Google drive backup will not work.',
       'You do not need to uninstall the official WhatsApp app to use this app. It will be installed as a separate app.',
-      'It\'s recommended to keep the original WhatsApp app installed, to be able to access your old chats.',
+      "It's recommended to keep the original WhatsApp app installed, to be able to access your old chats.",
     ],
     icon: require('../../assets/whatsapp.png'),
     packageName: 'com.aero',

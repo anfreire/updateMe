@@ -1,11 +1,12 @@
 import {useEffect, useState} from 'react';
-import {Alert, View} from 'react-native';
+import {Alert, TouchableWithoutFeedback, View} from 'react-native';
 import {CheckBox, Icon, Overlay, Text} from '@rneui/themed';
 import React from 'react';
 import {useDownload} from '../../../../../hooks/useDownload';
 import GhostButton from '../../../../../common/ghostButton';
 import useWarnings from '../../../../../hooks/useWarnings';
 import ThemeModule from '../../../../../modules/theme';
+import {TouchableOpacity} from 'react-native';
 
 const checkboxesBuilder = (warnings: string[]) => {
   const checkboxes: Record<string, boolean> = {};
@@ -25,7 +26,13 @@ function WarningCheckbox({
   setCheckboxes: React.Dispatch<React.SetStateAction<Record<string, boolean>>>;
 }) {
   return (
-    <View
+    <TouchableOpacity
+      onPress={() => {
+        setCheckboxes(prev => {
+          prev[warning] = !prev[warning];
+          return {...prev};
+        });
+      }}
       style={{
         display: 'flex',
         flexDirection: 'row',
@@ -45,12 +52,6 @@ function WarningCheckbox({
         <CheckBox
           checkedColor={ThemeModule.Colors.yellow.opaque}
           checked={checkboxes[warning]}
-          onIconPress={() => {
-            setCheckboxes(prev => {
-              prev[warning] = !prev[warning];
-              return {...prev};
-            });
-          }}
           containerStyle={{
             backgroundColor: 'transparent',
           }}
@@ -76,7 +77,7 @@ function WarningCheckbox({
           {warning}
         </Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 

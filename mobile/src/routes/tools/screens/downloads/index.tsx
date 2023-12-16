@@ -82,9 +82,11 @@ export default function ToolsDownloads({navigation}: any) {
 
   useRouteEffect({
     onRoute: () => {
-      Permissions.grantReadPermission();
-      Permissions.grantWritePermission();
-      update();
+      Permissions.grantReadPermission().then(() => {
+        Permissions.grantWritePermission().then(() => {
+          update();
+        });
+      });
     },
   });
 
@@ -116,8 +118,8 @@ export default function ToolsDownloads({navigation}: any) {
             height: '100%',
             gap: 15,
           }}>
-          <Text h4>No files found</Text>
-          <Icon size={30} name="emoticon-sad" type="material-community" />
+          <Text h4>No downloads</Text>
+          <Icon size={30} name="delete-empty-outline" type="material-community" />
         </View>
       )}
       <DownloadInfoModal modal={modal} setModal={setModal} />

@@ -1,11 +1,18 @@
 from apps import *
 from pyvirtualdisplay import Display
-from index import IndexManager
+from index import IndexManager, IndexInfo
+from typing import Dict
+
+def init() -> tuple[Dict[str, IndexInfo], Display]:
+    old_index = IndexManager.get_index()
+    IndexManager.init_firebase()
+    display = Display(visible=0, size=(1920, 1080))
+    display.start()
+    return old_index, display
 
 
 def main():
-    display = Display(visible=0, size=(1920, 1080))
-    display.start()
+    old_index, display = init()
     updateHDO()
     updateMicroG()
     updateYoutube()
@@ -19,8 +26,9 @@ def main():
     updateAeroTwitter()
     updateWhatsappAero()
     display.stop()
-    IndexManager.push_git()
-    IndexManager.push_firebase()
+    IndexManager.push_git(old_index)
+    IndexManager.push_firebase(old_index)
+    IndexManager.send_notifications(old_index)
 
 
 if __name__ == "__main__":

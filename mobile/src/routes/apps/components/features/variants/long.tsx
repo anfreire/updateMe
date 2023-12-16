@@ -21,6 +21,7 @@ const SingleLongFeature = ({
     <View
       style={{
         gap: 10,
+        maxWidth: '100%',
       }}>
       <View
         style={{
@@ -45,7 +46,7 @@ const SingleLongFeature = ({
             style={{
               textAlign: side === 'LEFT' ? 'left' : 'right',
               fontWeight: 'bold',
-              fontSize: 22,
+              fontSize: 20,
             }}>
             {title}
           </Text>

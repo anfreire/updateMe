@@ -1,4 +1,4 @@
-import {ScrollView} from 'react-native';
+import {ScrollView, Share} from 'react-native';
 import {ToolsScreenTypes} from '..';
 import {Icon, useTheme} from '@rneui/themed';
 import IListItem from '../../../common/listItem';
@@ -45,6 +45,20 @@ export default function ToolsMain({
         }}
       />
       <IListItem
+        title="Updates"
+        icon={
+          <Icon
+            size={40}
+            name="update"
+            type="material"
+            color={theme.colors.primary}
+          />
+        }
+        onPress={() => {
+          navigation.navigate('Tools-Updates' as never);
+        }}
+      />
+      <IListItem
         title="Report a problem"
         icon={
           <Icon
@@ -56,6 +70,24 @@ export default function ToolsMain({
         }
         onPress={() => {
           navigation.navigate('Tools-Report' as never);
+        }}
+      />
+      <IListItem
+        title="Share this app"
+        icon={
+          <Icon
+            size={40}
+            name="share"
+            type="material"
+            color={theme.colors.primary}
+          />
+        }
+        onPress={() => {
+          Share.share({
+            title: 'Update Me - Official Website',
+            message: 'https://updateme.tech',
+            url: 'https://updateme.tech',
+          });
         }}
       />
     </ScrollView>

@@ -13,10 +13,12 @@
     "restart": "npm run gnome-start; sleep 10 && npm run gnome-android"
   },
   "dependencies": {
+    "@notifee/react-native": "^7.8.2",
     "@react-native-async-storage/async-storage": "^1.21.0",
     "@react-native-firebase/app": "^18.7.3",
     "@react-native-firebase/database": "^18.7.3",
     "@react-native-firebase/firestore": "^18.7.3",
+    "@react-native-firebase/messaging": "^18.7.3",
     "@react-navigation/bottom-tabs": "^6.5.11",
     "@react-navigation/native": "^6.1.9",
     "@react-navigation/native-stack": "^6.9.17",

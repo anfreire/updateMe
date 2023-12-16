@@ -1,4 +1,10 @@
-import {Alert, View} from 'react-native';
+import {
+  Alert,
+  KeyboardAvoidingView,
+  ScrollView,
+  TextInput,
+  View,
+} from 'react-native';
 import {firebase} from '@react-native-firebase/database';
 
 import {useState} from 'react';
@@ -7,16 +13,89 @@ import GhostButton from '../../../../common/ghostButton';
 import ThemeModule from '../../../../modules/theme';
 import useStorage from '../../../../hooks/useStorage';
 import useRouteEffect from '../../../../hooks/useRouteEffect';
+import {SafeAreaView} from 'react-native-safe-area-context';
+
+const Field = ({
+  label,
+  value,
+  setValue,
+  error,
+  disabled,
+  numberOfLines = 1,
+}: {
+  label: string;
+  value: string;
+  setValue: (text: string) => void;
+  error: string;
+  disabled: boolean;
+  numberOfLines: number;
+}) => {
+  return (
+    <View
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
+        gap: 10,
+      }}>
+      <Text
+        style={{
+          fontSize: 20,
+        }}>
+        {label}
+      </Text>
+      <View
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center',
+          width: '100%',
+        }}>
+        <TextInput
+          editable={!disabled}
+          multiline={numberOfLines > 1}
+          numberOfLines={numberOfLines}
+          style={{
+            textAlignVertical: numberOfLines > 1 ? 'top' : 'center',
+            height: numberOfLines > 1 ? 120 : undefined,
+            padding: 10,
+            borderWidth: 1,
+            borderColor:
+              error.length === 0 ? ThemeModule.Colors.grey[2] : 'red',
+            borderRadius: 5,
+            width: '85%',
+          }}
+          value={value}
+          onChangeText={text => setValue(text)}
+        />
+      </View>
+      {error.length > 0 && (
+        <View
+          style={{
+            width: '85%',
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'flex-start',
+            alignItems: 'center',
+          }}>
+          <Text
+            style={{
+              color: 'red',
+            }}>
+            {error}
+          </Text>
+        </View>
+      )}
+    </View>
+  );
+};
 
 export default function ToolsReport() {
   const [value, setValue] = useStorage<Date>('report');
-  const newReference = firebase
-    .app()
-    .database(
-      'https://updateme-8f42b-default-rtdb.europe-west1.firebasedatabase.app/',
-    )
-    .ref('/reports')
-    .push();
+
   const [disabled, setDisabled] = useState(false);
   const [data, setData] = useState<{
     name: string;
@@ -58,21 +137,21 @@ export default function ToolsReport() {
 
   const submit = () => {
     var error = false;
-    if (data.name === '') {
+    if (data.name.trim() === '') {
       setErrors(prev => ({
         ...prev,
         name: 'Name is required',
       }));
       error = true;
     }
-    if (data.item === '') {
+    if (data.item.trim() === '') {
       setErrors(prev => ({
         ...prev,
         item: 'Problem location is required',
       }));
       error = true;
     }
-    if (data.description === '') {
+    if (data.description.trim() === '') {
       setErrors(prev => ({
         ...prev,
         description: 'Problem description is required',
@@ -83,7 +162,13 @@ export default function ToolsReport() {
       return;
     }
     setDisabled(true);
-    newReference
+    firebase
+      .app()
+      .database(
+        'https://updateme-8f42b-default-rtdb.europe-west1.firebasedatabase.app/',
+      )
+      .ref('/reports')
+      .push()
       .set({
         name: data.name,
         item: data.item,
@@ -95,109 +180,57 @@ export default function ToolsReport() {
           item: '',
           description: '',
         });
-        // set the values for today
         setValue(new Date());
         Alert.alert('Success', 'Your report has been submitted');
       });
   };
   return (
-    <View
-      style={{
-        flex: 1,
+    <ScrollView
+      contentContainerStyle={{
+        flexGrow: 1,
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
         padding: 10,
-        gap: 20,
+        gap: 50,
+      }}
+      style={{
+        flex: 1,
       }}>
-      <View
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          gap: 10,
-        }}>
-        <Text h4>What is your name?</Text>
-        <Input
-          disabled={disabled}
-          inputContainerStyle={{
-            borderWidth: 1,
-            borderColor: ThemeModule.Colors.grey[2],
-            borderRadius: 5,
-            width: '90%',
-            height: 50,
-          }}
-          value={data.name}
-          onChangeText={text => {
-            setData({...data, name: text.trim()});
-            setErrors({...errors, name: ''});
-          }}
-          errorMessage={errors.name}
-          errorStyle={{color: 'red'}}></Input>
-      </View>
-      <View
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          gap: 10,
-        }}>
-        <Text h4>Where is the problem?</Text>
-        <Input
-          disabled={disabled}
-          inputContainerStyle={{
-            borderWidth: 1,
-            borderColor: ThemeModule.Colors.grey[2],
-            borderRadius: 5,
-            width: '90%',
-            height: 50,
-          }}
-          value={data.item}
-          onChangeText={text => {
-            setData({...data, item: text.trim()});
-            setErrors({...errors, item: ''});
-          }}
-          errorMessage={errors.item}
-          errorStyle={{color: 'red'}}></Input>
-      </View>
-      <View
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          gap: 10,
-        }}>
-        <Text h4>What is the problem?</Text>
-        <Input
-          disabled={disabled}
-          inputContainerStyle={{
-            borderWidth: 1,
-            borderColor: ThemeModule.Colors.grey[2],
-            borderRadius: 5,
-            width: '90%',
-            height: 150,
-          }}
-          inputStyle={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'flex-start',
-            alignItems: 'flex-start',
-
-            textAlignVertical: 'top',
-            textAlign: 'left',
-          }}
-          value={data.description}
-          onChangeText={text => {
-            setData({...data, description: text.trim()});
-            setErrors({...errors, description: ''});
-          }}
-          errorMessage={errors.description}
-          errorStyle={{color: 'red'}}></Input>
-      </View>
+      <Field
+        label="What is your name?"
+        value={data.name}
+        setValue={text => {
+          setData({...data, name: text});
+          setErrors({...errors, name: ''});
+        }}
+        disabled={disabled}
+        numberOfLines={1}
+        error={errors.name}
+      />
+      <Field
+        label="Where is the problem?"
+        value={data.item}
+        setValue={text => {
+          setData({...data, item: text});
+          setErrors({...errors, item: ''});
+        }}
+        disabled={disabled}
+        numberOfLines={1}
+        error={errors.item}
+      />
+      <Field
+        label="What is the problem?"
+        value={data.description}
+        setValue={text => {
+          setData({...data, description: text});
+          setErrors({...errors, description: ''});
+        }}
+        disabled={disabled}
+        numberOfLines={4}
+        error={errors.description}
+      />
       <View style={{}}>
         <GhostButton
           disabled={disabled}
@@ -206,6 +239,6 @@ export default function ToolsReport() {
           onPress={submit}
         />
       </View>
-    </View>
+    </ScrollView>
   );
 }

@@ -1,27 +1,50 @@
 import React, {useEffect, useState} from 'react';
-import {RefreshControl, ScrollView, View} from 'react-native';
+import {
+  RefreshControl,
+  ScrollView,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native';
 import {CategoryKeys} from './categories/data';
 import CategoryListItem from './categories';
-import {SourceKeys, useSource} from '../../../../hooks/useSource';
+import {
+  SourceKeys,
+  SourceKeysType,
+  useSource,
+} from '../../../../hooks/useSource';
 import useRouteEffect from '../../../../hooks/useRouteEffect';
 import Frame from '../../../../common/frame';
 import {Icon, Text} from '@rneui/themed';
 import ThemeModule from '../../../../modules/theme';
+import {useNavigation} from '@react-navigation/native';
 
 export interface MainListProps {
   refreshing: boolean;
   onRefresh: () => void;
 }
 
+type updateType = {
+  title: string;
+  macro: string;
+};
+
+type RootStackParamList = {
+  Tools: undefined;
+  'Tools-Updates': undefined;
+  // add other screen names here
+};
+
 export const WarningUpdate = () => {
-  const [titles, setTitles] = useState<string[]>([]);
+  const navigation = useNavigation();
+  const [titles, setTitles] = useState<updateType[]>([]);
   const source = useSource()[0];
 
   const update = () => {
     setTitles([]);
     SourceKeys.forEach(key => {
       if (source[key].state === 'NOT_UPDATED') {
-        setTitles(prev => [...prev, source[key].title]);
+        setTitles(prev => [...prev, {title: source[key].title, macro: key}]);
       }
     });
   };
@@ -41,63 +64,71 @@ export const WarningUpdate = () => {
       style={{
         padding: 10,
       }}>
-      <Frame borderColor="YELLOW">
-        <View
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'flex-start',
-            gap: 20,
-            padding: 10,
-          }}>
+      <TouchableOpacity
+        activeOpacity={1}
+        onPress={() =>
+          navigation.navigate('Tools', {
+            screen: 'Tools-Updates',
+          })
+        }>
+        <Frame borderColor="YELLOW">
           <View
             style={{
               display: 'flex',
-              flexDirection: 'row',
+              flexDirection: 'column',
               alignItems: 'center',
               justifyContent: 'flex-start',
-              gap: 10,
+              gap: 20,
+              padding: 10,
             }}>
-            <Icon
-              name="warning"
-              type="material"
-              color={ThemeModule.Colors.yellow.opaque}
-              size={25}
-            />
-            <Text
+            <View
               style={{
-                fontWeight: 'bold',
-                fontSize: 18,
-                color: ThemeModule.Colors.yellow.opaque,
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'flex-start',
+                gap: 10,
               }}>
-              Updates available
-            </Text>
-          </View>
-          <View
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'flex-start',
-              justifyContent: 'flex-start',
-              gap: 10,
-            }}>
-            {titles.map(title => (
+              <Icon
+                name="warning"
+                type="material"
+                color={ThemeModule.Colors.yellow.opaque}
+                size={25}
+              />
               <Text
                 style={{
                   fontWeight: 'bold',
                   fontSize: 18,
-                  padding: 7,
-                  backgroundColor: ThemeModule.Colors.grey[2],
-                  borderRadius: 5,
-                }}
-                key={title}>
-                {title}
+                  color: ThemeModule.Colors.yellow.opaque,
+                }}>
+                Updates available
               </Text>
-            ))}
+            </View>
+            <View
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'flex-start',
+                justifyContent: 'flex-start',
+                gap: 10,
+              }}>
+              {titles.map(app => (
+                <Text
+                  style={{
+                    fontWeight: 'bold',
+                    fontSize: 18,
+                    padding: 7,
+                    backgroundColor: ThemeModule.Colors.grey[2],
+                    borderRadius: 5,
+                  }}
+                  key={app.title}>
+                  {app.title}
+                </Text>
+              ))}
+            </View>
           </View>
-        </View>
-      </Frame>
+        </Frame>
+      </TouchableOpacity>
     </View>
   ) : null;
 };
