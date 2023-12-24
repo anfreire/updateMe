@@ -29,6 +29,7 @@ def main():
     IndexManager.push_git(old_index)
     IndexManager.push_firebase(old_index)
     IndexManager.send_notifications(old_index)
+    IndexManager.get_reports()
 
 
 if __name__ == "__main__":

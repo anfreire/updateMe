@@ -91,9 +91,34 @@ def updateSpotify():
 
 
 def updateCapcut():
-    link = "https://capcutapk.io/dl"
+    link = "https://thecapcut.pro/#download-cta-top"
+    _as = dict()
+    driver = WebScrapper()
+    driver.open_link(link)
+    time.sleep(2)
+    elements = driver.driver.find_elements(By.XPATH, "//a[@href]")
+    for element in elements:
+        if element.get_attribute("href") and element.get_attribute("href").endswith(
+            ".apk"
+        ):
+            _as[element.get_attribute("href")] = None
+    pattern = r"-([\d\.]+)"
+    for a in _as.keys():
+        match = re.search(pattern, a)
+        if match:
+            _as[a] = match.group(1)
+        else:
+            _as[a] = None
+    highest = None
+    for a in _as.keys():
+        if _as[a] is None:
+            continue
+        if highest is None:
+            highest = a
+        elif _as[a] > _as[highest]:
+            highest = a
     try:
-        AppBase(MACROS.CAPCUT, link)
+        AppBase(MACROS.CAPCUT, highest)
     except Exception as e:
         print(e)
         return

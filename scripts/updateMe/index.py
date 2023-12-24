@@ -3,12 +3,13 @@ import json
 import datetime
 import firebase_admin
 from typing import Dict
-from structs import IndexInfo
+from structs import IndexInfo, Reports
 from constants import GLOBAL, COLORS
 from firebase_admin import firestore
 from firebase_admin import credentials
 from firebase_admin import messaging
 from firebase_admin import db
+import configparser
 
 
 class IndexManager:
@@ -44,7 +45,7 @@ class IndexManager:
             index_dict[macro] = index.toDict
         with open(GLOBAL.INDEX_PATH, "w") as index_file:
             json.dump(index_dict, index_file, indent=4)
-            
+
     @classmethod
     def did_update(cls, old_index: Dict[str, IndexInfo]) -> bool:
         index = IndexManager.get_index()
@@ -112,10 +113,7 @@ class IndexManager:
                 f"[  {COLORS.GREEN}OK  {COLORS.RESET}] No need to send notifications, no updates"
             )
             return
-        DATABASE_REFRENCE = (
-            "https://updateme-8f42b-default-rtdb.europe-west1.firebasedatabase.app/"
-        )
-        ref = db.reference(url=DATABASE_REFRENCE)
+        ref = db.reference(url=GLOBAL.DATABASE_REFERRENCE)
         tokens = ref.get()["devices"].keys()
         for token in tokens:
             try:
@@ -128,9 +126,37 @@ class IndexManager:
                 )
                 messaging.send(message)
                 print(
-                    f"[  {COLORS.GREEN}OK  {COLORS.RESET}] Sent notification to {token}"
+                    f"[  {COLORS.GREEN}OK  {COLORS.RESET}] Sent notification to {token[0:5]}...{token[-5:]}"
                 )
             except Exception:
                 print(
-                    f"[ {COLORS.RED}FAIL {COLORS.RESET}] Failed to send notification to {token}"
+                    f"[ {COLORS.RED}FAIL {COLORS.RESET}] Failed to send notification to {token[0:5]}...{token[-5:]}"
                 )
+
+    def get_reports() -> None:
+        reports_path = GLOBAL.ARCHIVE_DIR + "/reports.ini"
+        config = configparser.ConfigParser()
+        ref = db.reference(url=GLOBAL.DATABASE_REFERRENCE)
+        try:
+            tokens = ref.get()["reports"]
+            new_reports = []
+            for token in tokens:
+                if token not in config.sections():
+                    new_report = Reports(
+                        key=token,
+                        author_name=tokens[token]["name"],
+                        item_reported=tokens[token]["item"],
+                        description=tokens[token]["description"],
+                    )
+                    new_reports.append(new_report)
+                    ref.child("reports").child(token).delete()
+            for report in new_reports:
+                config[report.key] = report.toDict
+            with open(reports_path, "w") as configfile:
+                config.write(configfile)
+            print(
+                f"[  {COLORS.GREEN}OK  {COLORS.RESET}] Got {len(new_reports)} new reports"
+            )
+        except Exception:
+            print(f"[  {COLORS.GREEN}OK{COLORS.RESET}  ] No new reports")
+            return

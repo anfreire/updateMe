@@ -12,7 +12,7 @@ from bs4.element import ResultSet
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 import os
-import json
+import urllib
 import requests
 import re
 
@@ -29,9 +29,17 @@ class AppBase:
         self.update_index(apkInfo)
 
     def get_apk(self, url: str) -> APKInfo:
-        r = requests.get(url)
+        r = requests.get(url, timeout=10)
+        alt = None
+        if r.status_code != 200:
+            print(f"[ {COLORS.YELLOW}WARN {COLORS.RESET}] request.get failed. Trying with urllib")
+            r = None
+            alt = urllib.urlopen(url)        
         with open(GLOBAL.CURR_APP, "wb") as apk:
-            apk.write(r.content)
+            if r:
+                apk.write(r.content)
+            elif alt:
+                apk.write(alt.read())
         apk = APK(GLOBAL.CURR_APP)
         os.remove(GLOBAL.CURR_APP)
         if apk.package != self.index.packageName:
@@ -57,17 +65,20 @@ class AppBase:
 
 class WebScrapper:
     def __init__(self):
-        self.__driver = self.get_driver()
-
-    @property
-    def driver(self) -> webdriver.Chrome:
-        return self.__driver
+        self.getExtensionFolder()
+        self.driver = self.get_driver()
+    
+    def getExtensionFolder(self) -> None:
+        folder = r"/home/anfreire/.config/chromium/Default/Extensions"
+        available_dirs0 = os.listdir(folder)
+        available_dirs1 = os.listdir(f"{folder}/{available_dirs0[0]}")
+        self.extension = rf"{folder}/{available_dirs0[0]}/{available_dirs1[0]}"
+        # print(self.extension)
 
     def get_driver(self) -> None:
-        extension =  r"/home/anfreire/Documents/Projects/Android/updateMe/scripts/updateMe/extensions/1.54.0_0"
         options = Options()
         options.headless = True
-        options.add_argument("load-extension=" + extension)
+        options.add_argument("load-extension=" + self.extension)
         driver = webdriver.Chrome(options=options)
         return driver
 

@@ -31,3 +31,18 @@ class IndexInfo:
             "version": self.version,
             "link": self.link,
         }
+
+@dataclass
+class Reports:
+    key: str
+    author_name: str
+    item_reported: str
+    description: str
+    
+    @property
+    def toDict(self):
+        return {
+            "author_name": self.author_name,
+            "item_reported": self.item_reported,
+            "description": self.description,
+        }

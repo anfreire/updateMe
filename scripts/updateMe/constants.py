@@ -1,8 +1,11 @@
 class GLOBAL:
-    ARCHIVE_DIR = "/home/anfreire/Documents/Projects/Android/updateMe/scripts"
+    ARCHIVE_DIR = "/home/anfreire/Documents/Projects/Personal/updateMe/scripts"
     INDEX_PATH = ARCHIVE_DIR + "/index.json"
     ENV_PATH = ARCHIVE_DIR + "/env.json"
     CURR_APP = ARCHIVE_DIR + "/app.apk"
+    DATABASE_REFERRENCE = (
+        "https://updateme-8f42b-default-rtdb.europe-west1.firebasedatabase.app/"
+    )
 
 
 class COLORS:
@@ -44,6 +47,7 @@ class MACROS:
             cls.INSHOT,
             cls.PHOTOSHOP_EXPRESS,
         ]
+
 
 GITHUB_DATA = {
     MACROS.YOUTUBE_MICROG: {"user": "TeamVanced", "repo": "VancedMicroG"},
