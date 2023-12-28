@@ -35,25 +35,25 @@ export default function Command({ command }: CommandProps) {
 
   return (
     <div className="flex w-full max-w-fit flex-row items-center justify-between gap-1 rounded-md bg-gray-1/3 p-2">
-            <p className="hide-scrollbar w-full overflow-x-scroll whitespace-nowrap font-mono text-base text-current">
-              {command}
-            </p>
-<Tooltip
+      <p className="hide-scrollbar w-full overflow-x-scroll whitespace-nowrap font-mono text-base text-current">
+        {command}
+      </p>
+      <Tooltip
         content="Copied!"
         color="success"
         placement="left"
         size="md"
         isOpen={copied === 1}
       >
-            {React.createElement(ClipboardIcon[copied].component, {
-              onClick: copyToClipboard,
-              stroke: "currentColor",
-              size: 24,
-              className:
-                ClipboardIcon[copied].className +
-                " size-6 cursor-pointer transition-transform duration-300 hover:scale-105 active:scale-95",
-            })}
-                </Tooltip>
+        {React.createElement(ClipboardIcon[copied].component, {
+          onClick: copyToClipboard,
+          stroke: "currentColor",
+          size: 24,
+          className:
+            ClipboardIcon[copied].className +
+            " size-6 cursor-pointer transition-transform duration-300 hover:scale-105 active:scale-95",
+        })}
+      </Tooltip>
     </div>
   );
 }

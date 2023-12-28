@@ -1,27 +1,10 @@
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
-import { useEffect, useState } from "react";
-import { Play, Pause, ArrowRight, ArrowLeft } from "lucide-react";
-import { Container, Provider, Slide } from "./components";
-import { MovieProps, MoviesType } from "../..";
+import React, { Suspense, useEffect, useState } from "react";
 import "@/src/index.css";
+import { moviesData } from "../../data";
 
-function SingleMovie({ name, movie }: { name: string; movie: MovieProps }) {
-  return (
-    <Slide>
-      <a
-        href={movie.link}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="break-words p-8 text-center text-7xl active:scale-95 font-bold transition-all duration-300 hover:scale-110 hover:cursor-pointer hover:text-primary md:text-8xl lg:text-9xl"
-      >
-        {name}
-      </a>
-    </Slide>
-  );
-}
-
-export default function Carousel({ movies }: { movies: MoviesType }) {
+export default function Carousel() {
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { loop: true, align: "center" },
     [
@@ -30,6 +13,8 @@ export default function Carousel({ movies }: { movies: MoviesType }) {
       }),
     ],
   );
+  const DynamicControllers = React.lazy(() => import("./controllers"));
+  const DynamicSingleMovie = React.lazy(() => import("./singleMovie"));
 
   const [play, setPlay] = useState(true);
 
@@ -53,29 +38,19 @@ export default function Carousel({ movies }: { movies: MoviesType }) {
       : emblaApi && (emblaApi as any).plugins().autoplay.play();
 
   return (
-    <div className="flex h-full w-full flex-col items-center justify-center gap-10">
-      <Provider ref={emblaRef}>
-        <Container>
-          {Object.keys(movies).map((name) => (
-            <SingleMovie key={name} name={name} movie={movies[name]} />
+    <div className="flex h-screen-no-navbar w-full flex-col items-center justify-center gap-10">
+      <div ref={emblaRef} className="w-full overflow-hidden">
+        <div className="flex w-full">
+          {Object.keys(moviesData).map((name) => (
+            <Suspense>
+              <DynamicSingleMovie key={name} name={name} />
+            </Suspense>
           ))}
-        </Container>
-      </Provider>
-      <div className="flex w-full flex-row items-center justify-between px-12">
-        <ArrowLeft
-          className=" size-10 cursor-pointer"
-          onClick={() => emblaApi && emblaApi.scrollPrev()}
-        />
-        {play ? (
-          <Pause className=" size-10 cursor-pointer" onClick={toggle} />
-        ) : (
-          <Play className=" size-10 cursor-pointer" onClick={toggle} />
-        )}
-        <ArrowRight
-          className=" size-10 cursor-pointer"
-          onClick={() => emblaApi && emblaApi.scrollNext()}
-        />
+        </div>
       </div>
+      <Suspense>
+        <DynamicControllers play={play} toggle={toggle} emblaApi={emblaApi} />
+      </Suspense>
     </div>
   );
 }

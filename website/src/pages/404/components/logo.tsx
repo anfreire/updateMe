@@ -1,6 +1,5 @@
 import { Transition, Variants, motion } from "framer-motion";
-import useColorScheme from "../../../hooks/useColorScheme";
-
+import { useTheme } from "next-themes";
 const variants: (colorScheme: "light" | "dark") => Variants = (colorScheme) => {
   return {
     hidden: {
@@ -25,7 +24,7 @@ const transition: Transition = {
 };
 
 const NotFoundSVG = () => {
-  const colorScheme = useColorScheme();
+  const colorScheme = useTheme().theme === "light" ? "light" : "dark";
   return (
     <motion.svg
       initial="hidden"

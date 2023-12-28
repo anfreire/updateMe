@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+
 const letters = ["U", "p", "d", "a", "t", "e", "\u00A0", "M", "e"];
 
 export default function NavBarLogo() {
