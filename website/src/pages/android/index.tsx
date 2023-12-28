@@ -1,5 +1,9 @@
 import { useRef } from "react";
-import { Image0, Image1 } from "./components/images";
+import { PhoneImage } from "./components/images/phone";
+import Container from "./components/container";
+import Title from "./components/title";
+import Details from "./components/details";
+import { Button } from "@nextui-org/react";
 
 export default function Android() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -9,21 +13,26 @@ export default function Android() {
       ref={containerRef}
       className="flex h-full w-full flex-col items-center overflow-y-auto overflow-x-hidden"
     >
-      <div className="flex w-full flex-col items-center">
-        <div className="flex h-[calc(100dvh-100px)] w-full flex-col items-center justify-center gap-2">
-          <h1 className="text-center text-8xl font-light">ONE</h1>
-          <h1 className="text-center text-8xl font-light">APP</h1>
-        </div>
-        <Image0 containerRef={containerRef} />
-        <div className="flex h-[calc(100dvh-100px)] w-full flex-col items-center justify-center gap-2">
-          <h1 className="text-center text-7xl animate-pulse">ALL</h1>
-          <h1 className="text-center text-7xl animate-pulse">UPDATES</h1>
-        </div>
+      <Container
+        size="1/2"
+        className="mb-[15vh] min-h-[max(50dvh,15rem)] flex w-full flex-col justify-end overflow-hidden"
+      >
+        <Title />
+      </Container>
+      <PhoneImage containerRef={containerRef} />
+      <Details />
+      <div className="mb-[20dvh] flex min-h-[260px] w-full flex-col items-center justify-center">
+        <Button
+          onClick={() => {
+            window.open("https://anfreire.github.io/updateMe/updateMe.apk");
+          }}
+          size="lg"
+          className=" py-8 text-4xl"
+          variant="bordered"
+        >
+          Download
+        </Button>
       </div>
-
-      <div className=" my-[100dvh]"></div>
-      <Image1 containerRef={containerRef} />
-      <div className=" my-[100dvh]"></div>
     </div>
   );
 }

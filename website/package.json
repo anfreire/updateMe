@@ -12,8 +12,8 @@
   },
   "dependencies": {
     "@nextui-org/react": "^2.2.9",
-    "@nextui-org/system": "^2.0.15",
-    "@nextui-org/theme": "^2.1.17",
+    "embla-carousel-autoplay": "8.0.0-rc17",
+    "embla-carousel-react": "8.0.0-rc17",
     "framer-motion": "^10.16.16",
     "localforage": "^1.10.0",
     "lucide-react": "^0.299.0",
@@ -25,9 +25,11 @@
     "react-icons": "^4.12.0",
     "react-router-dom": "^6.21.0",
     "recoil": "^0.7.7",
-    "sort-by": "^1.2.0"
+    "sort-by": "^1.2.0",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
+    "@types/node": "^20.10.5",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
     "@typescript-eslint/eslint-plugin": "^6.14.0",
@@ -39,6 +41,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
     "postcss": "^8.4.32",
+    "postcss-nesting": "^12.0.2",
     "tailwindcss": "^3.4.0",
     "typescript": "^5.2.2",
     "vite": "^5.0.8"

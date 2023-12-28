@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
-import { useColorScheme } from "./hooks/useColorScheme";
+import useColorScheme from "./hooks/useColorScheme";
 import NavBar from "./layout/navbar";
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useEffect } from "react";
 
 const DynamicRoutes = () => {
   const Home = lazy(() => import("./pages/home"));
@@ -24,8 +24,13 @@ const DynamicRoutes = () => {
 };
 
 export default function App() {
-  const { colorScheme } = useColorScheme();
+  const colorScheme = useColorScheme();
   const Dynamic = DynamicRoutes();
+
+  useEffect(() => {
+    colorScheme === "dark" && document.documentElement.classList.add("dark");
+  }, [colorScheme]);
+
   return (
     <div
       className={`h-[100dvh] w-[100dvw] overflow-hidden bg-background text-foreground ${

@@ -1,5 +1,5 @@
 import { Transition, Variants, motion } from "framer-motion";
-import { useColorScheme } from "../../../hooks/useColorScheme";
+import useColorScheme from "../../../hooks/useColorScheme";
 
 const variants: (colorScheme: "light" | "dark") => Variants = (colorScheme) => {
   return {
@@ -25,7 +25,7 @@ const transition: Transition = {
 };
 
 const NotFoundSVG = () => {
-  const { colorScheme } = useColorScheme();
+  const colorScheme = useColorScheme();
   return (
     <motion.svg
       initial="hidden"
@@ -50,7 +50,7 @@ const NotFoundSVG = () => {
       />
       <motion.path
         variants={variants(colorScheme)}
-        transition={{...transition, duration: duration + 0.5}}
+        transition={{ ...transition, duration: duration + 0.5 }}
         className="stroke-current"
         d="m 227.664,189.997 h -160 v 16 h 94 v 12 c 0,16.708 12.651,30.546 28.779,32.699 1.436,0.192 2.983,0.301 4.471,0.301 15.493,0 28.395,-10.734 31.925,-25.155 0.616,-2.517 0.825,-5.142 0.825,-7.845 z m -50,16 h 34 v 12 c 0,9.374 -7.626,17 -17,17 -9.374,0 -17,-7.626 -17,-17 z"
         id="path2"

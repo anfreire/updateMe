@@ -7,7 +7,7 @@ export default function NotFound() {
   const [textIndex, setTextIndex] = useState(0);
 
   useEffect(() => {
-    var interval: number | undefined = undefined;
+    var interval: NodeJS.Timeout | undefined = undefined;
     interval = setInterval(() => {
       if (textIndex === text.length) {
         clearInterval(interval);
