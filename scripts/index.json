@@ -18,14 +18,14 @@
         "packageName": "app.revanced.android.youtube",
         "url": "https://github.com/j-hc/revanced-magisk-module",
         "version": "18.45.43",
-        "link": "https://github.com//j-hc/revanced-magisk-module/releases/download/20220918/youtube-revanced-v18.45.43-all.apk"
+        "link": "https://github.com//j-hc/revanced-magisk-module/releases/download/20220923/youtube-revanced-v18.45.43-all.apk"
     },
     "YOUTUBE_MUSIC": {
         "title": "YouTube Music",
         "packageName": "app.revanced.android.apps.youtube.music",
         "url": "https://github.com/j-hc/revanced-magisk-module",
-        "version": "6.28.52",
-        "link": "https://github.com//j-hc/revanced-magisk-module/releases/download/20220918/music-revanced-v6.28.52-arm64-v8a.apk"
+        "version": "6.31.55",
+        "link": "https://github.com//j-hc/revanced-magisk-module/releases/download/20220923/music-revanced-v6.31.55-arm64-v8a.apk"
     },
     "SPOTIFY": {
         "title": "Spotify",
@@ -52,8 +52,8 @@
         "title": "CapCut",
         "packageName": "com.lemon.lvoverseas",
         "url": "https://capcutapk.io/",
-        "version": "10.5.0",
-        "link": "https://files.modyolo.com/CapCut/CapCut_v10.5.0_v10500300_Pro.apk"
+        "version": "10.6.0",
+        "link": "https://files.modyolo.com/CapCut/CapCut_v10.6.0_Pro.apk"
     },
     "PHOTO_EDITOR_PRO": {
         "title": "Photo Editor Pro",

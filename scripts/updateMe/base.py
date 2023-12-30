@@ -2,8 +2,11 @@ from constants import COLORS, GLOBAL, MACROS
 from structs import APKInfo
 from typing import List
 from index import IndexManager
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.remote.webelement import WebElement
 from selenium import webdriver
+import undetected_chromedriver as uc
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from pyaxmlparser import APK
@@ -12,6 +15,7 @@ from bs4.element import ResultSet
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 import os
+import time
 import urllib
 import requests
 import re
@@ -32,9 +36,11 @@ class AppBase:
         r = requests.get(url, timeout=10)
         alt = None
         if r.status_code != 200:
-            print(f"[ {COLORS.YELLOW}WARN {COLORS.RESET}] request.get failed. Trying with urllib")
+            print(
+                f"[ {COLORS.YELLOW}WARN {COLORS.RESET}] request.get failed. Trying with urllib"
+            )
             r = None
-            alt = urllib.urlopen(url)        
+            alt = urllib.urlopen(url)
         with open(GLOBAL.CURR_APP, "wb") as apk:
             if r:
                 apk.write(r.content)
@@ -67,19 +73,20 @@ class WebScrapper:
     def __init__(self):
         self.getExtensionFolder()
         self.driver = self.get_driver()
-    
+
     def getExtensionFolder(self) -> None:
         folder = r"/home/anfreire/.config/chromium/Default/Extensions"
         available_dirs0 = os.listdir(folder)
         available_dirs1 = os.listdir(f"{folder}/{available_dirs0[0]}")
         self.extension = rf"{folder}/{available_dirs0[0]}/{available_dirs1[0]}"
-        # print(self.extension)
 
     def get_driver(self) -> None:
         options = Options()
-        options.headless = True
+        options.headless = False
         options.add_argument("load-extension=" + self.extension)
-        driver = webdriver.Chrome(options=options)
+        options.add_argument("user-data-dir=/home/anfreire/.config/chromium/Profile 2")
+        options.add_argument("--disable-blink-features=AutomationControlled")
+        driver = uc.Chrome(options=options)
         return driver
 
     def open_link(self, link: str) -> None:
@@ -90,6 +97,48 @@ class WebScrapper:
 
     def get_tags(self, tag: str) -> List[WebElement]:
         return self.driver.find_elements(By.XPATH, f"//{tag}")
+
+    def check_cloudfare(self) -> bool:
+        try:
+            self.driver.find_element(
+                By.XPATH,
+                "//iframe[@title='Widget containing a Cloudflare security challenge']",
+            )
+            return True
+        except:
+            return False
+
+    def bypass_cloudfare_css(self):
+        time.sleep(5)
+        WebDriverWait(self.driver, 20).until(
+            EC.frame_to_be_available_and_switch_to_it(
+                (
+                    By.CSS_SELECTOR,
+                    "iframe[title='Widget containing a Cloudflare security challenge']",
+                )
+            )
+        )
+        WebDriverWait(self.driver, 20).until(
+            EC.element_to_be_clickable((By.CSS_SELECTOR, "label.ctp-checkbox-label"))
+        ).click()
+        time.sleep(5)
+
+    def bypass_cloudfare_xpath(self):
+        time.sleep(5)
+        WebDriverWait(self.driver, 20).until(
+            EC.frame_to_be_available_and_switch_to_it(
+                (
+                    By.XPATH,
+                    "//iframe[@title='Widget containing a Cloudflare security challenge']",
+                )
+            )
+        )
+        WebDriverWait(self.driver, 20).until(
+            EC.element_to_be_clickable(
+                (By.XPATH, "//label[@class='ctp-checkbox-label']")
+            )
+        ).click()
+        time.sleep(5)
 
 
 class GithubScrapping:

@@ -66,7 +66,9 @@ class IndexManager:
             print(
                 f"[  {COLORS.GREEN}OK  {COLORS.RESET}] No need to push to GitHub, no updates"
             )
-            return
+            answer = input(f"Do you want to push anyway? [Y/n]")
+            if answer.lower() != "y":
+                return
         os.chdir(GLOBAL.ARCHIVE_DIR)
         os.system("git add index.json")
         now = datetime.datetime.now()
@@ -89,7 +91,9 @@ class IndexManager:
             print(
                 f"[  {COLORS.GREEN}OK  {COLORS.RESET}] No need to push to Firebase, no updates"
             )
-            return
+            answer = input(f"Do you want to push anyway? [Y/n]")
+            if answer.lower() != "y":
+                return
         for macro in index.keys():
             doc_ref = db.collection("apps").document(macro)
             doc_ref.set(index[macro].toDict)
