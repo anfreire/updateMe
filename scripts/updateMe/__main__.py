@@ -61,23 +61,10 @@ def update_all():
         updateApp(macro, func)
 
 
-def update_single():
-    print("Available apps:")
-    for index, macro in enumerate(updates_map.keys()):
-        print(f"{index}: {macro}")
-    index = int(input("Select app: "))
-    macro = list(updates_map.keys())[index]
-    func = updates_map[macro]
-    updateApp(macro, func)
-
-
 def main():
     old_index = init()
-    answer = input(f"Do you want to update all apps? [Y/n]")
-    if answer.lower() != "y":
-        update_single()
-    else:
-        update_all()
+    for macro, func in updates_map.items():
+        updateApp(macro, func)
     IndexManager.push_git(old_index)
     IndexManager.push_firebase(old_index)
     IndexManager.send_notifications(old_index)

@@ -98,48 +98,6 @@ class WebScrapper:
     def get_tags(self, tag: str) -> List[WebElement]:
         return self.driver.find_elements(By.XPATH, f"//{tag}")
 
-    def check_cloudfare(self) -> bool:
-        try:
-            self.driver.find_element(
-                By.XPATH,
-                "//iframe[@title='Widget containing a Cloudflare security challenge']",
-            )
-            return True
-        except:
-            return False
-
-    def bypass_cloudfare_css(self):
-        time.sleep(5)
-        WebDriverWait(self.driver, 20).until(
-            EC.frame_to_be_available_and_switch_to_it(
-                (
-                    By.CSS_SELECTOR,
-                    "iframe[title='Widget containing a Cloudflare security challenge']",
-                )
-            )
-        )
-        WebDriverWait(self.driver, 20).until(
-            EC.element_to_be_clickable((By.CSS_SELECTOR, "label.ctp-checkbox-label"))
-        ).click()
-        time.sleep(5)
-
-    def bypass_cloudfare_xpath(self):
-        time.sleep(5)
-        WebDriverWait(self.driver, 20).until(
-            EC.frame_to_be_available_and_switch_to_it(
-                (
-                    By.XPATH,
-                    "//iframe[@title='Widget containing a Cloudflare security challenge']",
-                )
-            )
-        )
-        WebDriverWait(self.driver, 20).until(
-            EC.element_to_be_clickable(
-                (By.XPATH, "//label[@class='ctp-checkbox-label']")
-            )
-        ).click()
-        time.sleep(5)
-
 
 class GithubScrapping:
     def __init__(self, user: str, repo: str):
