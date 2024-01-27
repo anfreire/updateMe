@@ -24,15 +24,15 @@
         "title": "YouTube Music",
         "packageName": "app.revanced.android.apps.youtube.music",
         "url": "https://github.com/j-hc/revanced-magisk-module",
-        "version": "6.31.55",
-        "link": "https://github.com//j-hc/revanced-magisk-module/releases/download/20220923/music-revanced-v6.31.55-arm64-v8a.apk"
+        "version": "6.36.54",
+        "link": "https://github.com//j-hc/revanced-magisk-module/releases/download/20220928/music-revanced-v6.36.54-arm64-v8a.apk"
     },
     "SPOTIFY": {
         "title": "Spotify",
         "packageName": "com.spotify.music",
         "url": "https://spotigeek.com/",
-        "version": "8.9.6.458",
-        "link": "https://spotigeek.com/wp-content/uploads/APK/Spotify%20v8.9.6.458%20(SpotiGeek.com).apk"
+        "version": "8.9.8.545",
+        "link": "https://spotigeek.com/wp-content/uploads/APK/Spotify%20v8.9.8.545%20(SpotiGeek.com).apk"
     },
     "INSTAGRAM": {
         "title": "Instagram",
@@ -52,8 +52,8 @@
         "title": "CapCut",
         "packageName": "com.lemon.lvoverseas",
         "url": "https://capcutapk.io/",
-        "version": "10.8.0",
-        "link": "https://files.modyolo.com/CapCut/CapCut_10.8.0_b10800200_App_z.apk"
+        "version": "10.8.2",
+        "link": "https://files.modyolo.com/CapCut/CapCut_v10.8.2_28Pro29.apk"
     },
     "PHOTO_EDITOR_PRO": {
         "title": "Photo Editor Pro",
@@ -66,14 +66,14 @@
         "title": "Photoshop Express",
         "packageName": "com.adobe.psmobile",
         "url": "https://modyolo.com/photoshop-express-photo-editor.html",
-        "version": "12.3.268",
-        "link": "https://files.modyolo.com/Photoshop%20Express%20Photo%20Editor/Adobe_Photoshop_Express-Premium-v12.3.268_build_1582-Mod.apk"
+        "version": "12.4.277",
+        "link": "https://files.modyolo.com/Photoshop%20Express%20Photo%20Editor/Adobe_Photoshop_Express-Premium-v12.4.277_build_1584-Mod.apk"
     },
     "INSHOT": {
         "title": "InShot",
         "packageName": "com.camerasideas.instashot",
         "url": "https://inshotpro.app/pro-mod",
-        "version": "2.001.1432",
+        "version": "2.010.1433",
         "link": "https://inshotpro.app/dl"
     },
     "TWITTER": {
