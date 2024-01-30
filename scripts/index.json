@@ -17,15 +17,15 @@
         "title": "YouTube",
         "packageName": "app.revanced.android.youtube",
         "url": "https://github.com/j-hc/revanced-magisk-module",
-        "version": "18.45.43",
-        "link": "https://github.com//j-hc/revanced-magisk-module/releases/download/20220923/youtube-revanced-v18.45.43-all.apk"
+        "version": "19.03.35",
+        "link": "https://github.com//j-hc/revanced-magisk-module/releases/download/20220929/youtube-revanced-v19.03.35-all.apk"
     },
     "YOUTUBE_MUSIC": {
         "title": "YouTube Music",
         "packageName": "app.revanced.android.apps.youtube.music",
         "url": "https://github.com/j-hc/revanced-magisk-module",
         "version": "6.36.54",
-        "link": "https://github.com//j-hc/revanced-magisk-module/releases/download/20220928/music-revanced-v6.36.54-arm64-v8a.apk"
+        "link": "https://github.com//j-hc/revanced-magisk-module/releases/download/20220929/music-revanced-v6.36.54-arm64-v8a.apk"
     },
     "SPOTIFY": {
         "title": "Spotify",
@@ -59,8 +59,8 @@
         "title": "Photo Editor Pro",
         "packageName": "photo.editor.photoeditor.photoeditorpro",
         "url": "https://modyolo.com/polish-photo-editor-pro.html",
-        "version": "1.502.162",
-        "link": "https://files.modyolo.com/Polish%20Photo%20Editor%20Pro/Photo_Editor_Pro_-_Polish_v1.502.162_modded_by_mixroot.apk"
+        "version": "1.51.163",
+        "link": "https://files.modyolo.com/Polish%20Photo%20Editor%20Pro/Photo_Editor_Pro_-_Polish_v1.51.163_modded_by_Mixroot.apk"
     },
     "PHOTOSHOP_EXPRESS": {
         "title": "Photoshop Express",
