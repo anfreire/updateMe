@@ -18,21 +18,21 @@
         "packageName": "app.revanced.android.youtube",
         "url": "https://github.com/j-hc/revanced-magisk-module",
         "version": "19.04.37",
-        "link": "https://github.com//j-hc/revanced-magisk-module/releases/download/20220930/youtube-revanced-v19.04.37-all.apk"
+        "link": "https://github.com//j-hc/revanced-magisk-module/releases/download/20220931/youtube-revanced-v19.04.37-all.apk"
     },
     "YOUTUBE_MUSIC": {
         "title": "YouTube Music",
         "packageName": "app.revanced.android.apps.youtube.music",
         "url": "https://github.com/j-hc/revanced-magisk-module",
         "version": "6.37.50",
-        "link": "https://github.com//j-hc/revanced-magisk-module/releases/download/20220930/music-revanced-v6.37.50-arm64-v8a.apk"
+        "link": "https://github.com//j-hc/revanced-magisk-module/releases/download/20220931/music-revanced-v6.37.50-arm64-v8a.apk"
     },
     "SPOTIFY": {
         "title": "Spotify",
         "packageName": "com.spotify.music",
         "url": "https://spotigeek.com/",
         "version": "8.10.9.722",
-        "link": "https://spotigeek.com/wp-content/uploads/APK/Spotify%20v8.10.9.722%20(SpotiGeek.com).apk"
+        "link": "https://spotigeek.com/wp-content/uploads/APK/Spotify%20v8.10.9.722%20(Premium)%20Fix.apk"
     },
     "INSTAGRAM": {
         "title": "Instagram",
@@ -53,7 +53,7 @@
         "packageName": "com.lemon.lvoverseas",
         "url": "https://capcutapk.io/",
         "version": "11.0.0",
-        "link": "https://files.modyolo.com/CapCut/CapCut_v11.0.0_28Pro29.apk"
+        "link": "https://files.modyolo.com/CapCut/CapCut_v11.0.0_b11001600_modded_by_Mixroot.apk"
     },
     "PHOTO_EDITOR_PRO": {
         "title": "Photo Editor Pro",
@@ -66,8 +66,8 @@
         "title": "Photoshop Express",
         "packageName": "com.adobe.psmobile",
         "url": "https://modyolo.com/photoshop-express-photo-editor.html",
-        "version": "12.5.284",
-        "link": "https://files.modyolo.com/Photoshop%20Express%20Photo%20Editor/Adobe_Photoshop_Express-Premium-v12.5.284_build_1593-Mod.apk"
+        "version": "12.6.296",
+        "link": "https://files.modyolo.com/Photoshop%20Express%20Photo%20Editor/Adobe_Photoshop_Express-Premium-v12.6.296_build_1607-Mod.apk"
     },
     "INSHOT": {
         "title": "InShot",
