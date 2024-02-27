@@ -3,7 +3,7 @@
         "title": "HDO Box",
         "packageName": "com.hdobox",
         "url": "https://hdo.app",
-        "version": "2.0.20",
+        "version": "2.0.19",
         "link": "https://hdo.app/download"
     },
     "YOUTUBE_MICROG": {
@@ -53,7 +53,7 @@
         "packageName": "com.lemon.lvoverseas",
         "url": "https://capcutapk.io/",
         "version": "11.1.0",
-        "link": "https://files.modyolo.com/CapCut/CapCut%20v11.1.0_(Pro).apk"
+        "link": "https://files.modyolo.com/CapCut/CapCut-v11.1.0-b11100600-Pro.apk"
     },
     "PHOTO_EDITOR_PRO": {
         "title": "Photo Editor Pro",
@@ -66,8 +66,8 @@
         "title": "Photoshop Express",
         "packageName": "com.adobe.psmobile",
         "url": "https://modyolo.com/photoshop-express-photo-editor.html",
-        "version": "12.8.309",
-        "link": "https://files.modyolo.com/Photoshop%20Express%20Photo%20Editor/Adobe_Photoshop_Express_v12.8.309_1615_Premium.apk"
+        "version": "12.8.314",
+        "link": "https://files.modyolo.com/Photoshop%20Express%20Photo%20Editor/Adobe-Photoshop-Express-v12.8.314-Premium.apk"
     },
     "INSHOT": {
         "title": "InShot",
