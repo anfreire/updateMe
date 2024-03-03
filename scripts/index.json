@@ -18,21 +18,21 @@
         "packageName": "app.revanced.android.youtube",
         "url": "https://github.com/j-hc/revanced-magisk-module",
         "version": "19.04.37",
-        "link": "https://github.com//j-hc/revanced-magisk-module/releases/download/20220931/youtube-revanced-v19.04.37-all.apk"
+        "link": "https://github.com//j-hc/revanced-magisk-module/releases/download/20220932/youtube-revanced-v19.04.37-all.apk"
     },
     "YOUTUBE_MUSIC": {
         "title": "YouTube Music",
         "packageName": "app.revanced.android.apps.youtube.music",
         "url": "https://github.com/j-hc/revanced-magisk-module",
-        "version": "6.37.50",
-        "link": "https://github.com//j-hc/revanced-magisk-module/releases/download/20220931/music-revanced-v6.37.50-arm64-v8a.apk"
+        "version": "6.41.58",
+        "link": "https://github.com//j-hc/revanced-magisk-module/releases/download/20220932/music-revanced-v6.41.58-arm64-v8a.apk"
     },
     "SPOTIFY": {
         "title": "Spotify",
         "packageName": "com.spotify.music",
         "url": "https://spotigeek.com/",
         "version": "8.10.9.722",
-        "link": "https://spotigeek.com/wp-content/uploads/APK/Spotify%20v8.10.9.722%20(SpotiGeek.com)%20Fix.apk"
+        "link": "https://spotigeek.com/wp-content/uploads/APK/Spotify%20v8.10.9.722%20(SpotiGeek.com)%20Fix%20(2).apk"
     },
     "INSTAGRAM": {
         "title": "Instagram",
@@ -52,8 +52,8 @@
         "title": "CapCut",
         "packageName": "com.lemon.lvoverseas",
         "url": "https://capcutapk.io/",
-        "version": "11.1.0",
-        "link": "https://files.modyolo.com/CapCut/CapCut-v11.1.0-b11100600-Pro.apk"
+        "version": "11.2.0",
+        "link": "https://files.modyolo.com/CapCut/CapCut_v11.2.0_b11200200_modded_by_Mixroot.apk"
     },
     "PHOTO_EDITOR_PRO": {
         "title": "Photo Editor Pro",
