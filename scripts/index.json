@@ -18,14 +18,14 @@
         "packageName": "app.revanced.android.youtube",
         "url": "https://github.com/j-hc/revanced-magisk-module",
         "version": "19.04.37",
-        "link": "https://github.com//j-hc/revanced-magisk-module/releases/download/20220932/youtube-revanced-v19.04.37-all.apk"
+        "link": "https://github.com//j-hc/revanced-magisk-module/releases/download/20220933/youtube-revanced-v19.04.37-all.apk"
     },
     "YOUTUBE_MUSIC": {
         "title": "YouTube Music",
         "packageName": "app.revanced.android.apps.youtube.music",
         "url": "https://github.com/j-hc/revanced-magisk-module",
         "version": "6.41.58",
-        "link": "https://github.com//j-hc/revanced-magisk-module/releases/download/20220932/music-revanced-v6.41.58-arm64-v8a.apk"
+        "link": "https://github.com//j-hc/revanced-magisk-module/releases/download/20220933/music-revanced-v6.41.58-arm64-v8a.apk"
     },
     "SPOTIFY": {
         "title": "Spotify",
@@ -73,7 +73,7 @@
         "title": "InShot",
         "packageName": "com.camerasideas.instashot",
         "url": "https://inshotpro.app/pro-mod",
-        "version": "2.020.1441",
+        "version": "2.021.1442",
         "link": "https://inshotpro.app/dl"
     },
     "TWITTER": {
