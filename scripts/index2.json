@@ -1,0 +1,230 @@
+{
+    "hdo": {
+        "icon": "https://anfreire.github.io/updateMe/scripts/icons/hdo.png",
+        "providers": {
+            "HDO": {
+                "packageName": "com.hdobox",
+                "source": "https://hdo.app",
+                "version": "2.0.19",
+                "link": "https://hdo.app/download"
+            }
+        }
+    },
+    "youtube": {
+        "icon": "https://anfreire.github.io/updateMe/scripts/icons/youtube.png",
+        "providers": {
+            "ReVanced": {
+                "packageName": "app.revanced.android.youtube",
+                "source": "https://github.com/j-hc/revanced-magisk-module",
+                "version": "19.04.37",
+                "link": "https://github.com//j-hc/revanced-magisk-module/releases/download/20220933/youtube-revanced-v19.04.37-all.apk"
+            },
+            "ReVanced Extended": {
+                "packageName": "app.rvx.android.youtube",
+                "source": "https://github.com/j-hc/revanced-magisk-module",
+                "version": "19.02.39",
+                "link": "https://github.com//j-hc/revanced-magisk-module/releases/download/20220929/youtube-revanced-extended-v19.02.39-all.apk"
+            }
+        }
+    },
+    "youtube_music": {
+        "icon": "https://anfreire.github.io/updateMe/scripts/icons/youtube_music.png",
+        "providers": {
+            "ReVanced": {
+                "packageName": "app.revanced.android.apps.youtube.music",
+                "source": "https://github.com/j-hc/revanced-magisk-module",
+                "version": "6.41.58",
+                "link": "https://github.com//j-hc/revanced-magisk-module/releases/download/20220933/music-revanced-v6.41.58-arm64-v8a.apk"
+            },
+            "ReVanced Extended": {
+                "packageName": "app.rvx.android.apps.youtube.music",
+                "source": "https://github.com/j-hc/revanced-magisk-module",
+                "version": "6.33.52",
+                "link": "https://github.com//j-hc/revanced-magisk-module/releases/download/20220929/music-revanced-extended-v6.33.52-arm64-v8a.apk"
+            }
+        }
+    },
+    "spotify": {
+        "icon": "https://anfreire.github.io/updateMe/scripts/icons/spotify.png",
+        "providers": {
+            "Spotify Geek": {
+                "packageName": "com.spotify.music",
+                "source": "https://spotigeek.com/",
+                "version": "8.10.9.722",
+                "link": "https://spotigeek.com/wp-content/uploads/APK/Spotify%20v8.10.9.722%20(SpotiGeek.com)%20Fix%20(2).apk"
+            },
+            "MODYOLO": {
+                "packageName": "com.spotify.music",
+                "source": "https://modyolo.com/spotify-music-2.html",
+                "version": "8.10.9.722",
+                "link": "https://files.modyolo.com/Spotify/v8.10.9.722/Spotify-v8.10.9.722-Premium-Fix.apk"
+            },
+            "LITEAPKS": {
+                "packageName": "com.spotify.music",
+                "source": "https://liteapks.com/spotify-2.html",
+                "version": "8.10.9.722",
+                "link": "https://cloud.liteapks.com/download/Spotify/v8.10.9.722/Spotify%20v8.10.9.722%20(Premium)%20Fix.apk"
+            },
+            "APKDONE": {
+                "packageName": "com.spotify.music",
+                "source": "https://apkdone.com/spotify-mod/",
+                "version": "8.10.9.722",
+                "link": "https://hole.apkdone.download/s/kPi9oA7CFJoCjzD/download"
+            }
+        }
+    },
+    "microg": {
+        "icon": "https://anfreire.github.io/updateMe/scripts/icons/microg.png",
+        "providers": {
+            "TeamVanced": {
+                "packageName": "com.mgoogle.android.gms",
+                "source": "https://github.com/TeamVanced/VancedMicroG",
+                "version": "0.2.24.220220",
+                "link": "https://github.com//TeamVanced/VancedMicroG/releases/download/v0.2.24.220220-220220001/microg.apk"
+            }
+        }
+    },
+    "photo_editor_pro": {
+        "icon": "https://anfreire.github.io/updateMe/scripts/icons/photo_editor_pro.png",
+        "providers": {
+            "MODYOLO": {
+                "packageName": "photo.editor.photoeditor.photoeditorpro",
+                "source": "https://modyolo.com/polish-photo-editor-pro.html",
+                "version": "1.52.164",
+                "link": "https://files.modyolo.com/Polish%20Photo%20Editor%20Pro/Photo_Editor_Pro_-_Polish_v1.52.164.apk"
+            },
+            "LITEAPKS": {
+                "packageName": "photo.editor.photoeditor.photoeditorpro",
+                "source": "https://liteapks.com/polish-photo-editor-pro.html",
+                "version": "1.52.164",
+                "link": "https://cloud.liteapks.com/download/Polish%20Photo%20Editor%20Pro/Photo%20Editor%20Pro%20-%20Polish%20v1.52.164%20(Pro).apk"
+            },
+            "APKDONE": {
+                "packageName": "photo.editor.photoeditor.photoeditorpro",
+                "source": "https://apkdone.com/photo-editor-pro-apk",
+                "version": "1.502.162",
+                "link": "https://file.apkdone.download/s/WFZic7tFyZtT5F4/download"
+            }
+        }
+    },
+    "photoshop_express": {
+        "icon": "https://anfreire.github.io/updateMe/scripts/icons/photoshop_express.png",
+        "providers": {
+            "MODYOLO": {
+                "packageName": "com.adobe.psmobile",
+                "source": "https://modyolo.com/photoshop-express-photo-editor.html",
+                "version": "13.0.353",
+                "link": "https://files.modyolo.com/Photoshop%20Express%20Photo%20Editor/Adobe%20Photoshop%20Express%20v13.0.353%20(Premium).apk"
+            },
+            "LITEAPKS": {
+                "packageName": "com.adobe.psmobile",
+                "source": "https://liteapks.com/photoshop-express-photo-editor.html",
+                "version": "13.0.353",
+                "link": "https://cloud.liteapks.com/download/Photoshop%20Express/Adobe%20Photoshop%20Express%20v13.0.353%20(Premium)%20arm7.apk"
+            },
+            "APKDONE": {
+                "packageName": "com.adobe.psmobile",
+                "source": "https://apkdone.com/adobe-photoshop-express/",
+                "version": "13.0.353",
+                "link": "https://file.apkdone.download/s/ZkkeWJiHqPYH6dL/download"
+            }
+        }
+    },
+    "capcut": {
+        "icon": "https://anfreire.github.io/updateMe/scripts/icons/capcut.png",
+        "providers": {
+            "MODYOLO": {
+                "packageName": "com.lemon.lvoverseas",
+                "source": "https://modyolo.com/capcut-video-editor.html",
+                "version": "11.3.0",
+                "link": "https://files.modyolo.com/CapCut/CapCut-v11.3.0-Pro.apk"
+            },
+            "LITEAPKS": {
+                "packageName": "com.lemon.lvoverseas",
+                "source": "https://liteapks.com/capcut-video-editor.html",
+                "version": "11.3.0",
+                "link": "https://cloud.liteapks.com/download/CapCut/CapCut%20v11.3.0%20(Pro).apk"
+            },
+            "APKDONE": {
+                "packageName": "com.lemon.lvoverseas",
+                "source": "https://apkdone.com/capcut-mod-apk/",
+                "version": "11.3.0",
+                "link": "https://file.apkdone.download/s/zWKx2riSgjAMxiF/download"
+            }
+        }
+    },
+    "inshot": {
+        "icon": "https://anfreire.github.io/updateMe/scripts/icons/inshot.png",
+        "providers": {
+            "LITEAPKS": {
+                "packageName": "com.camerasideas.instashot",
+                "source": "https://liteapks.com/inshot-pro-2.html",
+                "version": "2.021.1442",
+                "link": "https://cloud.liteapks.com/download/InShot/InShot%20v2.021.1442%20(Pro).apk"
+            },
+            "APKDONE": {
+                "packageName": "com.camerasideas.instashot",
+                "source": "https://apkdone.com/inshot",
+                "version": "2.021.1442",
+                "link": "https://file.apkdone.download/s/HB49MPg7NaCcSsH/download"
+            },
+            "MODYOLO": {
+                "packageName": "com.camerasideas.instashot",
+                "source": "https://modyolo.com/inshot.html",
+                "version": "2.021.1442",
+                "link": "https://files.modyolo.com/InShot/InShot%20v2.021.1442%20(Pro).apk"
+            }
+        }
+    },
+    "instagram": {
+        "icon": "https://anfreire.github.io/updateMe/scripts/icons/instagram.png",
+        "providers": {
+            "AeroInsta": {
+                "packageName": "com.aeroinsta.android",
+                "source": "https://aeroinsta.com/",
+                "version": "316.0.0.38.109",
+                "link": "https://download.aeromods.app/AeroMods/AeroInsta/V24.0.0/Fh73vhw/Clone/AeroInsta_V24.0.0_Clone_DEFAULT__aeromods.app__.apk"
+            },
+            "Instander": {
+                "packageName": "com.instander.android",
+                "source": "https://thedise.me/instander/",
+                "version": "263.2.0.19.104",
+                "link": "https://ota.thedise.me/instander/clone/instander-17.2-c.apk"
+            }
+        }
+    },
+    "twitter": {
+        "icon": "https://anfreire.github.io/updateMe/scripts/icons/twitter.png",
+        "providers": {
+            "AeroWitter": {
+                "packageName": "com.twitter.aeromod",
+                "source": "https://aerowitter.com/",
+                "version": "9.95.0-release.0",
+                "link": "https://download.aeromods.app/AeroMods/AeroWitter/V3.5/krdwyP94aYVaRaRP/Clone/AeroWitter_V3.5_Clone_DEFAULT__aeromods.app__.apk"
+            }
+        }
+    },
+    "whatsapp": {
+        "icon": "https://anfreire.github.io/updateMe/scripts/icons/whatsapp.png",
+        "providers": {
+            "WhatsAero": {
+                "packageName": "com.aero",
+                "source": "https://whatsaero.com/",
+                "version": "2.23.21.88",
+                "link": "https://download.aeromods.app/AeroMods/WhatsAero/BETA/V9.93/H7dhs4/A_AERO_V9.93_BETA__--com_aero--__aeromods.app__.apk"
+            },
+            "GBWhatsApp": {
+                "packageName": "com.gbwhatsapp",
+                "source": "https://gbapps.org.pk/",
+                "version": "2.24.2.74",
+                "link": "https://gbapps.click/GBWhatsApp.apk"
+            },
+            "WhatsApp Plus": {
+                "packageName": "com.whatsapp",
+                "source": "https://waplusapp.net/",
+                "version": "2.24.2.74",
+                "link": "https://dl.waplus.me/dl/"
+            }
+        }
+    }
+}
