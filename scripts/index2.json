@@ -204,7 +204,7 @@
             }
         }
     },
-    "Whatsapp": {
+    "WhatsApp": {
         "icon": "https://anfreire.github.io/updateMe/scripts/icons/whatsapp.png",
         "providers": {
             "FMWhatsApp": {
