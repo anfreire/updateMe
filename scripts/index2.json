@@ -1,5 +1,5 @@
 {
-    "hdo": {
+    "HDO": {
         "icon": "https://anfreire.github.io/updateMe/scripts/icons/hdo.png",
         "providers": {
             "HDO": {
@@ -10,7 +10,7 @@
             }
         }
     },
-    "youtube": {
+    "Youtube": {
         "icon": "https://anfreire.github.io/updateMe/scripts/icons/youtube.png",
         "providers": {
             "ReVanced": {
@@ -27,7 +27,7 @@
             }
         }
     },
-    "youtube_music": {
+    "Youtube Music": {
         "icon": "https://anfreire.github.io/updateMe/scripts/icons/youtube_music.png",
         "providers": {
             "ReVanced": {
@@ -44,14 +44,25 @@
             }
         }
     },
-    "spotify": {
+    "MicroG": {
+        "icon": "https://anfreire.github.io/updateMe/scripts/icons/microg.png",
+        "providers": {
+            "TeamVanced": {
+                "packageName": "com.mgoogle.android.gms",
+                "source": "https://github.com/TeamVanced/VancedMicroG",
+                "version": "0.2.24.220220",
+                "link": "https://github.com//TeamVanced/VancedMicroG/releases/download/v0.2.24.220220-220220001/microg.apk"
+            }
+        }
+    },
+    "Spotify": {
         "icon": "https://anfreire.github.io/updateMe/scripts/icons/spotify.png",
         "providers": {
             "Spotify Geek": {
                 "packageName": "com.spotify.music",
                 "source": "https://spotigeek.com/",
                 "version": "8.10.9.722",
-                "link": "https://spotigeek.com/wp-content/uploads/APK/Spotify%20v8.10.9.722%20(SpotiGeek.com)%20Fix%20(2).apk"
+                "link": "https://spotigeek.com/wp-content/uploads/APK/Spotify%20v8.10.9.722%20(SpotiGeek.com)%20Fix%20(6).apk"
             },
             "MODYOLO": {
                 "packageName": "com.spotify.music",
@@ -73,18 +84,7 @@
             }
         }
     },
-    "microg": {
-        "icon": "https://anfreire.github.io/updateMe/scripts/icons/microg.png",
-        "providers": {
-            "TeamVanced": {
-                "packageName": "com.mgoogle.android.gms",
-                "source": "https://github.com/TeamVanced/VancedMicroG",
-                "version": "0.2.24.220220",
-                "link": "https://github.com//TeamVanced/VancedMicroG/releases/download/v0.2.24.220220-220220001/microg.apk"
-            }
-        }
-    },
-    "photo_editor_pro": {
+    "Photo Editor Pro": {
         "icon": "https://anfreire.github.io/updateMe/scripts/icons/photo_editor_pro.png",
         "providers": {
             "MODYOLO": {
@@ -107,7 +107,7 @@
             }
         }
     },
-    "photoshop_express": {
+    "Photoshop Express": {
         "icon": "https://anfreire.github.io/updateMe/scripts/icons/photoshop_express.png",
         "providers": {
             "MODYOLO": {
@@ -130,7 +130,7 @@
             }
         }
     },
-    "capcut": {
+    "Capcut": {
         "icon": "https://anfreire.github.io/updateMe/scripts/icons/capcut.png",
         "providers": {
             "MODYOLO": {
@@ -153,7 +153,7 @@
             }
         }
     },
-    "inshot": {
+    "Inshot": {
         "icon": "https://anfreire.github.io/updateMe/scripts/icons/inshot.png",
         "providers": {
             "LITEAPKS": {
@@ -176,7 +176,7 @@
             }
         }
     },
-    "instagram": {
+    "Instagram": {
         "icon": "https://anfreire.github.io/updateMe/scripts/icons/instagram.png",
         "providers": {
             "AeroInsta": {
@@ -193,7 +193,7 @@
             }
         }
     },
-    "twitter": {
+    "Twitter": {
         "icon": "https://anfreire.github.io/updateMe/scripts/icons/twitter.png",
         "providers": {
             "AeroWitter": {
@@ -204,26 +204,20 @@
             }
         }
     },
-    "whatsapp": {
+    "Whatsapp": {
         "icon": "https://anfreire.github.io/updateMe/scripts/icons/whatsapp.png",
         "providers": {
-            "WhatsAero": {
-                "packageName": "com.aero",
-                "source": "https://whatsaero.com/",
-                "version": "2.23.21.88",
-                "link": "https://download.aeromods.app/AeroMods/WhatsAero/BETA/V9.93/H7dhs4/A_AERO_V9.93_BETA__--com_aero--__aeromods.app__.apk"
-            },
-            "GBWhatsApp": {
-                "packageName": "com.gbwhatsapp",
-                "source": "https://gbapps.org.pk/",
+            "FMWhatsApp": {
+                "packageName": "com.fmwhatsapp",
+                "source": "https://fmmods.com/fouad-whatsapp/",
                 "version": "2.24.2.74",
-                "link": "https://gbapps.click/GBWhatsApp.apk"
+                "link": "https://apk-download.co/V998/FMWA9.98@FouadMODS.apk"
             },
-            "WhatsApp Plus": {
-                "packageName": "com.whatsapp",
-                "source": "https://waplusapp.net/",
-                "version": "2.24.2.74",
-                "link": "https://dl.waplus.me/dl/"
+            "YMWhatsApp": {
+                "packageName": "com.ymwhatsapp",
+                "source": "https://ymmods.net/download-ymwa-clone/",
+                "version": "2.24.1.78",
+                "link": "https://bitbucket.org/jesusmuentes/ymwaplus/downloads/YMWhatsApp_v36.2_Clone_By.YMMODS.apk"
             }
         }
     }
