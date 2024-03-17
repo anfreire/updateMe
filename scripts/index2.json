@@ -119,14 +119,14 @@
             "LITEAPKS": {
                 "packageName": "com.adobe.psmobile",
                 "source": "https://liteapks.com/photoshop-express-photo-editor.html",
-                "version": "13.0.353",
-                "link": "https://cloud.liteapks.com/download/Photoshop%20Express/Adobe%20Photoshop%20Express%20v13.0.353%20(Premium)%20arm7.apk"
+                "version": "13.1.373",
+                "link": "https://cloud.liteapks.com/download/Photoshop%20Express/Adobe%20Photoshop%20Express%20v13.1.373%20(Premium)%20arm7.apk"
             },
             "APKDONE": {
                 "packageName": "com.adobe.psmobile",
                 "source": "https://apkdone.com/adobe-photoshop-express/",
-                "version": "13.0.353",
-                "link": "https://file.apkdone.download/s/ZkkeWJiHqPYH6dL/download"
+                "version": "13.1.372",
+                "link": "https://file.apkdone.download/s/8QaK5ZSWqXcfwnJ/download"
             }
         }
     },
