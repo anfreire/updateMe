@@ -11,7 +11,7 @@
             }
         }
     },
-    "Youtube": {
+    "YouTube": {
         "icon": "https://anfreire.github.io/updateMe/scripts/icons/youtube.png",
         "providers": {
             "ReVanced": {
@@ -30,7 +30,7 @@
             }
         }
     },
-    "Youtube Music": {
+    "YouTube Music": {
         "icon": "https://anfreire.github.io/updateMe/scripts/icons/youtube_music.png",
         "providers": {
             "ReVanced": {
