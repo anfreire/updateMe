@@ -1,8 +1,44 @@
 {
-  "Movies & TV Shows": ["HDO"],
-  "Music Streaming": ["Spotify", "YouTube Music"],
-  "Video Streaming": ["YouTube"],
-  "Photo Editing": ["Photo Editor Pro", "Photoshop Express"],
-  "Video Editing": ["Capcut", "Inshot"],
-  "Social Media": ["Instagram", "Twitter", "WhatsApp"]
+  "Movies & TV Shows": {
+    "apps": ["HDO"],
+    "icon": {
+      "name": "movie",
+      "type": "material"
+    }
+  },
+  "Music Streaming": {
+    "apps": ["Spotify", "YouTube Music"],
+    "icon": {
+      "name": "music-note",
+      "type": "material"
+    }
+  },
+  "Video Streaming": {
+    "apps": ["YouTube"],
+    "icon": {
+      "name": "video-collection",
+      "type": "material"
+    }
+  },
+  "Photo Editing": {
+    "apps": ["Photo Editor Pro", "Photoshop Express"],
+    "icon": {
+      "name": "image-edit",
+      "type": "material-community"
+    }
+  },
+  "Video Editing": {
+    "apps": ["Capcut", "Inshot"],
+    "icon": {
+      "name": "movie-edit",
+      "type": "material-community"
+    }
+  },
+  "Social Media": {
+    "apps": ["Instagram", "Twitter", "WhatsApp"],
+    "icon": {
+      "name": "group",
+      "type": "material"
+    }
+  }
 }
