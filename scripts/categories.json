@@ -1,10 +1,7 @@
 {
   "Movies & TV Shows": {
     "apps": ["HDO"],
-    "icon": {
-      "name": "movie",
-      "type": "movie-open-play"
-    }
+    "icon": "movie-open-play"
   },
   "Music Streaming": {
     "apps": ["Spotify", "YouTube Music"],
