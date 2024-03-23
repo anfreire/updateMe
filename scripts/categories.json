@@ -3,42 +3,27 @@
     "apps": ["HDO"],
     "icon": {
       "name": "movie",
-      "type": "material"
+      "type": "movie-open-play"
     }
   },
   "Music Streaming": {
     "apps": ["Spotify", "YouTube Music"],
-    "icon": {
-      "name": "music-note",
-      "type": "material"
-    }
+    "icon": "music-box-multiple"
   },
   "Video Streaming": {
     "apps": ["YouTube"],
-    "icon": {
-      "name": "video-collection",
-      "type": "material"
-    }
+    "icon": "play-box-multiple"
   },
   "Photo Editing": {
     "apps": ["Photo Editor Pro", "Photoshop Express"],
-    "icon": {
-      "name": "image-edit",
-      "type": "material-community"
-    }
+    "icon": "image-edit"
   },
   "Video Editing": {
     "apps": ["Capcut", "Inshot"],
-    "icon": {
-      "name": "movie-edit",
-      "type": "material-community"
-    }
+    "icon": "movie-edit"
   },
   "Social Media": {
     "apps": ["Instagram", "Twitter", "WhatsApp"],
-    "icon": {
-      "name": "group",
-      "type": "material"
-    }
+    "icon": "account-group"
   }
 }
