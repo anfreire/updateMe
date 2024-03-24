@@ -1,5 +1,6 @@
 {
     "HDO": {
+        "packageName": "com.hdobox",
         "icon": "https://anfreire.github.io/updateMe/scripts/icons/hdo.png",
         "providers": {
             "HDO": {
@@ -12,6 +13,7 @@
         }
     },
     "YouTube": {
+        "packageName": "com.google.android.youtube",
         "icon": "https://anfreire.github.io/updateMe/scripts/icons/youtube.png",
         "providers": {
             "ReVanced": {
@@ -31,6 +33,7 @@
         }
     },
     "YouTube Music": {
+        "packageName": "com.google.android.apps.youtube.music",
         "icon": "https://anfreire.github.io/updateMe/scripts/icons/youtube_music.png",
         "providers": {
             "ReVanced": {
@@ -62,6 +65,7 @@
         }
     },
     "Spotify": {
+        "packageName": "com.spotify.music",
         "icon": "https://anfreire.github.io/updateMe/scripts/icons/spotify.png",
         "providers": {
             "Spotify Geek": {
@@ -95,6 +99,7 @@
         }
     },
     "Photo Editor Pro": {
+        "packageName": "photo.editor.photoeditor.photoeditorpro",
         "icon": "https://anfreire.github.io/updateMe/scripts/icons/photo_editor_pro.png",
         "providers": {
             "MODYOLO": {
@@ -121,6 +126,7 @@
         }
     },
     "Photoshop Express": {
+        "packageName": "com.adobe.psmobile",
         "icon": "https://anfreire.github.io/updateMe/scripts/icons/photoshop_express.png",
         "providers": {
             "MODYOLO": {
@@ -147,6 +153,7 @@
         }
     },
     "Capcut": {
+        "packageName": "com.lemon.lvoverseas",
         "icon": "https://anfreire.github.io/updateMe/scripts/icons/capcut.png",
         "providers": {
             "MODYOLO": {
@@ -173,6 +180,7 @@
         }
     },
     "Inshot": {
+        "packageName": "com.camerasideas.instashot",
         "icon": "https://anfreire.github.io/updateMe/scripts/icons/inshot.png",
         "providers": {
             "LITEAPKS": {
@@ -199,6 +207,7 @@
         }
     },
     "Instagram": {
+        "packageName": "com.instagram.android",
         "icon": "https://anfreire.github.io/updateMe/scripts/icons/instagram.png",
         "providers": {
             "AeroInsta": {
@@ -218,6 +227,7 @@
         }
     },
     "Twitter": {
+        "packageName": "com.twitter.android",
         "icon": "https://anfreire.github.io/updateMe/scripts/icons/twitter.png",
         "providers": {
             "AeroWitter": {
@@ -230,6 +240,7 @@
         }
     },
     "WhatsApp": {
+        "packageName": "com.whatsapp",
         "icon": "https://anfreire.github.io/updateMe/scripts/icons/whatsapp.png",
         "providers": {
             "FMWhatsApp": {
