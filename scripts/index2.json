@@ -1,6 +1,5 @@
 {
     "HDO": {
-        "packageName": "com.hdobox",
         "icon": "https://anfreire.github.io/updateMe/scripts/icons/hdo.png",
         "providers": {
             "HDO": {
